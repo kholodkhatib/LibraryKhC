@@ -14,48 +14,36 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
 
 
 
-    vm.add== function() {
-        console.log("add todo was clicked...");
-        $scope.todos.push({
+    vm.eventsArray=[
+        {  id:"123",
+            name:"person1",
+            description:"lastname",
+            time:"person1@hotmail.com",
+            date:"Yaffa",
 
+        },
+        {  id:"123",
+            name:"person1",
+            description:"lastname",
+            time:"person1@hotmail.com",
+            date:"Yaffa",
 
-            id: "123",
-            firstName: "person1",
-            lastName: "lastname",
-            email: "person1@hotmail.com",
-            address: "Yaffa",
-            gender: "male"
-        });
-    };
-    vm.peopleArray=[
-        {  id:"123",
-            firstName:"person1",
-            lastName:"lastname",
-            email:"person1@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
         },
         {  id:"123",
-            firstName:"person2",
-            lastName:"lastname",
-            email:"person2@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
+            name:"person1",
+            description:"lastname",
+            time:"person1@hotmail.com",
+            date:"Yaffa",
+
         },
         {  id:"123",
-            firstName:"person3",
-            lastName:"lastname",
-            email:"person3@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
-        },
-        {  id:"123",
-            firstName:"person4",
-            lastName:"lastname",
-            email:"person4@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
+            name:"person1",
+            description:"lastname",
+            time:"person1@hotmail.com",
+            date:"Yaffa",
+
         }
+
 
     ];
 

@@ -25,7 +25,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
-        }); 
+        });
 
         return deferred.promise;
     };

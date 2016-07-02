@@ -30,8 +30,8 @@ vm.newbook={};
             gender: "male"
         });
     };
-    vm.peopleArray={};
-    vm.peopleArray.development=[
+    vm.booksArray={};
+    vm.booksArray.development=[
         {  id:"123",
             firstName:"person1",
             lastName:"lastname",

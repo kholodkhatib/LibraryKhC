@@ -48,22 +48,22 @@ Date: 15 Jan 2016
 <thead>
 <tr>
     <th ng-click="predicate='FirstName'; reverse=!reverse">ID</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Full Name</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Gender</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Email</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Address</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Name </th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Description</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Time</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Date</th>
 
     <th>Actions</th>
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="person in vm.peopleArray ">
-    <td>{{person.id}}</td>
+<tr ng-repeat="event in vm.eventsArray ">
+    <td>{{event.id}}</td>
 
-    <td>{{person.firstName}}  &nbsp;{{person.lastName}} </td>
-    <td>{{person.gender}}</td>
-    <td>{{person.email}}</td>
-  <td>{{person.address }}</td>
+    <td>{{event.name}}</td>
+    <td>{{event.description}}</td>
+    <td>{{event.time}}</td>
+  <td>{{event.date }}</td>
     <td class="action-column">
         <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Edit</button>
     </td>
@@ -75,10 +75,10 @@ Date: 15 Jan 2016
     </td>
 </tr>
 </tbody>
+    <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Add New Event</button>
 
 
 </table>
-<button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Add New Person</button>
 
 <!--
 

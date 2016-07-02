@@ -50,22 +50,33 @@ Date: 15 Jan 2016
 <thead>
 <tr>
     <th ng-click="predicate='FirstName'; reverse=!reverse">ID</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Full Name</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Gender</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Email</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Address</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Title</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Description</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Publish Year</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Author</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Category</th>
+
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Language</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">In use?</th>
+
+
 
     <th>Actions</th>
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="person in vm.peopleArray.development ">
-    <td>{{person.id}}</td>
+<tr ng-repeat="books in vm.bookArray.development ">
+    <td>{{books.id}}</td>
 
-    <td>{{person.firstName}}  &nbsp;{{person.lastName}} </td>
-    <td>{{person.gender}}</td>
-    <td>{{person.email}}</td>
-  <td>{{person.address }}</td>
+    <td>{{books.title}} </td>
+    <td> {{books.description }}</td>
+    <td> {{books.publishYear }}</td>
+    <td> {{books.author }}</td>
+    <td> {{books.category }}</td>
+    <td> {{books.language }}</td>
+    <td> {{books.available }}</td>
+
+
     <td class="action-column">
         <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Edit</button>
     </td>
