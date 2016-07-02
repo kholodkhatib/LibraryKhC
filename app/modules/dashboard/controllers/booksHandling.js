@@ -8,9 +8,12 @@
 
  ===========================================================*/
 
-dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia) {
     var vm = this;
+
+
+vm.newbook={};
 
 
 
@@ -27,7 +30,8 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             gender: "male"
         });
     };
-    vm.peopleArray=[
+    vm.peopleArray={};
+    vm.peopleArray.development=[
         {  id:"123",
             firstName:"person1",
             lastName:"lastname",
@@ -60,12 +64,72 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     ];
 
 
+
+
+
+    function DialogController($scope, $mdDialog) {
+
+        $scope.book= {};
+        $scope.CreateNewBook= function(){
+
+            console.log($scope.book);
+            $mdDialog.cancel();
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    vm.showAdvanced = function(ev) {
+        debugger
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
+
+
+
+
+
+
     vm.removeItem = function removeItem(row) {
         var index = vm.peopleArray.indexOf(row);
         if (index !== -1) {
             vm.peopleArray.splice(index, 1);
         }
     }
+
+
+
  /*   vm.meMarks = false;
     vm.mscMarks = false;
     vm.hscMarks = false;
