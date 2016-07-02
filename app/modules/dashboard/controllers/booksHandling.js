@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia) {
+dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
 
 
@@ -67,13 +67,18 @@ vm.newbook={};
 //haha
 
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog,apiService) {
 
         $scope.book= {};
         $scope.CreateNewBook= function(){
 
+
             console.log($scope.book);
-            $mdDialog.cancel();
+            apiService.createNewBook($scope.book)
+                .then(function (data) {
+
+                }, function (err) {
+                });            $mdDialog.cancel();
         };
         $scope.hide = function() {
             $mdDialog.hide();

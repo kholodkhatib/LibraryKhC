@@ -14,6 +14,7 @@ var appConfig = {
     lang: "en",
     dateFormat: "mm/dd/yy",
     apiBase: 'https://librarykholod.herokuapp.com/api/',
+    //apiBase: 'http://192.168.1.16:5000/api/',
     theme: 'skin-purple',
     layout:""
 };

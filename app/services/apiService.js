@@ -12,17 +12,11 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var apiService = {};
     var apiBase = appSettings.apiBase;
 
-    //===========================GET RESOURCE==============================
-    var get = function (module, parameter) {
-        var deferred = $q.defer();
-        $http.get(apiBase + module, { params: parameter }, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
-            deferred.resolve(response);
-        }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
-        });
+    //+++++++++++++++++++++++++++++++++++++++++++++++KHOLOD+++++++++++++++++++++++++++++++++++++++++++++++
 
-        return deferred.promise;
-    };
+
+
+
 
     //===========================Search RESOURCE==============================
     var search = function () {
@@ -35,6 +29,70 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
         return deferred.promise;
     };
+
+    //===========================Create Book RESOURCE======== Kholod======================
+    var createNewBook = function (book) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'book',book ,{ headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //-----------------------------------------------END OF KHOLOD
+
+
+
+
+
+
+
+
+
+
+
+
+    //===========================GET RESOURCE==============================
+    var get = function (module, parameter) {
+        var deferred = $q.defer();
+        $http.get(apiBase + module, { params: parameter }, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
 
     //===========================CREATE RESOURCE==============================
     var create = function (module, parameter) {
@@ -99,6 +157,8 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.create = create;
     apiService.update = update;
     apiService.delet = delet;
+    apiService.createNewBook = createNewBook;
+
 
     return apiService;
 
