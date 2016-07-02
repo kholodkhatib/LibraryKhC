@@ -34,13 +34,28 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var createNewBook = function (book) {
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'book',book ,{ headers: { 'Content-Type': 'application/json' } }).success(function (response) {
-            deferred.resolve(response);
-        }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
+        $http.post(apiBase + 'book',
+            book
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+            deferred.resolve(data);
+        }).error(function (msg, code) {
+            deferred.reject(msg);
+            //   $log.error(msg, code);
         });
-
         return deferred.promise;
+        //var deferred = $q.defer();
+        //
+        //$http.post(apiBase + 'book',{} ,{ headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        //    deferred.resolve(response);
+        //}).catch(function (data, status, headers, config) { // <--- catch instead error
+        //    deferred.reject(data.statusText);
+        //});
+        //
+        //return deferred.promise;
     };
 
 
