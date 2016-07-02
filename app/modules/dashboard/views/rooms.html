@@ -1,0 +1,173 @@
+﻿<!--
+Author: Ranjithprabhu K
+Page Description: Rooms page
+: 13 Jan 2016
+-->
+<style>
+    .table tfoot .pagination{
+        float: right;
+        margin: 0;
+        background: deepskyblue;
+    }
+</style>
+
+
+<style>
+
+    .datepickerdemoBasicUsage {
+        /** Demo styles for mdCalendar. */ }
+    .datepickerdemoBasicUsage md-content {
+        padding-bottom: 200px; }
+    .datepickerdemoBasicUsage .validation-messages {
+        font-size: 12px;
+        color: #dd2c00;
+        margin: 10px 0 0 25px; }
+</style>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Rooms To Order</h1>
+        <ol class="breadcrumb">
+            <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Rooms</li>
+        </ol>
+    </section>
+<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Mango (Fruit)</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+            <div class="small-box bg-{{room.theme}}-gradient" ng-click="vm.showAdvanced($event)">
+
+                <div class="inner">
+                    <h3>{{room.RoomName}}<small class="text-black"></small></h3>
+                    <p class="text-bold">{{room.NumberOfSeats}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa"><img src="images/icons/cloud.png" class="img-responsive" width="70" /></i><!-- // to change picture-->
+                </div>
+                <div style="min-height: 10%">
+
+                </div>
+                <div class="progress progress-sm active">
+                    <div class="progress-bar progress-bar-{{room.theme}} progress-bar-striped" role="progressbar" aria-valuenow="{{room.RoomName}}" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    </div>
+                </div>
+
+            </div>
+
+<!--
+            <table>
+                <tr>
+
+                    <td> 09:00 </td>   <td> Room 1</td>   <td>10:00 </td>   <td>11:00 </td>
+                    <td>12:00 </td>  <td>13:00 </td>  <td>14:00 </td>  <td>15:00 </td>
+                    <td>16:00 </td>  <td>17:00 </td>  <td>18:00 </td>  <td>19:00 </td>
+
+                </tr>
+            </table>
+            <h2>Using .md-dialog-content class that sets the padding as the spec</h2>
+            <p>
+                The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
+            </p>
+
+            <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">
+
+            <p>
+                The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
+            </p>
+            <p>
+                It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the national fruit of India, Pakistan, and the Philippines, and the national tree of Bangladesh. In several cultures, its fruit and leaves are ritually used as floral decorations at weddings, public celebrations, and religious ceremonies.
+            </p>-->
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+  <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+            More on Wikipedia
+        </md-button>
+        <span flex></span>-->
+        <md-button ng-click="answer('not useful')">
+           Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+           Close
+        </md-button>
+    </md-dialog-actions>
+</form>
+</md-dialog>
+</script>
+<!--
+<div ng-click="vm.showAdvanced($event)">aaaa</div>
+-->
+
+<!--choose a date-->
+<section class="content" style="min-height: 200px;">
+
+    <div class="row">
+        <div style='padding: 40px;' ng-cloak>
+            <md-content>
+                <h4>Choose a Date</h4>
+                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>
+
+                <md-button class="md-raised md-primary" ng-click="vm.ShowRoomsInSelectedDates()" > GO <i class="fa fa-angle-double-right"></i></md-button>
+
+
+            </md-content>
+        </div>
+
+    </div>
+
+</section>
+    <!-- All Rooms content -->
+    <section class="content" ng-show="vm.showRooms">
+
+        <div class="row">
+            <h2>Rooms For Date: {{vm.myDate  | date:'MM/dd/yyyy' }}</h2>
+<hr>
+            <div class="col-lg-3 col-xs-6" data-ng-repeat="room in vm.rooms.development">
+                <!-- small box -->
+
+
+                <div class="small-box bg-{{room.theme}}-gradient" ng-click="vm.showAdvanced($event)">
+
+                    <div class="inner">
+                        <h3>{{room.RoomName}}<small class="text-black"></small></h3>
+                        <p class="text-bold">{{room.NumberOfSeats}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa"><img src="images/icons/cloud.png" class="img-responsive" width="70" /></i><!-- // to change picture-->
+                    </div>
+                    <div style="min-height: 10%">
+
+                    </div>
+                    <div class="progress progress-sm active">
+                        <div class="progress-bar progress-bar-{{room.theme}} progress-bar-striped" role="progressbar" aria-valuenow="{{room.RoomName}}" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="img-responsive"  style="min-height: 10%">
+            </div>
+        </div>
+            </div>
+    </section>
+
+    <section class="content-header">
+
+    </section>
+
+
+
+

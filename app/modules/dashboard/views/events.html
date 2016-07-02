@@ -1,0 +1,50 @@
+﻿<!--
+Author: Ranjithprabhu K
+Page Description: events page
+Date: 24 Jan 2016
+-->
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Events In The Library
+
+        </h1>
+        <ol class="breadcrumb">
+            <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Events</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+    <div class="row">
+
+
+        <div class="col-md-12" data-ng-repeat="event in vm.eventsArray">
+            <div class="box box-warning box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{event.date}}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-toggle="collapse" data-target="#content{{event.id}}"><span class="fa fa-caret-down"></span></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body collapse in" id="content{{event.id}}">
+                    <div class="col-md-3">
+                        <img src="images/recent/{{event.image}}.jpg" class="img-responsive">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="box-body">
+                            <strong><i class="glyphicon glyphicon-hand-right margin-r-5"></i>  Title</strong>
+                            <a  target="_blank"> <h3 class="margin-top-none">{{event.title}}</h3></a>
+                            <hr>
+                            <strong><i class="glyphicon glyphicon-info-sign margin-r-5"></i> Description</strong>
+                            <p class="text-muted">{{event.description}}</p>
+                            <hr>
+                        </div>
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+            </div>
+        </div>
+        </div>
+    </section><!-- /.content -->
+
