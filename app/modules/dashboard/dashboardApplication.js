@@ -168,7 +168,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
-    //Recent Projects page state
+  /*  //Recent Projects page state
     $stateProvider.state('app.recent', {
         url: '/events',
         templateUrl: 'app/modules/dashboard/views/recent.html',
@@ -177,7 +177,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         data: {
             pageTitle: 'Recent Projects'
         }
-    });
+    });*/
 
     // Events  page state
     $stateProvider.state('app.events', {

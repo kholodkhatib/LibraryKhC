@@ -16,7 +16,37 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
 
+    //===========================Get All Events RESOURCE==============================
+    var getAllEvents = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'event', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
 
+        return deferred.promise;
+    };
+
+
+    //===========================Create Event RESOURCE======== Kholod======================
+    var createNewEvent = function (event) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'event',
+            event
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
 
     //===========================Search RESOURCE==============================
     var search = function () {
@@ -173,6 +203,9 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.update = update;
     apiService.delet = delet;
     apiService.createNewBook = createNewBook;
+    apiService.createNewBook = createNewBook;
+apiService.getAllEvents=getAllEvents;
+    apiService.createNewEvent=createNewEvent;
 
 
     return apiService;

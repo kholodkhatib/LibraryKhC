@@ -30,7 +30,7 @@ Date: 15 Jan 2016
     }
 </style>
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
         Books Information
 
@@ -39,7 +39,7 @@ Date: 15 Jan 2016
             <br>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">People</li>
+            <li class="active">Books Handling</li>
           </ol>
         </section>
 
@@ -65,10 +65,27 @@ Date: 15 Jan 2016
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="books in vm.bookArray.development ">
-    <td>{{books.id}}</td>
+<tr ng-repeat="books in vm.booksArray ">
+    <td>{{books._id}}</td>
 
-    <td>{{books.title}} </td>
+   <!-- <td>
+        &lt;!&ndash; editable username (text with validation) &ndash;&gt;
+        <span editable-text="books.title" e-name="name" e-form="rowform" onbeforesave="vm.checkName($data, user.id)" e-required>
+          {{books.title || 'empty' }}
+        </span>
+    </td>
+
+    <td> {{books.description || 'empty'}}</td>
+    <td> {{books.year }}</td>
+    <td> {{books.author }}</td>
+    <td> {{books.category }}</td>
+    <td> {{books.language }}</td>
+    <td> {{books.available }}</td>-->
+
+
+
+
+    <td>  {{books.title}} </td>
     <td> {{books.description }}</td>
     <td> {{books.publishYear }}</td>
     <td> {{books.author }}</td>
@@ -76,8 +93,24 @@ Date: 15 Jan 2016
     <td> {{books.language }}</td>
     <td> {{books.available }}</td>
 
+    <td style="white-space: nowrap">
+        <!-- form -->
+        <form editable-form name="rowform" onbeforesave="vm.saveUser($data, books._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == books">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                save
+            </button>
+            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                cancel
+            </button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+            <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+            <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+        </div>
+    </td>
 
-    <td class="action-column">
+  <!--  <td class="action-column">
+
         <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Edit</button>
     </td>
     <td>
@@ -85,7 +118,7 @@ Date: 15 Jan 2016
             <i class="glyphicon glyphicon-remove-circle">
             </i>
         </button>
-    </td>
+    </td>-->
 </tr>
 </tbody>
     <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Book</button>

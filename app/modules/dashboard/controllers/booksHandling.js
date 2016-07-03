@@ -13,55 +13,65 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     var vm = this;
 
 
+vm.Refresh= function () {
+
+    apiService.search()
+        .then(function (books) {
+            vm.booksArray = books;
+        }, function (err) {
+        });
+};
 vm.newbook={};
 
-
-
-    vm.add== function() {
-        console.log("add todo was clicked...");
-        $scope.todos.push({
-
-
-            id: "123",
-            firstName: "person1",
-            lastName: "lastname",
-            email: "person1@hotmail.com",
-            address: "Yaffa",
-            gender: "male"
-        });
+    vm.saveUser = function(data, id) {
+        //$scope.user not updated yet
+        angular.extend(data, {_id: id});
+    //    return $http.post('/saveUser', data);
     };
-    vm.booksArray={};
-    vm.booksArray.development=[
-        {  id:"123",
-            firstName:"person1",
-            lastName:"lastname",
-            email:"person1@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
-        },
-        {  id:"123",
-            firstName:"person2",
-            lastName:"lastname",
-            email:"person2@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
-        },
-        {  id:"123",
-            firstName:"person3",
-            lastName:"lastname",
-            email:"person3@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
-        },
-        {  id:"123",
-            firstName:"person4",
-            lastName:"lastname",
-            email:"person4@hotmail.com",
-            address:"Yaffa",
-            gender:"male",
-        }
 
-    ];
+    // remove user
+    vm.removeUser = function(index) {
+        vm.users.splice(index, 1);
+    };
+    vm.checkName = function(data, id) {
+        if (id === 2 && data !== 'awesome') {
+            return "Username 2 should be `awesome`";
+        }
+    };
+
+    /*
+        vm.booksArray.development=[
+            {  id:"123",
+                firstName:"person1",
+                lastName:"lastname",
+                email:"person1@hotmail.com",
+                address:"Yaffa",
+                gender:"male",
+            },
+            {  id:"123",
+                firstName:"person2",
+                lastName:"lastname",
+                email:"person2@hotmail.com",
+                address:"Yaffa",
+                gender:"male",
+            },
+            {  id:"123",
+                firstName:"person3",
+                lastName:"lastname",
+                email:"person3@hotmail.com",
+                address:"Yaffa",
+                gender:"male",
+            },
+            {  id:"123",
+                firstName:"person4",
+                lastName:"lastname",
+                email:"person4@hotmail.com",
+                address:"Yaffa",
+                gender:"male",
+            }
+
+        ];
+    */
 
 
 //haha
@@ -72,13 +82,15 @@ vm.newbook={};
         $scope.book= {};
         $scope.CreateNewBook= function(){
 
-
+debugger
             console.log($scope.book);
             apiService.createNewBook($scope.book)
                 .then(function (data) {
-
+                    debugger
+                    vm.Refresh();
+                    $mdDialog.cancel();
                 }, function (err) {
-                });            $mdDialog.cancel();
+                });
         };
         $scope.hide = function() {
             $mdDialog.hide();
@@ -94,7 +106,7 @@ vm.newbook={};
     }
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.showAdvanced = function(ev) {
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({
@@ -343,6 +355,6 @@ vm.newbook={};
         vm.sslcPolarChart = function () {
             var sslcChart = new Chart(sslc).Doughnut(vm.sslcData, vm.pieChartOptions);
         };*/
-
+    vm.Refresh();
 }]);
 
