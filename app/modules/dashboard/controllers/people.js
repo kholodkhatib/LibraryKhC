@@ -8,13 +8,95 @@
 
  ===========================================================*/
 
-dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
 
 
 
-    vm.add== function() {
+
+
+        vm.Refresh= function () {
+
+            apiService.getAllPeople()
+                .then(function (person) {
+                    vm.peopleArray = person;
+                }, function (err) {
+                });
+        };
+        vm.newevent={};
+
+
+
+        function DialogController($scope, $mdDialog,apiService) {
+
+            debugger
+            $scope.person= {};
+            $scope.createNewPeople= function(){
+                debugger
+
+                console.log($scope.person);
+                debugger
+                apiService.createNewPeople($scope.person)
+                    .then(function (data) {
+                        vm.Refresh();
+                        $mdDialog.cancel();
+                    }, function (err) {
+                    });
+            };
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+            $scope.answer = function(answer) {
+                $mdDialog.hide(answer);
+            };
+        }
+
+        vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+        vm.showAdvanced = function(ev) {
+
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: useFullScreen
+            })
+                .then(function(answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
+
+
+            $scope.$watch(function() {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function(wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
+            });
+
+        };
+
+
+
+        vm.Refresh();
+
+
+
+
+/*
+
+
+        vm.add== function() {
         console.log("add todo was clicked...");
         $scope.todos.push({
 
@@ -65,7 +147,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         if (index !== -1) {
             vm.peopleArray.splice(index, 1);
         }
-    }
+    }*/
  /*   vm.meMarks = false;
     vm.mscMarks = false;
     vm.hscMarks = false;

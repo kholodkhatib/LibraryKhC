@@ -15,6 +15,37 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //+++++++++++++++++++++++++++++++++++++++++++++++KHOLOD+++++++++++++++++++++++++++++++++++++++++++++++
 
 
+    //===========================Get All People RESOURCE==============================
+    var getAllPeople = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'person', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    //===========================Create Event People======== Kholod======================
+    var createNewPeople = function (person) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'person',
+            person
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
     //===========================Get All Rooms RESOURCE==============================
     var getAllRooms = function () {
         var deferred = $q.defer();
@@ -240,7 +271,8 @@ apiService.getAllEvents=getAllEvents;
     apiService.createNewEvent=createNewEvent;
     apiService.getAllRooms=getAllRooms;
     apiService.createNewRoom=createNewRoom;
-
+    apiService.getAllPeople=getAllPeople;
+    apiService.createNewPeople=createNewPeople;
     return apiService;
 
 }]);

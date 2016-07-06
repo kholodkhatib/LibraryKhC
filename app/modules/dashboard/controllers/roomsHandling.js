@@ -16,7 +16,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
         apiService.getAllRooms()
             .then(function (room) {
-                vm.roomssArray = room;
+                vm.roomsArray = room;
             }, function (err) {
             });
     };
@@ -87,6 +87,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
     };
 
+        vm.Refresh();
 
 
 
@@ -96,6 +97,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
 
 
+/*
 
 
 
@@ -156,7 +158,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
             vm.peopleArray.splice(index, 1);
         }
     }
- /*   vm.meMarks = false;
+ /!*   vm.meMarks = false;
     vm.mscMarks = false;
     vm.hscMarks = false;
     vm.sslcMarks = false;
@@ -310,9 +312,9 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
     ];
 
 
-*/
+*!/
 
-      /*  var meChart = new Chart(me).Line(vm.meData, vm.lineChartOptions);
+      /!*  var meChart = new Chart(me).Line(vm.meData, vm.lineChartOptions);
         var mscChart = new Chart(msc).Bar(vm.mscData, vm.barChartOptions);
         var hscChart = new Chart(hsc).Radar(vm.hscData, vm.radarChartOptions);
         var sslcChart = new Chart(sslc).PolarArea(vm.sslcData, vm.polarChartOptions);
@@ -363,7 +365,8 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
         vm.sslcPolarChart = function () {
             var sslcChart = new Chart(sslc).Doughnut(vm.sslcData, vm.pieChartOptions);
-        };*/
+        };*!/
+*/
 
 }]);
 
