@@ -24,7 +24,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
                 }, function (err) {
                 });
         };
-        vm.newevent={};
+        vm.newperson={};
 
 
 
@@ -32,7 +32,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
             debugger
             $scope.person= {};
-            $scope.createNewPeople= function(){
+            $scope.CreateNewPeople= function(){
                 debugger
 
                 console.log($scope.person);
