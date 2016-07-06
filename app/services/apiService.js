@@ -16,7 +16,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
     //===========================Get All Rooms RESOURCE==============================
-    var getAllEvents = function () {
+    var getAllRooms = function () {
         var deferred = $q.defer();
         $http.get(apiBase + 'room', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
             deferred.resolve(response);
@@ -29,7 +29,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
     //===========================Create Event RESOURCE======== Kholod======================
-    var createNewEvent = function (room) {
+    var createNewRoom = function (room) {
         var deferred = $q.defer();
 
         $http.post(apiBase + 'room',
@@ -238,7 +238,8 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.createNewBook = createNewBook;
 apiService.getAllEvents=getAllEvents;
     apiService.createNewEvent=createNewEvent;
-
+    apiService.getAllRooms=getAllRooms;
+    apiService.createNewRoom=createNewRoom;
 
     return apiService;
 
