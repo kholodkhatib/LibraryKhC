@@ -15,6 +15,38 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //+++++++++++++++++++++++++++++++++++++++++++++++KHOLOD+++++++++++++++++++++++++++++++++++++++++++++++
 
 
+    //===========================Get All Rooms RESOURCE==============================
+    var getAllEvents = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'room', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    //===========================Create Event RESOURCE======== Kholod======================
+    var createNewEvent = function (room) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'room',
+            room
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
 
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {

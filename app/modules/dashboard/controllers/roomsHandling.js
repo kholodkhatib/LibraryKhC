@@ -8,9 +8,99 @@
 
  ===========================================================*/
 
-dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
+
+    vm.Refresh= function () {
+
+        apiService.getAllRooms()
+            .then(function (room) {
+                vm.roomssArray = room;
+            }, function (err) {
+            });
+    };
+    vm.newroom={};
+
+
+
+
+    function DialogController($scope, $mdDialog,apiService) {
+
+        debugger
+        $scope.room= {};
+        $scope.CreateNewRoom= function(){
+            debugger
+
+            console.log($scope.room);
+
+            apiService.createNewRoom($scope.room)
+                .then(function (data) {
+                    vm.Refresh();
+                    $mdDialog.cancel();
+                }, function (err) {
+                });
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+
+
+
+
+
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    vm.showAdvanced = function(ev) {
+
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

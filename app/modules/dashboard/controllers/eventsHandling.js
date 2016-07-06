@@ -16,7 +16,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     vm.Refresh= function () {
 
         apiService.getAllEvents()
-            .then(function (events) {
+            .then(function (event) {
                 vm.eventsArray = event;
             }, function (err) {
             });
