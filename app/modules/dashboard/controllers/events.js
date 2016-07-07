@@ -8,9 +8,29 @@
 
  ===========================================================*/
 
-dashboard.controller("EventsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("EventsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
+
+
+
+    vm.Refresh= function () {
+
+        apiService.getAllEvents()
+            .then(function (event) {
+                vm.eventsArray = event;
+            }, function (err) {
+            });
+    };
+
+
+
+
+
+
+    vm.Refresh();
+
+    /*
 
     vm.eventsArray = [
       {
@@ -57,7 +77,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
 
 
       }
-    ];
+    ];*/
 
     console.log("coming to events controller");
 
