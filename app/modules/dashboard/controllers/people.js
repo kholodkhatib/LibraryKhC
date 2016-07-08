@@ -14,6 +14,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
 
 
+        vm.personForEdit={};
 
 
         vm.Refresh= function () {
@@ -30,8 +31,27 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
         function DialogController($scope, $mdDialog,apiService) {
 
-            debugger
+
             $scope.person= {};
+            $scope.personForEdit=vm.personForEdit;
+            debugger
+
+
+            $scope.EditPerson=function(){
+
+                debugger
+
+                console.log($scope.person);
+                debugger
+                apiService.EditPerson($scope.personForEdit)
+                    .then(function (data) {
+                        vm.Refresh();
+                        $mdDialog.cancel();
+                    }, function (err) {
+                        vm.Refresh();
+                    });
+
+            }
             $scope.CreateNewPeople= function(){
                 debugger
 
@@ -86,6 +106,34 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
         };
 
+        vm.showEditDialog = function(ev,personForEdit) {
+            vm.personForEdit=personForEdit;
+            debugger
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog2.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: useFullScreen
+            })
+                .then(function(answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
+
+
+            $scope.$watch(function() {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function(wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
+            });
+
+        };
 
 
         vm.Refresh();

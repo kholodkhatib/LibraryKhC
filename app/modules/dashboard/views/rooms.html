@@ -31,15 +31,15 @@ Page Description: Rooms page
             <li class="active">Rooms</li>
         </ol>
     </section>
-<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Choose Hour"  ng-cloak>
 <form>
 
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Mango (Fruit)</h2>
+            <h2>Choose Hour</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
             </md-button>
         </div>
     </md-toolbar>
@@ -48,50 +48,27 @@ Page Description: Rooms page
         <div class="md-dialog-content">
 
 
-            hhhhhhhhh
-<!--
-            <div class="small-box bg-{{room.theme}}-gradient" ng-click="vm.showAdvanced($event)">
-
-                <div class="inner">
-                    <h3>{{room.RoomName}}<small class="text-black"></small></h3>
-                    <p class="text-bold">{{room.NumberOfSeats}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa"><img src="images/icons/cloud.png" class="img-responsive" width="70" /></i>&lt;!&ndash; // to change picture&ndash;&gt;
-                </div>
-                <div style="min-height: 10%">
-
-                </div>
-                <div class="progress progress-sm active">
-                    <div class="progress-bar progress-bar-{{room.theme}} progress-bar-striped" role="progressbar" aria-valuenow="{{room.RoomName}}" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+           <!-- <div class="text-center"  >-->
+                <div class="row"  data-ng-repeat="x in vm.hours.development">
+                    <div class="col-md-1">
+                        <div class="well"> {{x.hour}}hhhhh </div>
                     </div>
                 </div>
 
-            </div>-->
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="well"> You Choose Hour:</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well">.col-md-6</div>
+                    </div>
+                </div>
 <!--
-            <table>
-                <tr>
+            </div>
+-->
 
-                    <td> 09:00 </td>   <td> Room 1</td>   <td>10:00 </td>   <td>11:00 </td>
-                    <td>12:00 </td>  <td>13:00 </td>  <td>14:00 </td>  <td>15:00 </td>
-                    <td>16:00 </td>  <td>17:00 </td>  <td>18:00 </td>  <td>19:00 </td>
 
-                </tr>
-            </table>
-            <h2>Using .md-dialog-content class that sets the padding as the spec</h2>
-            <p>
-                The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
-            </p>
 
-            <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">
-
-            <p>
-                The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
-            </p>
-            <p>
-                It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the national fruit of India, Pakistan, and the Philippines, and the national tree of Bangladesh. In several cultures, its fruit and leaves are ritually used as floral decorations at weddings, public celebrations, and religious ceremonies.
-            </p>-->
         </div>
     </md-dialog-content>
 
@@ -138,24 +115,24 @@ Page Description: Rooms page
         <div class="row">
             <h2>Rooms For Date: {{vm.myDate  | date:'MM/dd/yyyy' }}</h2>
 <hr>
-            <div class="col-lg-3 col-xs-6" data-ng-repeat="room in vm.rooms.development">
+            <div class="col-lg-3 col-xs-6" data-ng-repeat="room in vm.roomsArray">
                 <!-- small box -->
 
 
-                <div class="small-box bg-{{room.theme}}-gradient" ng-click="vm.showAdvanced($event)">
+                <div class="small-box bg-yellow-gradient" ng-click="vm.showAdvanced($event)">
 
                     <div class="inner">
-                        <h3>{{room.RoomName}}<small class="text-black"></small></h3>
-                        <p class="text-bold">{{room.NumberOfSeats}}</p>
+                        <h3>{{room.name}}<small class="text-black"></small></h3>
+                        <p class="text-bold">{{room.description}}</p>
                     </div>
                     <div class="icon">
-                        <i class="fa"><img src="images/icons/cloud.png" class="img-responsive" width="70" /></i><!-- // to change picture-->
+                        <i class="fa"><img src="images/icons/roomimg.jpg" class="img-responsive" width="70" /></i><!-- // to change picture-->
                     </div>
                     <div style="min-height: 10%">
 
                     </div>
                     <div class="progress progress-sm active">
-                        <div class="progress-bar progress-bar-{{room.theme}} progress-bar-striped" role="progressbar" aria-valuenow="{{room.RoomName}}" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <div class="progress-bar progress-bar-yellow progress-bar-striped" role="progressbar" aria-valuenow="yellow" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                         </div>
                     </div>
 

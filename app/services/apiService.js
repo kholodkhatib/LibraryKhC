@@ -28,8 +28,28 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     };
 
 
-    //===========================Create Event People======== Kholod======================
+    //===========================Create  People======== Kholod======================
     var createNewPeople = function (person) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'person',
+            person
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
+    //===========================Edit People======== Kholod======================
+    var EditPerson = function (person) {
         var deferred = $q.defer();
 
         $http.post(apiBase + 'person',
@@ -273,6 +293,9 @@ apiService.getAllEvents=getAllEvents;
     apiService.createNewRoom=createNewRoom;
     apiService.getAllPeople=getAllPeople;
     apiService.createNewPeople=createNewPeople;
+    apiService.EditPerson=EditPerson;
+
+
     return apiService;
 
 }]);

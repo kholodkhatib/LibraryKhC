@@ -8,11 +8,59 @@
 
  ===========================================================*/
 
-dashboard.controller("RoomsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia) {
+dashboard.controller("RoomsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
 
-    vm.rooms = {};
+
+    vm.Refresh= function () {
+
+        apiService.getAllRooms()
+            .then(function (room) {
+                vm.roomsArray = room;
+            }, function (err) {
+            });
+    };
+    vm.Refresh();
+
+
+    vm.hours={};
+
+
+    vm.hours.development = [
+        {
+            hour: "08:00",
+        },
+        {
+            hour: "09:00",
+        },
+        {
+            hour: "10:00",
+        },  {
+            hour: "11:00",
+        },  {
+            hour: "12:00",
+        },  {
+            hour: "13:00",
+        },  {
+            hour: "14:00",
+        },
+        {
+            hour: "15:00",
+        },  {
+            hour: "16:00",
+        },  {
+            hour: "17:00",
+        },  {
+            hour: "18:00",
+        }, {
+            hour: "19:00",
+        }
+
+
+        ];
+
+   /* vm.rooms = {};
 
     //development stack
     vm.rooms.development = [
@@ -64,7 +112,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
             theme: "red",
             image: "joomla"
         }
-    ];
+    ];*/
     vm.showRooms=false;
     vm.ShowRoomsInSelectedDates=function(){
 

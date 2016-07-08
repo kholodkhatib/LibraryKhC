@@ -15,18 +15,31 @@ Date: 15 Jan 2016
     .table .action-column:hover{
         text-decoration: none;
         cursor: default;
+
     }
     .table tfoot .pagination{
         float: right;
         margin: 0;
     }
     .table tfoot .pagination li{
+
         cursor: pointer;
     }
     .table tfoot select{
+
         width: 90px;
         float: right;
         margin-right: 8px;
+    }
+</style>
+
+
+<style>
+
+
+    table.ex2 {
+        border-collapse: separate;
+        border-spacing: 1px 1px;
     }
 </style>
         <!-- Content Header (Page header) -->
@@ -69,7 +82,7 @@ Date: 15 Jan 2016
   <td>{{person.birthday }}</td>
     <td>{{person.isAdmin }}</td>
     <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Edit</button>
+        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,person)">Edit</button>
     </td>
     <td style="white-space: nowrap">
         <!-- form -->
@@ -111,68 +124,91 @@ Date: 15 Jan 2016
 
 
             <form class="form-horizontal" role="form">
-                <table>
+                <table class="ex2">
+                    <tr>
+                        <td colspan="2">
                     <div class="row">
-                        <label class="col-lg-3 control-label">ID:</label>
+                        <label class="col-lg-2 control-label">ID:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.id" type="text">
                         </div>
                     </div>
-                    <br>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">firstName:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.firstName" type="text">
                         </div>
-                    </div> <br>
+                    </div>
+                            </td>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">lastName:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.lastName" type="text">
                         </div>
-                    </div> <br>
-
+                    </div>
+                        </td>
+</tr>
+                    <tr>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">gender:</label>
                         <div class="col-lg-6">
                             <input class="form-control"  ng-model="person.gender" type="text">
                         </div>
-                    </div> <br>
+                    </div>
+                            </td>
 
-
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">email:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.email" type="text">
                         </div>
-                    </div> <br>
-
+                    </div>
+                        </td>
+</tr>
+                    <tr>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">address:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.address" type="text">
                         </div>
-                    </div> <br>
+                    </div>
+                            </td>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">birthday:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.birthday" type="text">
                         </div>
-                    </div> <br>
-
+                    </div>
+                        </td>
+</tr>
+                    <tr>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">password:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.password" type="text">
                         </div>
-                    </div> <br>
-
+                    </div>
+                            </td>
+                        <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">isAdmin:</label>
                         <div class="col-lg-6">
                             <input class="form-control" ng-model="person.isAdmin" type="text">
                         </div>
-                    </div> <br>
+                    </div>
+                        </td>
+                    </tr>
                 </table>
 
 
@@ -192,11 +228,170 @@ Date: 15 Jan 2016
             Close
         </md-button>
     </md-dialog-actions>
-    <label>
-        person= {{person | json}}
-    </label>
+       <!-- <label>
+            person= {{person | json}}
+        </label>-->
 
 </form>
 </md-dialog>
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Person"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Person</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+                <table class="ex2">
+                    <tr>
+                        <td colspan="2">
+                            <div class="row">
+                                <label class="col-lg-2 control-label">ID: </label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.id"  type="text" disabled  >
+                                </div>
+                            </div>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">firstName:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.firstName"  type="text">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">lastName:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.lastName" type="text">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">gender:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control"  ng-model="personForEdit.gender" type="text">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">email:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.email" type="text">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">address:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.address" type="text">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">birthday:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.birthday" type="text">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">password:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.password" type="text">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">isAdmin:</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" ng-model="personForEdit.isAdmin" type="text">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="EditPerson()">
+            Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Close
+        </md-button>
+    </md-dialog-actions>
+  <!--   <label>
+         person= {{personForEdit | json}}
+     </label>-->
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
