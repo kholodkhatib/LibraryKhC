@@ -47,7 +47,6 @@ Date: 15 Jan 2016
 <table class="table table-hover table-bordered" st-table>
 <thead>
 <tr>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">ID</th>
     <th ng-click="predicate='FirstName'; reverse=!reverse">Name </th>
     <th ng-click="predicate='FirstName'; reverse=!reverse">Description</th>
     <th ng-click="predicate='FirstName'; reverse=!reverse">Time</th>
@@ -58,17 +57,18 @@ Date: 15 Jan 2016
 </thead>
 <tbody>
 <tr ng-repeat="events in vm.eventsArray ">
-    <td>{{events._id}}</td>
 
     <td>{{events.name}}</td>
     <td>{{events.description}}</td>
     <td>{{events.time}}</td>
   <td>{{events.date }}</td>
     <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm" ng-click="Edit(contact)">Edit</button>
-    </td>
-    <td>
-        <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+        <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,events)">Edit</button>
+<!--
+        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,events)">Delete</button>
+-->
+
+        <button type="button"  ng-click="vm.showDeleteDialog($event,events)" class="btn btn-sm btn-danger">
             <i class="glyphicon glyphicon-remove-circle">
             </i>
         </button>
@@ -161,3 +161,125 @@ Date: 15 Jan 2016
 </md-dialog>
 </script>
 
+
+
+<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Event"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Event</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+                <table>
+                    <div class ="row">
+                        <label class="col-lg-3 control-label">name:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="eventForEdit.name" type="text">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class ="row">
+                        <label class="col-lg-3 control-label">description:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="eventForEdit.description" type="text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class ="row" >
+                        <label class="col-lg-3 control-label">time:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control"  ng-model="eventForEdit.time" type="text">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class ="row">
+                        <label class="col-lg-3 control-label">date:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="eventForEdit.date" type="text">
+                        </div>
+                    </div>
+
+                </table>
+
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="EditEvent()">
+            Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Event"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Delete Event</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+
+
+                <label> Are You suye you want to delete Event: {{eventForDelete.name}} &nbsp ?</label>
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="DeleteEvent()">
+            Yes
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            No
+        </md-button>
+    </md-dialog-actions>
+
+
+</form>
+</md-dialog>
+</script>

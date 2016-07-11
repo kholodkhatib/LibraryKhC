@@ -83,9 +83,11 @@ Date: 15 Jan 2016
     <td>{{person.isAdmin }}</td>
     <td class="action-column">
         <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,person)">Edit</button>
+
+        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,person)">Delete</button>
     </td>
-    <td style="white-space: nowrap">
-        <!-- form -->
+   <!-- <td style="white-space: nowrap">
+        &lt;!&ndash; form &ndash;&gt;
         <form editable-form name="rowform" onbeforesave="vm.saveUser($data, person._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == person">
             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                 save
@@ -98,7 +100,7 @@ Date: 15 Jan 2016
             <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
             <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
         </div>
-    </td>
+    </td>-->
 </tr>
 </tbody>
     <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Person</button>
@@ -386,6 +388,53 @@ Date: 15 Jan 2016
 
 
 
+
+
+<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Person"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Delete Person</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+
+
+                <label> Are You suye you want to delete Person: {{personForDelete.firstName}} &nbsp {{personForDelete.lastName}} &nbsp ?</label>
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="DeletePerson()">
+            Yes
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            No
+        </md-button>
+    </md-dialog-actions>
+    <!--   <label>
+           person= {{personForEdit | json}}
+       </label>-->
+
+</form>
+</md-dialog>
+</script>
 
 
 

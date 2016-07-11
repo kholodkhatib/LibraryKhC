@@ -24,10 +24,9 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     vm.Refresh();
 
 
-    vm.hours={};
-
-
-    vm.hours.development = [
+     vm.choosenHour ={hour:"Not Choosen yet.."};
+vm.choosenRoom={};
+    vm.hours = [
         {
             hour: "08:00",
         },
@@ -51,10 +50,6 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
             hour: "16:00",
         },  {
             hour: "17:00",
-        },  {
-            hour: "18:00",
-        }, {
-            hour: "19:00",
         }
 
 
@@ -118,7 +113,37 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
         vm.showRooms=true;
     }
-    function DialogController($scope, $mdDialog) {
+
+/*
+    vm.ChooseHour = function(x){
+
+        vm.choosenHour= x;
+    }*/
+
+    function DialogController($scope, $mdDialog,apiService) {
+
+debugger
+        $scope.hours=vm.hours;
+        $scope.choosenHour=vm.choosenHour;
+        $scope.choosenRoom=vm.choosenRoom;
+$scope.choosenDate=vm.myDate;
+
+        $scope.ChooseHour=function(x) {
+            debugger
+            $scope.choosenHour= x;
+            debugger
+
+        }
+        $scope.SaveHour=function() {
+            debugger
+/*
+            $scope.choosenHour; TODO
+*/
+
+
+        }
+
+        debugger
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -131,9 +156,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
             $mdDialog.hide(answer);
         };
     }
+
+
+
+
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    vm.showAdvanced = function(ev) {
+    vm.showAdvanced = function(ev,room) {
         debugger
+        vm.choosenRoom=room;
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({

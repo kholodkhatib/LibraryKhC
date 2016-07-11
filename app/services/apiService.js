@@ -66,6 +66,34 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             });
         return deferred.promise;
     };
+
+   /* var DeleteSubjects= function (subject) {
+        var deferred = $q.defer();
+        $http.delete(ConfigurationService.ServerUrl() + '/api/subjects?_id='+ subject._id, {
+            headers: {
+                "access-token": ConfigurationService.UserDetails().token
+            }
+        }).success(function (data) {
+            deferred.resolve(data);
+        }).error(function (msg, code) {
+            deferred.reject(msg);
+            //   $log.error(msg, code);
+        });
+        return deferred.promise;
+    }*/
+    //===========================Delete People======== Kholod======================
+    var DeletePerson = function (person) {
+        var deferred = $q.defer();
+        debugger
+        $http.delete(apiBase + 'person?Person_id='+person._id+"&ahmad=loveU", { headers: { 'Person_id': person._id} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+        // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
     //===========================Get All Rooms RESOURCE==============================
     var getAllRooms = function () {
         var deferred = $q.defer();
@@ -78,8 +106,41 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
         return deferred.promise;
     };
 
+    //===========================Edit Room======== Kholod======================
+    var EditRoom = function (room) {
+        var deferred = $q.defer();
 
-    //===========================Create Event RESOURCE======== Kholod======================
+        $http.post(apiBase + 'room',
+            room
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete Room======== Kholod======================
+    var DeleteRoom = function (room) {
+        var deferred = $q.defer();
+        debugger
+        $http.delete(apiBase + 'room?room_id='+room._id, { headers: { 'room_id': room._id} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
+
+    //===========================Create Room RESOURCE======== Kholod======================
     var createNewRoom = function (room) {
         var deferred = $q.defer();
 
@@ -131,6 +192,39 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
         return deferred.promise;
     };
 
+    //===========================Edit Event======== Kholod======================
+    var EditEvent = function (event) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'event',
+            event
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete Event======== Kholod======================
+    var DeleteEvent = function (event) {
+        var deferred = $q.defer();
+        debugger
+        $http.delete(apiBase + 'event?event_id='+event._id, { headers: { 'event_id': event._id} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
     //===========================Search RESOURCE==============================
     var search = function () {
         var deferred = $q.defer();
@@ -174,7 +268,39 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
 
+    //===========================Edit Book======== Kholod======================
+    var EditBook = function (book) {
+        var deferred = $q.defer();
 
+        $http.post(apiBase + 'book',
+            book
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
+    //===========================Delete Book======== Kholod======================
+    var DeleteBook = function (book) {
+        var deferred = $q.defer();
+        debugger
+        $http.delete(apiBase + 'book?book_id='+book._id+"&ahmad=loveU", { headers: { 'book_id': book._id} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
 
 
 
@@ -285,16 +411,40 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.create = create;
     apiService.update = update;
     apiService.delet = delet;
+
+    //---------------------Book
+
     apiService.createNewBook = createNewBook;
-    apiService.createNewBook = createNewBook;
-apiService.getAllEvents=getAllEvents;
+    apiService.EditBook=EditBook;
+    apiService.DeleteBook=DeleteBook;
+    //--------------------end of Book
+
+
+    //---------------------Events
+
+    apiService.getAllEvents=getAllEvents;
     apiService.createNewEvent=createNewEvent;
+    apiService.EditEvent=EditEvent;
+    apiService.DeleteEvent=DeleteEvent;
+
+
+    //--------------------end of Events
+
+
+    //---------------------Rooms
     apiService.getAllRooms=getAllRooms;
     apiService.createNewRoom=createNewRoom;
+    apiService.EditRoom=EditRoom;
+    apiService.DeleteRoom=DeleteRoom;
+
+    //--------------------end of Rooms
+
+    //---------------------people
     apiService.getAllPeople=getAllPeople;
     apiService.createNewPeople=createNewPeople;
     apiService.EditPerson=EditPerson;
-
+    apiService.DeletePerson=DeletePerson;
+//--------------------end of people
 
     return apiService;
 

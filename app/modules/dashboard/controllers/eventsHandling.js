@@ -62,6 +62,42 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
         debugger
         $scope.event= {};
+
+         $scope.newObject = jQuery.extend(true, {}, vm.eventForDelete);
+        $scope.eventForEdit=vm.eventForEdit;
+        $scope.eventForDelete= $scope.newObject;
+
+
+        $scope.DeleteEvent=function(){
+
+            console.log($scope.eventForDelete);
+            debugger
+            apiService.DeleteEvent($scope.eventForDelete)
+                .then(function (data) {
+                    vm.Refresh();
+                    $mdDialog.cancel();
+                }, function (err) {
+                    vm.Refresh();
+                });
+
+        }
+        $scope.EditEvent=function(){
+
+            debugger
+
+            console.log($scope.event);
+            debugger
+            apiService.EditEvent($scope.eventForEdit)
+                .then(function (data) {
+                    vm.Refresh();
+                    $mdDialog.cancel();
+                }, function (err) {
+                    vm.Refresh();
+                });
+
+        }
+
+
         $scope.CreateNewEventt= function(){
             debugger
 
@@ -75,11 +111,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
                 });
         };
         $scope.hide = function() {
+
             $mdDialog.hide();
+            vm.Refresh();
         };
 
         $scope.cancel = function() {
             $mdDialog.cancel();
+            vm.Refresh();
         };
 
         $scope.answer = function(answer) {
@@ -119,16 +158,70 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     };
 
 
+    vm.showEditDialog = function(ev,eventForEdit) {
+        vm.eventForEdit=eventForEdit;
+        debugger
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog2.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
+
+
+    vm.showDeleteDialog = function(ev,eventForDelete) {
+        vm.eventForDelete=eventForDelete;
+        debugger
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog3.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
 
 
 
 
-    vm.removeItem = function removeItem(row) {
-        var index = vm.peopleArray.indexOf(row);
-        if (index !== -1) {
-            vm.peopleArray.splice(index, 1);
-        }
-    }
+
+
     vm.Refresh();
 }]);
 

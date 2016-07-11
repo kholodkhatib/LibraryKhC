@@ -47,7 +47,6 @@ Date: 15 Jan 2016
 <table class="table table-hover table-bordered" st-table>
     <thead>
     <tr>
-        <th ng-click="predicate='FirstName'; reverse=!reverse">ID</th>
         <th ng-click="predicate='FirstName'; reverse=!reverse">Code</th>
         <th ng-click="predicate='FirstName'; reverse=!reverse">Name</th>
         <th ng-click="predicate='FirstName'; reverse=!reverse">Description</th>
@@ -60,7 +59,6 @@ Date: 15 Jan 2016
     </thead>
     <tbody>
     <tr ng-repeat="rooms in vm.roomsArray ">
-        <td>{{rooms._id}}</td>
 
 
 
@@ -70,8 +68,14 @@ Date: 15 Jan 2016
         <td> {{rooms.description }}</td>
         <td> {{rooms.status }}</td>
 
-        <td style="white-space: nowrap">
-            <!-- form -->
+
+        <td class="action-column">
+            <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,rooms)">Edit</button>
+
+            <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,rooms)">Delete</button>
+        </td>
+       <!-- <td style="white-space: nowrap">
+            &lt;!&ndash; form &ndash;&gt;
             <form editable-form name="rowform" onbeforesave="vm.saveUser($data, rooms._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == rooms">
                 <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                     save
@@ -84,7 +88,7 @@ Date: 15 Jan 2016
                 <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
                 <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
             </div>
-        </td>
+        </td>-->
 
         <!--  <td class="action-column">
 
@@ -172,6 +176,133 @@ Date: 15 Jan 2016
 <!--    <label>
         room= {{room | json}}
     </label>-->
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+
+
+
+<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Room"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Room</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+                <table>
+                    <div class="row">
+                        <label class="col-lg-3 control-label">Code:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="roomForEdit.code" type="text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-lg-3 control-label">Name:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="roomForEdit.name" type="text">
+                        </div>
+                    </div> <br>
+                    <div class="row">
+                        <label class="col-lg-3 control-label">Description:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" ng-model="roomForEdit.description" type="text">
+                        </div>
+                    </div> <br>
+
+                    <div class="row">
+                        <label class="col-lg-3 control-label">Status:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control"  ng-model="roomForEdit.status" type="text" value="vailable">
+                        </div>
+                    </div> <br>
+
+
+                </table>
+
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="EditRoom()">
+            Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+
+
+<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Room"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Delete Room</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+
+
+                <label> Are You suye you want to delete Room: {{roomForDelete.name}} &nbsp ?</label>
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="DeleteRoom()">
+            Yes
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            No
+        </md-button>
+    </md-dialog-actions>
+
 
 </form>
 </md-dialog>
