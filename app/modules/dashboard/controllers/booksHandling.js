@@ -81,7 +81,7 @@ vm.newbook={};
     function DialogController($scope, $mdDialog,apiService) {
 
         $scope.book= {};
-        $scope.bookForEdit=vm.bookForEdit;
+        $scope.bookForEdit=vm.example;
         $scope.bookForDelete=vm.bookForDelete;
 
 
@@ -176,6 +176,8 @@ debugger
 
     vm.showEditDialog = function(ev,bookForEdit) {
         vm.bookForEdit=bookForEdit;
+        vm.example = angular.copy(vm.bookForEdit);
+
         debugger
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 

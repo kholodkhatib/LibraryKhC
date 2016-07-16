@@ -33,7 +33,8 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
 
             $scope.person= {};
-            $scope.personForEdit=vm.personForEdit;
+          //  $scope.personForEdit=vm.personForEdit;
+            $scope.personForEdit=vm.example;
             $scope.personForDelete=vm.personForDelete;
             debugger
 
@@ -125,6 +126,8 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
         vm.showEditDialog = function(ev,personForEdit) {
             vm.personForEdit=personForEdit;
+
+            vm.example = angular.copy(vm.personForEdit);
             debugger
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 

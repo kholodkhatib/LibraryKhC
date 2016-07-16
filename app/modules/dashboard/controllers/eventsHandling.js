@@ -64,7 +64,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
         $scope.event= {};
 
          $scope.newObject = jQuery.extend(true, {}, vm.eventForDelete);
-        $scope.eventForEdit=vm.eventForEdit;
+        $scope.eventForEdit=vm.example;
         $scope.eventForDelete= $scope.newObject;
 
 
@@ -160,6 +160,8 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
     vm.showEditDialog = function(ev,eventForEdit) {
         vm.eventForEdit=eventForEdit;
+        vm.example = angular.copy(vm.eventForEdit);
+
         debugger
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
