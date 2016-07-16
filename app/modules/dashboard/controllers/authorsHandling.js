@@ -34,14 +34,14 @@ vm.newauthor={};
         $scope.authorForDelete=vm.authorForDelete;
 
 
-debugger
+
 
 
 
             $scope.DeleteAuthor=function(){
 
                 console.log($scope.authorForDelete);
-                debugger
+
                 apiService.DeleteAuthor($scope.authorForDelete)
                     .then(function (data) {
                         vm.Refresh();
@@ -53,10 +53,10 @@ debugger
             }
             $scope.EditAuthor=function(){
 
-                debugger
+
 
                 console.log($scope.author);
-                debugger
+
                 apiService.EditAuthor($scope.authorForEdit)
                     .then(function (data) {
                         vm.Refresh();
@@ -68,10 +68,10 @@ debugger
             }
 
             $scope.CreateNewAuthor= function(){
-                debugger
+
 
                 console.log($scope.author);
-                debugger
+
                 apiService.createNewAuthor($scope.author)
                     .then(function (data) {
                         vm.Refresh();
@@ -127,7 +127,7 @@ debugger
         vm.authorForEdit=authorForEdit;
         vm.example = angular.copy(vm.authorForEdit);
 
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({
@@ -157,7 +157,7 @@ debugger
 
     vm.showDeleteDialog = function(ev,authorForDelete) {
         vm.authorForDelete=authorForDelete;
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({

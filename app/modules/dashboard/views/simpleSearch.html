@@ -4,155 +4,48 @@ Page Description: Dashboard page
 Date: 05 Jan 2016
 -->
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Search For A book
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Search For A book
 
-        </h1>
-        <ol class="breadcrumb">
-            <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Search For A book</li>
-        </ol>
-    </section>
-<div class="row"      style="min-height:50px;">
-</div>
-    <!-- Simple Search-->
-    <section class="content"  ng-show="vm.showSimple">
-        <!-- Simple Search-->
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                <div class="panel panel-info" >
-                    <div class="panel-heading">
-                        Search For a Book
-                    </div>
-                    <div class="panel-body" style="height: auto;">
-                        <form data-ng-submit="vm.submitForm();" name="vm.contactForm">
-                            <md-content class="autoScroll">
-
-                                <md-input-container class="md-icon-float md-block">
-                                    <label>Search...</label>
-                                    <md-icon class="fa fa-clipboard"></md-icon>
-
-                                    <input type="text" required name="Search"  ng-model="SearchText" >
-                                </md-input-container>
-                                <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(true) " > Advanced Search</a></h6>
-
-                                <div class="pull-right">
-                                    <md-button class="md-raised md-primary" type="submit" > GO <i class="fa fa-angle-double-right"></i></md-button>
-                                    <md-button class="md-raised md-warn" type="reset">Clear Search <i class="fa fa-trash-o"></i></md-button>
-                                </div>
-                            </md-content>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-        </div>
-        </div>
-        <div class="row"style="min-height:165px;">
-
-        </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Search For A book</li>
+    </ol>
 </section>
-
-
-    <!--Advanced Search  -->
-    <section class="content"  ng-show="vm.showAdvanced">
+<div class="row" style="min-height:50px;">
+</div>
+<!-- Simple Search-->
+<section class="content" ng-show="vm.showSimple">
+    <!-- Simple Search-->
     <div class="row">
         <div class="col-md-2">
-</div>
+        </div>
         <div class="col-md-8">
-            <div class="panel panel-info" >
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                   Advanced Search For a Book
+                    Search For a Book
                 </div>
                 <div class="panel-body" style="height: auto;">
-                    <form data-ng-submit="vm.submitFormAdvancedSearch()">
-                        <div class="autoScroll">
+                    <form data-ng-submit="vm.submitForm();" name="vm.contactForm">
+                        <md-content class="autoScroll">
 
                             <md-input-container class="md-icon-float md-block">
-                                <label>Book Title</label>
-                              <md-icon class="fa  fa-file-text-o"></md-icon>
+                                <label>Search...</label>
+                                <md-icon class="fa fa-clipboard"></md-icon>
 
-                                <input type="text" ng-model="bookTitle" >
+                                <input type="text" required name="Search" ng-model="SearchText">
                             </md-input-container>
+                            <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(true) ">
+                                Advanced Search</a></h6>
 
-
-
-
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Author</label>
-                                <md-icon class="fa fa-male"></md-icon>
-
-                                <input type="text" ng-model="bookAuthor">
-                            </md-input-container>
-
-
-
-                          <md-input-container class="md-icon-float md-block">
-                            <label>Category</label>
-                            <md-icon class="fa fa fa-th-large"></md-icon>
-
-                            <input type="text" ng-model="bookCategory">
-                            </md-input-container>
-
-
-
-
-<div>
-
-                            <label>language</label>
-
-                            <select ng-model="selectedBookLanguage" ng-options=" item.language for item in vm.languages">
-                                <option value="">Select Language</option>
-
-                            </select>
-
-
-</div>
-                            <br>
-
-                            <div class="pull-left">
-
-                                <label>Publish Year:</label>
-
-                                <label>From:</label>
-
-
-                                    <md-icon class="fa fa-sort-numeric-asc"></md-icon>
-
-                                    <select type="text" ng-init="vm.loadYears()"  ng-options=" item.year for item in vm.arrayYears">
-                                        <option value="">Select Year</option>
-
-                                    </select>
-
-
-
-
-
-
-                                <label>To:</label>
-        <md-icon class="fa fa-sort-numeric-asc"></md-icon>
-
-        <select type="text" ng-model="bookPublishYear">    </select>
-
-
-    </md-input-container>
-
-</div>
-<br><br><br><br><br>
-                            <div class="pull-left">
-                            <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(false)">Return To Simple Search</a></h6>
-                                </div>
                             <div class="pull-right">
-                                <md-button class="md-raised md-primary" type="submit" > GO <i class="fa fa-angle-double-right"></i></md-button>
-                                <md-button class="md-raised md-warn" type="reset">Clear Search <i class="fa fa-trash-o"></i></md-button>
+                                <md-button class="md-raised md-primary" type="submit"> GO <i
+                                        class="fa fa-angle-double-right"></i></md-button>
+                                <md-button class="md-raised md-warn" type="reset">Clear Search <i
+                                        class="fa fa-trash-o"></i></md-button>
                             </div>
                         </md-content>
                     </form>
@@ -161,70 +54,193 @@ Date: 05 Jan 2016
         </div>
 
 
+    </div>
+    </div>
+    <div class="row" style="min-height:165px;">
+
+    </div>
+</section>
 
 
+<!--Advanced Search  -->
+<section class="content" ng-show="vm.showAdvanced">
+    <div class="row">
+        <div class="col-md-2">
         </div>
-        </div>
-        <div class="row"style="min-height:165px;">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Advanced Search For a Book
+                </div>
+                <div class="panel-body" style="height: auto;">
+                    <form data-ng-submit="vm.submitFormAdvancedSearch()">
+                        <div class="autoScroll">
 
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Book Title</label>
+                                <md-icon class="fa  fa-file-text-o"></md-icon>
+
+                                <input type="text" ng-model="vm.bookForSearch.title">
+                            </md-input-container>
+
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Author</label>
+                                <md-icon class="fa fa-male"></md-icon>
+
+                                <input type="text" ng-model="vm.bookForSearch.author">
+                            </md-input-container>
+
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Category</label>
+                                <md-icon class="fa fa fa-th-large"></md-icon>
+
+                                <input type="text" ng-model="vm.bookForSearch.category">
+                            </md-input-container>
+
+
+                            <md-input-container class="md-icon-float md-block">
+                                <md-icon class="fa fa fa-th-large"></md-icon>
+
+                                <label>language</label>
+
+
+                                <input type="text" ng-model="vm.bookForSearch.language">
+
+
+                            </md-input-container>
+                            <br>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <md-icon class="fa fa-sort-numeric-asc"></md-icon>
+
+                                <label>From Year</label>
+
+
+                                <input type="text" ng-model="vm.bookForSearch.fromYear">
+
+
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <md-icon class="fa fa-sort-numeric-asc"></md-icon>
+
+                                <label>To Year</label>
+
+
+                                <input type="text" ng-model="vm.bookForSearch.toYear">
+
+
+                            </md-input-container>
+                        <!--    <div class="pull-left">
+
+                                <label>Publish Year:</label>
+
+                                <label>From:</label>
+
+
+                                <md-icon class="fa fa-sort-numeric-asc"></md-icon>
+
+                                <select type="text" ng-init="vm.loadYears()"
+                                        ng-options=" item.year for item in vm.arrayYears">
+                                    <option value="">Select Year</option>
+
+                                </select>
+
+
+                                <label>To:</label>
+                                <md-icon class="fa fa-sort-numeric-asc"></md-icon>
+
+                                <select type="text" ng-model="bookPublishYear"> </select>
+
+
+                                </md-input-container>
+
+                            </div>-->
+                            <br><br><br><br><br>
+                            <div class="pull-left">
+                                <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(false)">Return
+                                    To Simple Search</a></h6>
+                            </div>
+                            <div class="pull-right">
+                                <md-button class="md-raised md-primary" type="submit"> GO <i
+                                        class="fa fa-angle-double-right"></i></md-button>
+                                <md-button class="md-raised md-warn" type="reset">Clear Search <i
+                                        class="fa fa-trash-o"></i></md-button>
+                            </div>
+                            </md-content>
+                            </div>
+                    </form>
+                </div>
+            </div>
         </div>
+
+
+    </div>
+    </div>
+    <div class="row" style="min-height:165px;">
+
+    </div>
 
 </section>
 
-        <!-- Result Of Search -->
-        <section class="content" ng-show="vm.showResults">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- The time line -->
-                    <ul class="timeline">
-                        <li class="time-label">
+<!-- Result Of Search -->
+<section class="content" ng-show="vm.showResults">
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- The time line -->
+            <ul class="timeline">
+                <li class="time-label">
                     <span class="bg-red-gradient">
                         Results Of Search:
                     </span>
-                        </li>
-                        <li  ng-repeat="books in vm.booksArray | filter: (!disableFilter || '') && filterExpression">
-                            <i class="fa bg text-white"> {{$index+1}}</i>
-                            <div class="timeline-item">
-                                <!--<span class="time text-bold"> Available</span>-->
-                                <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank"> {{books.title}} </a></h3>
-                                <div class="timeline-body">
-                                    <ul>
-                                        <li>Author :  {{books.author }}</li>
-                                        <li>Description :  {{books.description}}</li>
-                                        <li>Language :  {{books.language}}</li>
-                                        <li>Category :  {{books.category}}</li>
-                                        <li>Publish Year :  {{books.publishYear}}</li>
+                </li>
+                <li ng-repeat="books in vm.booksArray | filter: (!disableFilter || '') && filterExpression">
+                    <i class="fa bg text-white"> {{$index+1}}</i>
+                    <div class="timeline-item">
+                        <!--<span class="time text-bold"> Available</span>-->
+                        <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">
+                            {{books.title}} </a></h3>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Author : {{books.author }}</li>
+                                <li>Description : {{books.description}}</li>
+                                <li>Language : {{books.language}}</li>
+                                <li>Category : {{books.category}}</li>
+                                <li>Publish Year : {{books.publishYear}}</li>
 
-                                    </ul>
+                            </ul>
 
-                                </div>
-                                <div class="timeline-footer">
-                                    <p>
-                                        <!--<span class="label label-danger">HTML 5</span>-->
-                                        <!--<span class="label label-success">CSS 3</span>-->
-                                        <!--<span class="label label-warning">Java Script</span>-->
-                                        <!--<span class="label label-primary">Type Script</span>-->
-                                        <!--<span class="label label-danger">jQuery</span>-->
-                                        <!--<span class="label label-info">Angular JS</span>-->
-                                        <!--<span class="label label-success">SAAS</span>-->
-                                        <span class="label label-success">{{books.available}}</span>
+                        </div>
+                        <div class="timeline-footer">
+                            <p>
+                                <!--<span class="label label-danger">HTML 5</span>-->
+                                <!--<span class="label label-success">CSS 3</span>-->
+                                <!--<span class="label label-warning">Java Script</span>-->
+                                <!--<span class="label label-primary">Type Script</span>-->
+                                <!--<span class="label label-danger">jQuery</span>-->
+                                <!--<span class="label label-info">Angular JS</span>-->
+                                <!--<span class="label label-success">SAAS</span>-->
+                                <span class="label label-success">{{books.available}}</span>
                                 <span class="pull-right">
-                                    <a  ng-show="books.available == 'available'" class="btn btn-primary btn-xs" ui-sref="app.recent" >Order Book</a>
+                                    <a ng-show="books.available == 'available'" class="btn btn-primary btn-xs"
+                                       ui-sref="app.recent">Order Book</a>
                                 </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
+                            </p>
+                        </div>
+                    </div>
+                </li>
 
 
-                        <li>
-                            <i class="fa fa-arrows bg-gray"></i>
-                        </li>
-                    </ul>
-                </div><!-- /.col -->
-            </div>
+                <li>
+                    <i class="fa fa-arrows bg-gray"></i>
+                </li>
+            </ul>
+        </div><!-- /.col -->
+    </div>
 
 
-    </section><!-- /.content -->
+</section><!-- /.content -->
 

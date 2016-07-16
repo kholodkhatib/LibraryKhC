@@ -35,7 +35,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
         $scope.DeleteRoom=function(){
 
             console.log($scope.roomForDelete);
-            debugger
+
             apiService.DeleteRoom($scope.roomForDelete)
                 .then(function (data) {
                     vm.Refresh();
@@ -47,10 +47,10 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
         }
         $scope.EditRoom=function(){
 
-            debugger
+
 
             console.log($scope.room);
-            debugger
+
             apiService.EditRoom($scope.roomForEdit)
                 .then(function (data) {
                     vm.Refresh();
@@ -65,7 +65,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
 
         $scope.CreateNewRoom= function(){
-            debugger
+
 
             console.log($scope.room);
 
@@ -127,7 +127,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
             vm.roomForEdit=roomForEdit;
             vm.example = angular.copy(vm.roomForEdit);
 
-            debugger
+
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
             $mdDialog.show({
@@ -157,7 +157,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
         vm.showDeleteDialog = function(ev,roomForDelete) {
             vm.roomForDelete=roomForDelete;
-            debugger
+
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
             $mdDialog.show({

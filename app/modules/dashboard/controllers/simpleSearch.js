@@ -10,36 +10,20 @@
 
 dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','apiService',
 function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,apiService) {
-
-    apiService.search()
-        .then(function (books) {
-            vm.booksArray = books;
-        }, function (err) {
-        });
+    //
+    //apiService.search()
+    //    .then(function (books) {
+    //        vm.booksArray = books;
+    //    }, function (err) {
+    //    });
 
     var vm = this;
-    vm.categories
+    vm.bookForSearch={};
     vm.showSimple=true;
     vm.showAdvanced =false;
     vm.message = {};
     vm.showResults=false;
-    vm.languages=[
-        {language:"Arabic"},
-        {language:"Hebrew"},
-        {language:"English"}
 
-    ];
-    vm.arrayYears = [{year:"1"},{year:"2"}];
-    vm.loadYears= function(){
-
-
-        for(var i = 2015; i >= 2000; --i) {
-
-            vm.arrayYears.push(
-                {year:i});
-        }
-        return vm.arrayYears;
-    }
 
 
 
@@ -60,7 +44,11 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
     }
 
+    vm.submitForm = function () {
+        vm.showResults=true;
+    };
 
+/*
 
     vm.submitForm = function () {
         console.log(vm.message);
@@ -73,7 +61,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
 
 
-        /* Check whether the HTTP Request is successful or not. */
+        /!* Check whether the HTTP Request is successful or not. *!/
         request.success(function (data) {
             vm.showResults=true;
             console.log(data);
@@ -86,12 +74,21 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
             }
         });
     };
+*/
 
 
 
     vm.submitFormAdvancedSearch = function () {
 
-            vm.showResults=true;
+
+        apiService.AdvancedBookSearch(vm.bookForSearch)
+            .then(function (data) {
+
+                vm.booksArray=data;
+            }, function (err) {
+            });
+        vm.showResults=true;
+
 
 
     };
