@@ -113,6 +113,12 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
     vm.menuItems = [
 
         {
+            title: "Authors Handling",
+            icon: "dashboard",
+            state: "authorsHandling"
+        },
+
+        {
             title: "Orders Handling",
             icon: "dashboard",
             state: "ordersHandling"

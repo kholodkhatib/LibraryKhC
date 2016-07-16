@@ -69,6 +69,20 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
+
+
+
+    // authors handling page state
+    $stateProvider.state('app.authorsHandling', {
+        url: '/authorsHandling',
+        templateUrl: 'app/modules/dashboard/views/authorsHandling.html',
+        controller: 'AuthorsHandlingController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'authorsHandling'
+        }
+    });
+
 // books handling page state
     $stateProvider.state('app.booksHandling', {
         url: '/booksHandling',

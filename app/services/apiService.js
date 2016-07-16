@@ -160,6 +160,75 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     };
 
 
+
+    //===========================Get All Authors RESOURCE==============================
+    var getAllAuthors = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'author', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    //===========================Create Author RESOURCE======== Kholod======================
+    var createNewAuthor= function (author) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'author',
+            author
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Edit Author======== Kholod======================
+    var EditAuthor = function (author) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'author',
+            author
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete Authors======== Kholod======================
+    var DeleteAuthor = function (author) {
+        var deferred = $q.defer();
+        debugger
+        $http.delete(apiBase + 'author?author_id='+author._id, { headers: { 'author_id': author._id} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
+
+
+
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {
         var deferred = $q.defer();
@@ -429,6 +498,18 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
     //--------------------end of Events
+
+
+
+    //---------------------Authors
+
+    apiService.getAllAuthors=getAllAuthors;
+    apiService.createNewAuthor=createNewAuthor;
+    apiService.EditAuthor=EditAuthor;
+    apiService.DeleteAuthor=DeleteAuthor;
+
+
+    //--------------------end of Authors
 
 
     //---------------------Rooms
