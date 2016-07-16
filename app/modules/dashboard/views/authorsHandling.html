@@ -1,0 +1,285 @@
+﻿<!--
+Author: Ranjithprabhu K
+Page Description:  authorsHandling page
+Date: 15 Jan 2016
+-->
+<style>
+
+    .table th:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .table .action-column{
+        width: 230px;
+    }
+    .table .action-column:hover{
+        text-decoration: none;
+        cursor: default;
+    }
+    .table tfoot .pagination{
+        float: right;
+        margin: 0;
+    }
+    .table tfoot .pagination li{
+        cursor: pointer;
+    }
+    .table tfoot select{
+        width: 90px;
+        float: right;
+        margin-right: 8px;
+    }
+</style>
+
+
+
+<style>
+
+
+    table.ex2 {
+        border-collapse: separate;
+        border-spacing: 10px 10px;
+    }
+</style>
+        <!-- Content Header (Page header) -->
+        <section class="content-header" >
+          <h1>
+        Authors Information
+
+
+          </h1>
+            <br>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Authors Handling</li>
+          </ol>
+        </section>
+
+
+
+
+<table class="table table-hover table-bordered" st-table>
+<thead>
+<tr>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Code</th>
+    <th ng-click="predicate='FirstName'; reverse=!reverse">Name</th>
+
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="author in vm.authorsArray ">
+
+
+
+
+    <td>  {{author.code}} </td>
+    <td> {{author.name }}</td>
+
+    <td class="action-column">
+        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,author)">Edit</button>
+
+        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,author)">Delete</button>
+    </td>
+
+
+</tr>
+</tbody>
+    <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Author</button>
+
+</table>
+
+
+
+<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="New Author"  ng-cloak style="max-width: 40%;">
+<form >
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>New Author</h2>
+           <!-- <span flex></span>-->
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+                <table  class="ex2" >
+
+
+                    <tr>
+                        <td>
+                <div class="row">
+                    <label class="col-lg-4 control-label">Code:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" ng-model="author.code" type="text">
+                    </div>
+                </div>
+                        </td>
+
+                        <td>
+                <div class="row">
+                    <label class="col-lg-4 control-label">name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" ng-model="author.name" type="text">
+                    </div>
+                </div>
+                        </td>
+                        </tr>
+
+                </table>
+
+
+        </form>
+            </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="CreateNewAuthor()">
+            Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Close
+        </md-button>
+    </md-dialog-actions>
+   <!-- <label>
+        book= {{book | json}}
+    </label>-->
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Author"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Author</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+                <table  class="ex2" >
+
+
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-4 control-label">Code:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" ng-model="authorForEdit.code" type="text">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                <label class="col-lg-4 control-label">Name:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" ng-model="authorForEdit.name" type="text">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="EditAuthor()">
+            Save
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Close
+        </md-button>
+    </md-dialog-actions>
+    <!--   <label>
+       </label>-->
+
+</form>
+</md-dialog>
+</script>
+
+
+
+
+
+
+<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Author"  ng-cloak>
+<form>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Delete Author</h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+
+
+            <form class="form-horizontal" role="form">
+
+
+                <label> Are You suye you want to delete Author: {{authorForDelete.name}} &nbsp ?</label>
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                  More on Wikipedia
+              </md-button>
+              <span flex></span>-->
+        <md-button ng-click="DeleteAuthor()">
+            Yes
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            No
+        </md-button>
+    </md-dialog-actions>
+
+
+</form>
+</md-dialog>
+</script>

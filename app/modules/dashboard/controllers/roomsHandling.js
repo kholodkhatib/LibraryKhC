@@ -28,7 +28,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
     function DialogController($scope, $mdDialog,apiService) {
 
         $scope.room= {};
-        $scope.roomForEdit=vm.roomForEdit;
+        $scope.roomForEdit=vm.example;
         $scope.roomForDelete=vm.roomForDelete;
 
 
@@ -125,6 +125,8 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
         vm.showEditDialog = function(ev,roomForEdit) {
             vm.roomForEdit=roomForEdit;
+            vm.example = angular.copy(vm.roomForEdit);
+
             debugger
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
