@@ -79,7 +79,15 @@ vm.newbook={};
 
 
     function DialogController($scope, $mdDialog,apiService) {
-
+        apiService.getAllAuthors()
+            .then(function (authors) {
+                $scope.authorsArray = authors;
+            }, function (err) {
+            });
+        $scope.$watch('selectAuthor', function() {
+           $scope.book.author=$scope.selectedAuthor.title;
+        });
+        $scope.selectedAuthor={};
         $scope.book= {};
         $scope.bookForEdit=vm.example;
         $scope.bookForDelete=vm.bookForDelete;
@@ -119,10 +127,8 @@ debugger
             }
 
             $scope.CreateNewBook= function(){
-                debugger
-
                 console.log($scope.book);
-                debugger
+                $scope.book.author=$scope.selectedAuthor.title;
                 apiService.createNewBook($scope.book)
                     .then(function (data) {
                         vm.Refresh();
