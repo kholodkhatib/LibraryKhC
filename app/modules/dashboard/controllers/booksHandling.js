@@ -93,14 +93,14 @@ vm.newbook={};
         $scope.bookForDelete=vm.bookForDelete;
 
 
-debugger
+
 
 
 
             $scope.DeleteBook=function(){
 
                 console.log($scope.bookForDelete);
-                debugger
+
                 apiService.DeleteBook($scope.bookForDelete)
                     .then(function (data) {
                         vm.Refresh();
@@ -112,10 +112,10 @@ debugger
             }
             $scope.EditBook=function(){
 
-                debugger
+
 
                 console.log($scope.book);
-                debugger
+
                 apiService.EditBook($scope.bookForEdit)
                     .then(function (data) {
                         vm.Refresh();
@@ -184,7 +184,7 @@ debugger
         vm.bookForEdit=bookForEdit;
         vm.example = angular.copy(vm.bookForEdit);
 
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({
@@ -214,7 +214,7 @@ debugger
 
     vm.showDeleteDialog = function(ev,bookForDelete) {
         vm.bookForDelete=bookForDelete;
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({

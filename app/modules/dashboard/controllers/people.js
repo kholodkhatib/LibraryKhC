@@ -36,12 +36,12 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
           //  $scope.personForEdit=vm.personForEdit;
             $scope.personForEdit=vm.example;
             $scope.personForDelete=vm.personForDelete;
-            debugger
+
 
             $scope.DeletePerson=function(){
 
                 console.log($scope.personForDelete);
-                debugger
+
                 apiService.DeletePerson($scope.personForDelete) // to countine
                     .then(function (data) {
                         vm.Refresh();
@@ -53,10 +53,10 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             }
             $scope.EditPerson=function(){
 
-                debugger
+
 
                 console.log($scope.person);
-                debugger
+
                 apiService.EditPerson($scope.personForEdit)
                     .then(function (data) {
                         vm.Refresh();
@@ -67,10 +67,10 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
             }
             $scope.CreateNewPeople= function(){
-                debugger
+
 
                 console.log($scope.person);
-                debugger
+
                 apiService.createNewPeople($scope.person)
                     .then(function (data) {
                         vm.Refresh();
@@ -128,7 +128,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             vm.personForEdit=personForEdit;
 
             vm.example = angular.copy(vm.personForEdit);
-            debugger
+
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
             $mdDialog.show({
@@ -158,7 +158,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
         vm.showDeleteDialog = function(ev,personForDelete) {
             vm.personForDelete=personForDelete;
-            debugger
+
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
             $mdDialog.show({

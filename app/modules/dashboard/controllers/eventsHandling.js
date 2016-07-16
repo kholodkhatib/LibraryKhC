@@ -60,7 +60,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
     function DialogController($scope, $mdDialog,apiService) {
 
-        debugger
+
         $scope.event= {};
 
          $scope.newObject = jQuery.extend(true, {}, vm.eventForDelete);
@@ -71,7 +71,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
         $scope.DeleteEvent=function(){
 
             console.log($scope.eventForDelete);
-            debugger
+
             apiService.DeleteEvent($scope.eventForDelete)
                 .then(function (data) {
                     vm.Refresh();
@@ -83,10 +83,10 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
         }
         $scope.EditEvent=function(){
 
-            debugger
+
 
             console.log($scope.event);
-            debugger
+
             apiService.EditEvent($scope.eventForEdit)
                 .then(function (data) {
                     vm.Refresh();
@@ -99,10 +99,10 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
 
         $scope.CreateNewEventt= function(){
-            debugger
+
 
             console.log($scope.event);
-            debugger
+
             apiService.createNewEvent($scope.event)
                 .then(function (data) {
                     vm.Refresh();
@@ -162,7 +162,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
         vm.eventForEdit=eventForEdit;
         vm.example = angular.copy(vm.eventForEdit);
 
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({
@@ -192,7 +192,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
     vm.showDeleteDialog = function(ev,eventForDelete) {
         vm.eventForDelete=eventForDelete;
-        debugger
+
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 
         $mdDialog.show({

@@ -122,20 +122,20 @@ vm.choosenRoom={};
 
     function DialogController($scope, $mdDialog,apiService) {
 
-debugger
+
         $scope.hours=vm.hours;
         $scope.choosenHour=vm.choosenHour;
         $scope.choosenRoom=vm.choosenRoom;
 $scope.choosenDate=vm.myDate;
 
         $scope.ChooseHour=function(x) {
-            debugger
+
             $scope.choosenHour= x;
-            debugger
+
 
         }
         $scope.SaveHour=function() {
-            debugger
+
 /*
             $scope.choosenHour; TODO
 */
@@ -143,7 +143,7 @@ $scope.choosenDate=vm.myDate;
 
         }
 
-        debugger
+
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -162,7 +162,7 @@ $scope.choosenDate=vm.myDate;
 
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.showAdvanced = function(ev,room) {
-        debugger
+
         vm.choosenRoom=room;
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 

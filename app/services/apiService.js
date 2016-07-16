@@ -84,9 +84,9 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Delete People======== Kholod======================
     var DeletePerson = function (person) {
         var deferred = $q.defer();
-        debugger
+
         $http.delete(apiBase + 'person?Person_id='+person._id+"&ahmad=loveU", { headers: { 'Person_id': person._id} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
         // <--- catch instead error
@@ -128,9 +128,9 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Delete Room======== Kholod======================
     var DeleteRoom = function (room) {
         var deferred = $q.defer();
-        debugger
+
         $http.delete(apiBase + 'room?room_id='+room._id, { headers: { 'room_id': room._id} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
             // <--- catch instead error
@@ -215,9 +215,9 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Delete Authors======== Kholod======================
     var DeleteAuthor = function (author) {
         var deferred = $q.defer();
-        debugger
+
         $http.delete(apiBase + 'author?author_id='+author._id, { headers: { 'author_id': author._id} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
             // <--- catch instead error
@@ -283,14 +283,30 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Delete Event======== Kholod======================
     var DeleteEvent = function (event) {
         var deferred = $q.defer();
-        debugger
+
         $http.delete(apiBase + 'event?event_id='+event._id, { headers: { 'event_id': event._id} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
             // <--- catch instead error
             deferred.reject(data.statusText);
         });
+        return deferred.promise;
+    };
+
+
+
+    //===========================Search For Book Advanced RESOURCE==============================
+    var AdvancedBookSearch = function (bookForSearch) {
+
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'book/search',bookForSearch, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
         return deferred.promise;
     };
 
@@ -360,9 +376,9 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Delete Book======== Kholod======================
     var DeleteBook = function (book) {
         var deferred = $q.defer();
-        debugger
+
         $http.delete(apiBase + 'book?book_id='+book._id+"&ahmad=loveU", { headers: { 'book_id': book._id} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
             // <--- catch instead error
@@ -527,6 +543,8 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.DeletePerson=DeletePerson;
 //--------------------end of people
 
+
+    apiService.AdvancedBookSearch=AdvancedBookSearch;
     return apiService;
 
 }]);
