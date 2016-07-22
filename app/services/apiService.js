@@ -14,6 +14,33 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
     //+++++++++++++++++++++++++++++++++++++++++++++++KHOLOD+++++++++++++++++++++++++++++++++++++++++++++++
 
+    //===========================Get All Years RESOURCE==============================
+
+    var getAllYears= function () {
+/*
+        var years =   [{name: "1111111"},{name: "33333333"},{name: "22222"}]; */
+        var years =   [];
+
+        var i;
+        for (i = 1980; i < 2015; i++) {
+            years.push({name:""+i});
+        };
+
+        return years;
+
+      /*  var deferred = $q.defer();
+        $http.get(apiBase + 'person', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;*/
+
+
+
+
+    };
 
     //===========================Get All People RESOURCE==============================
     var getAllPeople = function () {
@@ -248,6 +275,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
     //===========================Create Category RESOURCE======== Kholod======================
     var createNewCategory= function (category) {
+        debugger
         var deferred = $q.defer();
 
         $http.post(apiBase + 'category',
@@ -710,7 +738,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.DeletePerson=DeletePerson;
 //--------------------end of people
 
-
+apiService.getAllYears=getAllYears;
     apiService.AdvancedBookSearch=AdvancedBookSearch;
     return apiService;
 

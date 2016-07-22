@@ -88,7 +88,20 @@ Date: 05 Jan 2016
                                 <label>Author</label>
                                 <md-icon class="fa fa-male"></md-icon>
 
-                                <input type="text" ng-model="vm.bookForSearch.author">
+                                <div class="col-lg-8">
+
+                                      <angucomplete id="ex1"
+                                                  placeholder="Search author"
+                                                  pause="100"
+                                                  selectedobject="selectedAuthor"
+                                                  localdata="authorsArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
+                                </div>
+
+                               <!-- <input type="text" ng-model="vm.bookForSearch.author">-->
                             </md-input-container>
 
 
@@ -133,6 +146,10 @@ Date: 05 Jan 2016
 
 
                             </md-input-container>
+
+
+
+
                         <!--    <div class="pull-left">
 
                                 <label>Publish Year:</label>
@@ -209,7 +226,9 @@ Date: 05 Jan 2016
                                 <li>Description : {{books.description}}</li>
                                 <li>Language : {{books.language}}</li>
                                 <li>Category : {{books.category}}</li>
-                                <li>Publish Year : {{books.publishYear}}</li>
+                                <li>Publish Year : {{books.year}}</li>
+
+
 
                             </ul>
 
@@ -244,3 +263,69 @@ Date: 05 Jan 2016
 
 </section><!-- /.content -->
 
+
+
+
+
+
+
+
+
+<!---------------------------------trying----------------------------->
+<!--
+<section class="content" ng-show="vm.showResults">
+    &lt;!&ndash; row &ndash;&gt;
+    <div class="row">
+        <div class="col-md-12">
+            &lt;!&ndash; The time line &ndash;&gt;
+            <ul class="timeline">
+                <li class="time-label">
+                    <span class="bg-red-gradient">
+                        Results Of Search:
+                    </span>
+                </li>
+                <li ng-repeat="books in vm.authorsArray | filter: (!disableFilter || '') && filterExpression">
+                    <i class="fa bg text-white"> {{$index+1}}</i>
+                    <div class="timeline-item">
+                        &lt;!&ndash;<span class="time text-bold"> Available</span>&ndash;&gt;
+                        <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Author : {{books.code }}</li>
+                                <li>Description : {{books.name}}</li>
+
+
+
+                            </ul>
+
+                        </div>
+                        <div class="timeline-footer">
+                            <p>
+                                &lt;!&ndash;<span class="label label-danger">HTML 5</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-success">CSS 3</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-warning">Java Script</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-primary">Type Script</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-danger">jQuery</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-info">Angular JS</span>&ndash;&gt;
+                                &lt;!&ndash;<span class="label label-success">SAAS</span>&ndash;&gt;
+                                <span class="label label-success">{{books.available}}</span>
+                                <span class="pull-right">
+                                    <a ng-show="books.available == 'available'" class="btn btn-primary btn-xs"
+                                       ui-sref="app.recent">Order Book</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <i class="fa fa-arrows bg-gray"></i>
+                </li>
+            </ul>
+        </div>&lt;!&ndash; /.col &ndash;&gt;
+    </div>
+
+
+</section>&lt;!&ndash; /.content &ndash;&gt;
+-->

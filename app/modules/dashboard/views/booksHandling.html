@@ -33,7 +33,12 @@ Date: 15 Jan 2016
 
 
 <style>
-
+    .angucomplete-dropdown {
+    ...
+    overflow-y: auto;
+       background-color: #c5d5e6; // your preference
+    ...
+    }
 
     table.ex2 {
         border-collapse: separate;
@@ -115,7 +120,7 @@ Date: 15 Jan 2016
 </table>
 
 
-
+<!--Add New-->
 <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="New Book"  ng-cloak style="max-width: 40%;">
 <form >
 
@@ -178,7 +183,16 @@ Date: 15 Jan 2016
                 <div class="row">
                     <label class="col-lg-4 control-label">category:</label>
                     <div class="col-lg-8">
-                        <input class="form-control"  ng-model="book.category" type="text">
+                     <!--   <input class="form-control"  ng-model="book.category" type="text">-->
+                        <angucomplete id="ex1"
+                                      placeholder="Search category"
+                                      pause="100"
+                                      selectedobject="selectedCategory"
+                                      localdata="categoriesArray"
+                                      searchfields="name"
+                                      titlefield="name"
+                                      minlength="1"
+                                      inputclass="form-control form-control-small"/>
                     </div>
                 </div>
                         </td>
@@ -189,7 +203,18 @@ Date: 15 Jan 2016
                 <div class="row">
                     <label class="col-lg-4 control-label">year:</label>
                     <div class="col-lg-8">
+<!--
                         <input class="form-control" ng-model="book.year" type="text">
+-->
+                        <angucomplete id="ex1"
+                                      placeholder="Search Year"
+                                      pause="100"
+                                      selectedobject="selectedYear"
+                                      localdata="yearsArray"
+                                      searchfields="name"
+                                      titlefield="name"
+                                      minlength="1"
+                                      inputclass="form-control form-control-small"/>
                     </div>
                 </div>
                             </td>
@@ -197,7 +222,16 @@ Date: 15 Jan 2016
                 <div class="row">
                     <label class="col-lg-4 control-label">language:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" ng-model="book.language" type="text">
+                      <!--  <input class="form-control" ng-model="book.language" type="text">-->
+                        <angucomplete id="ex1"
+                                      placeholder="Search Language"
+                                      pause="100"
+                                      selectedobject="selectedLanguage"
+                                      localdata="languagesArray"
+                                      searchfields="name"
+                                      titlefield="name"
+                                      minlength="1"
+                                      inputclass="form-control form-control-small"/>
                     </div>
                 </div>
                         </td>
@@ -238,7 +272,7 @@ Date: 15 Jan 2016
 
 
 
-
+<!--Edit-->
 <script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Book"  ng-cloak>
 <form>
 
@@ -250,7 +284,7 @@ Date: 15 Jan 2016
         </div>
     </md-toolbar>
 
-    <md-dialog-content>
+    <div>
         <div class="md-dialog-content">
 
 
@@ -273,10 +307,25 @@ Date: 15 Jan 2016
                         <td>
                             <div class="row">
                                 <label class="col-lg-4 control-label">author:</label>
+
                                 <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookForEdit.author" type="text">
+                                    <angucomplete id="ex1"
+                                                  placeholder={{bookForEdit.author}}
+                                                  pause="100"
+                                                  selectedobject="selectedAuthor"
+                                                  localdata="authorsArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
                                 </div>
+
                             </div>
+
+                            <!--<div class="col-lg-8">
+                                <input class="form-control" ng-model="bookForEdit.author" type="text">
+                            </div>-->
+
                         </td>
                     </tr>
                     <tr>
@@ -292,7 +341,16 @@ Date: 15 Jan 2016
                             <div class="row">
                                 <label class="col-lg-4 control-label">category:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control"  ng-model="bookForEdit.category" type="text">
+                                   <!-- <input class="form-control"  ng-model="bookForEdit.category" type="text">-->
+                                    <angucomplete id="ex1"
+                                                  placeholder={{bookForEdit.category}}
+                                                  pause="100"
+                                                  selectedobject="selectedCategory"
+                                                  localdata="categoriesArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
                                 </div>
                             </div>
                         </td>
@@ -303,7 +361,40 @@ Date: 15 Jan 2016
                             <div class="row">
                                 <label class="col-lg-4 control-label">year:</label>
                                 <div class="col-lg-8">
+                                    <angucomplete id="ex1"
+                                                  placeholder={{bookForEdit.year}}
+                                                  pause="100"
+                                                  selectedobject="selectedYear"
+                                                  localdata="yearsArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
+
+
+<!--
                                     <input class="form-control" ng-model="bookForEdit.year" type="text">
+-->
+
+
+
+                             <!--       <angucomplete id="ex1"
+                                                  placeholder="Search Year"
+                                                  pause="100"
+                                                  selectedobject="selectedYear"
+                                                  localdata=languagesArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
+-->
+<!--
+                                            <md-datepicker ng-model="vm.myDate.getFullYear()"></md-datepicker>
+-->
+
+
+
+
                                 </div>
                             </div>
                         </td>
@@ -311,7 +402,16 @@ Date: 15 Jan 2016
                             <div class="row">
                                 <label class="col-lg-4 control-label">language:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookForEdit.language" type="text">
+                                  <!--  <input class="form-control" ng-model="bookForEdit.language" type="text">-->
+                                    <angucomplete id="ex1"
+                                                  placeholder={{bookForEdit.language}}
+                                                  pause="100"
+                                                  selectedobject="selectedLanguage"
+                                                  localdata="languagesArray"
+                                                  searchfields="name"
+                                                  titlefield="name"
+                                                  minlength="1"
+                                                  inputclass="form-control form-control-small"/>
                                 </div>
                             </div>
                         </td>
@@ -337,7 +437,7 @@ Date: 15 Jan 2016
     </md-dialog-actions>
     <!--   <label>
        </label>-->
-
+</div>
 </form>
 </md-dialog>
 </script>
@@ -346,7 +446,7 @@ Date: 15 Jan 2016
 
 
 
-
+<!--Remove-->
 <script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Book"  ng-cloak>
 <form>
 

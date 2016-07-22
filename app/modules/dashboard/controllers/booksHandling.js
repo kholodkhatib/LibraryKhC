@@ -14,7 +14,11 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
     vm.bookForEdit={};
     vm.bookForDelete={};
-vm.Refresh= function () {
+    vm.newbook={};
+
+
+
+    vm.Refresh= function () {
 
     apiService.search()
         .then(function (books) {
@@ -22,72 +26,65 @@ vm.Refresh= function () {
         }, function (err) {
         });
 };
-vm.newbook={};
 
-  /*  vm.saveUser = function(data, id) {
-        //$scope.user not updated yet
-        angular.extend(data, {_id: id});
-    //    return $http.post('/saveUser', data);
-    };
-
-    // remove user
-    vm.removeUser = function(index) {
-        vm.users.splice(index, 1);
-    };
-    vm.checkName = function(data, id) {
-        if (id === 2 && data !== 'awesome') {
-            return "Username 2 should be `awesome`";
-        }
-    };*/
-
-    /*
-        vm.booksArray.development=[
-            {  id:"123",
-                firstName:"person1",
-                lastName:"lastname",
-                email:"person1@hotmail.com",
-                address:"Yaffa",
-                gender:"male",
-            },
-            {  id:"123",
-                firstName:"person2",
-                lastName:"lastname",
-                email:"person2@hotmail.com",
-                address:"Yaffa",
-                gender:"male",
-            },
-            {  id:"123",
-                firstName:"person3",
-                lastName:"lastname",
-                email:"person3@hotmail.com",
-                address:"Yaffa",
-                gender:"male",
-            },
-            {  id:"123",
-                firstName:"person4",
-                lastName:"lastname",
-                email:"person4@hotmail.com",
-                address:"Yaffa",
-                gender:"male",
-            }
-
-        ];
-    */
-
-
-//haha
 
 
     function DialogController($scope, $mdDialog,apiService) {
+
         apiService.getAllAuthors()
             .then(function (authors) {
                 $scope.authorsArray = authors;
             }, function (err) {
             });
+        apiService.getAllCategories()
+            .then(function (categories) {
+                $scope.categoriesArray = categories;
+            }, function (err) {
+            });
+        debugger
+        apiService.getAllLanguages()
+            .then(function (languages) {
+                $scope.languagesArray = languages;
+            }, function (err) {
+            });
+        $scope.yearsArray=   apiService.getAllYears();
+
+     /*   debugger
+        $scope.yearsArray =   vm.years;
+        debugger
+*/
+
+/*
         $scope.$watch('selectAuthor', function() {
            $scope.book.author=$scope.selectedAuthor.title;
+            $scope.bookForEdit.author=$scope.selectedAuthor.title;
         });
+        $scope.$watch('selectCategory', function() {
+            $scope.book.category=$scope.selectedCategory.title;
+
+            $scope.bookForEdit.category=$scope.selectedCategory.title;
+
+        });
+        $scope.$watch('selectLanguage', function() {
+            $scope.book.language=$scope.selectedLanguage.title;
+
+            $scope.bookForEdit.language=$scope.selectedLanguage.title;
+
+        });
+        $scope.$watch('selectYear', function() {
+            $scope.book.year=$scope.selectedYear.title;
+
+            $scope.bookForEdit.year=$scope.selectedYear.title;
+
+        });*/
+
+
+
         $scope.selectedAuthor={};
+        $scope.selectedCategory={};
+        $scope.selectedLanguage={};
+        $scope.selectedYear={};
+
         $scope.book= {};
         $scope.bookForEdit=vm.example;
         $scope.bookForDelete=vm.bookForDelete;
@@ -115,6 +112,10 @@ vm.newbook={};
 
 
                 console.log($scope.book);
+                $scope.bookForEdit.author=$scope.selectedAuthor.title;
+                $scope.bookForEdit.category=$scope.selectedCategory.title;
+                $scope.bookForEdit.language=$scope.selectedLanguage.title;
+                $scope.bookForEdit.year=$scope.selectedYear.title;
 
                 apiService.EditBook($scope.bookForEdit)
                     .then(function (data) {
@@ -129,6 +130,10 @@ vm.newbook={};
             $scope.CreateNewBook= function(){
                 console.log($scope.book);
                 $scope.book.author=$scope.selectedAuthor.title;
+                $scope.book.category=$scope.selectedCategory.title;
+                $scope.book.language=$scope.selectedLanguage.title;
+                $scope.book.year=$scope.selectedYear.title;
+
                 apiService.createNewBook($scope.book)
                     .then(function (data) {
                         vm.Refresh();
@@ -238,10 +243,17 @@ vm.newbook={};
         }, function(wantsFullScreen) {
             vm.customFullscreen = (wantsFullScreen === true);
         });
-
     };
 
 
     vm.Refresh();
+
+
+
+
+
+
+
+
 }]);
 

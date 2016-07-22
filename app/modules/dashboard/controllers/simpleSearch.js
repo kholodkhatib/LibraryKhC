@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','apiService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,apiService) {
+dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','$mdDialog', '$mdMedia','apiService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,$mdDialog, $mdMedia,apiService) {
     //
     //apiService.search()
     //    .then(function (books) {
@@ -47,37 +47,24 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
     vm.submitForm = function () {
         vm.showResults=true;
     };
+    /***********************************************************/
 
+
+    vm.selectedAuthor={};
+    vm.authorsArray={};
+    apiService.getAllAuthors()
+        .then(function (authors) {
+            vm.authorsArray = authors;
+        }, function (err) {
+        });
+    debugger
 /*
+    vm.$watch('selectAuthor', function() {
 
-    vm.submitForm = function () {
-        console.log(vm.message);
-        var request = $http({
-            method: "post",
-            url: "contact.php",
-            data: vm.message,
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        });
+        vm.bookForSearch.author=$scope.selectedAuthor.title;
+    });*/
 
-
-
-        /!* Check whether the HTTP Request is successful or not. *!/
-        request.success(function (data) {
-            vm.showResults=true;
-            console.log(data);
-            if (data == "success") {
-                Flash.create('success', 'Message Sent Succesfully', 'large-text');
-                vm.message = {};
-                vm.contactForm.$pristine();
-                vm.contactForm.$setUntouched();
-
-            }
-        });
-    };
-*/
-
-
-
+    /***********************************************************/
     vm.submitFormAdvancedSearch = function () {
 
 

@@ -8,7 +8,7 @@
 
  ===========================================================*/
 
-dashboard.controller("LanguageHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
+dashboard.controller("LanguagesHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
 function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
     var vm = this;
 //language
@@ -17,7 +17,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 vm.Refresh= function () {
 
     apiService.getAllLanguages()
-        .then(function (language) {
+        .then(function (languages) {
             vm.languagesArray = languages;
         }, function (err) {
         });
@@ -72,7 +72,7 @@ vm.newlanguage={};
 
                 console.log($scope.language);
 
-                apiService.createNewLanguage($scope.anguage)
+                apiService.createNewLanguage($scope.language)
                     .then(function (data) {
                         vm.Refresh();
                         $mdDialog.cancel();
