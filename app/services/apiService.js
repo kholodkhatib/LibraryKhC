@@ -229,6 +229,149 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
 
+
+
+
+
+    //===========================Get All Categories RESOURCE==============================
+    var getAllCategories = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'category', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    //===========================Create Category RESOURCE======== Kholod======================
+    var createNewCategory= function (category) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'category',
+            category
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Edit Category======== Kholod======================
+    var EditCategory = function (category) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'category',
+            category
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete Category======== Kholod======================
+    var DeleteCategory = function (category) {
+        var deferred = $q.defer();
+
+        $http.delete(apiBase + 'category?category_id='+category._id, { headers: { 'category_id': category._id} }).success(function (response) {
+
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
+
+
+
+
+
+    //===========================Get All Languages RESOURCE==============================
+    var getAllLanguages = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'language', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    //===========================Create Language RESOURCE======== Kholod======================
+    var createNewLanguage= function (language) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'language',
+            language
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Edit Language======== Kholod======================
+    var EditLanguage = function (language) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'language',
+            language
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete Language======== Kholod======================
+    var DeleteLanguage = function (language) {
+        var deferred = $q.defer();
+
+        $http.delete(apiBase + 'language?language_id='+language._id, { headers: { 'language_id': language._id} }).success(function (response) {
+
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
+
+
+
+
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {
         var deferred = $q.defer();
@@ -526,6 +669,30 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
     //--------------------end of Authors
+
+
+    //---------------------Category
+
+    apiService.getAllCategories=getAllCategories;
+    apiService.createNewCategory=createNewCategory;
+    apiService.EditCategory=EditCategory;
+    apiService.DeleteCategory=DeleteCategory;
+
+
+    //--------------------end of Category
+
+
+
+    //---------------------Languages
+
+    apiService.getAllLanguages=getAllLanguages;
+    apiService.createNewLanguage=createNewLanguage;
+    apiService.EditLanguage=EditLanguage;
+    apiService.DeleteLanguage=DeleteLanguage;
+
+
+    //--------------------end of Languages
+
 
 
     //---------------------Rooms

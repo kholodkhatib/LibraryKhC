@@ -117,6 +117,16 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
             icon: "dashboard",
             state: "authorsHandling"
         },
+        {
+            title: "Categories Handling",
+            icon: "dashboard",
+            state: "categoriesHandling"
+        },
+        {
+            title: "Languages Handling",
+            icon: "dashboard",
+            state: "languagesHandling"
+        },
 
         {
             title: "Orders Handling",

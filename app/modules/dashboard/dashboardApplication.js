@@ -83,6 +83,29 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
+    // languages handling page state
+    $stateProvider.state('app.languagesHandling', {
+        url: '/languagesHandling',
+        templateUrl: 'app/modules/dashboard/views/languagesHandling.html',
+        controller: 'LanguagesHandlingController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'languagesHandling'
+        }
+    });
+
+
+    // categories handling page state
+    $stateProvider.state('app.categoriesHandling', {
+        url: '/categoriesHandling',
+        templateUrl: 'app/modules/dashboard/views/categoriesHandling.html',
+        controller: 'CategoriesHandlingController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'categoriesHandling'
+        }
+    });
+
 // books handling page state
     $stateProvider.state('app.booksHandling', {
         url: '/booksHandling',
