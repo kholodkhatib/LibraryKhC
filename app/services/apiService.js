@@ -7,7 +7,7 @@
     s.no      date    author     description     
  ===========================================================*/
 
-app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, appSettings) {
+app.service('apiService', ['$http', '$q', 'appSettings','globalService', function ($http, $q, appSettings,globalService) {
 
     var apiService = {};
     var apiBase = appSettings.apiBase;
@@ -15,6 +15,26 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //+++++++++++++++++++++++++++++++++++++++++++++++KHOLOD+++++++++++++++++++++++++++++++++++++++++++++++
 
     //===========================Get All Years RESOURCE==============================
+
+
+
+
+    //===========================GetPerson RESOURCE==============================
+    var GetPerson = function (personForSearch) {
+
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'person/search',personForSearch, { headers: { 'Content-Type': 'application/json' }}).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data);
+        });
+
+        return deferred.promise;
+
+    };
+
+
 
     var getAllYears= function () {
 /*
@@ -45,7 +65,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All People RESOURCE==============================
     var getAllPeople = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'person', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'person', { headers: { 'Content-Type': 'application/json' , "token": globalService.GetUserDetails().token } }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -63,7 +83,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             person
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -83,7 +103,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             person
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -112,7 +132,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeletePerson = function (person) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'person?Person_id='+person._id+"&ahmad=loveU", { headers: { 'Person_id': person._id} }).success(function (response) {
+        $http.delete(apiBase + 'person?Person_id='+person._id+"&ahmad=loveU", { headers: { 'Person_id': person._id , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -124,7 +144,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All Rooms RESOURCE==============================
     var getAllRooms = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'room', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'room', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -141,7 +161,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             room
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -156,7 +176,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteRoom = function (room) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'room?room_id='+room._id, { headers: { 'room_id': room._id} }).success(function (response) {
+        $http.delete(apiBase + 'room?room_id='+room._id, { headers: { 'room_id': room._id  , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -175,7 +195,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             room
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -191,7 +211,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All Authors RESOURCE==============================
     var getAllAuthors = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'author', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'author', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -209,7 +229,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             author
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -228,7 +248,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             author
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -243,7 +263,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteAuthor = function (author) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'author?author_id='+author._id, { headers: { 'author_id': author._id} }).success(function (response) {
+        $http.delete(apiBase + 'author?author_id='+author._id, { headers: { 'author_id': author._id , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -263,7 +283,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All Categories RESOURCE==============================
     var getAllCategories = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'category', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'category', { headers: { 'token': globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -275,14 +295,14 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
     //===========================Create Category RESOURCE======== Kholod======================
     var createNewCategory= function (category) {
-        debugger
+
         var deferred = $q.defer();
 
         $http.post(apiBase + 'category',
             category
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -301,7 +321,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             category
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -316,7 +336,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteCategory = function (category) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'category?category_id='+category._id, { headers: { 'category_id': category._id} }).success(function (response) {
+        $http.delete(apiBase + 'category?category_id='+category._id, { headers: { 'category_id': category._id , 'token': globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -334,7 +354,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All Languages RESOURCE==============================
     var getAllLanguages = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'language', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'language', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -352,7 +372,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             language
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -371,7 +391,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             language
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -386,7 +406,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteLanguage = function (language) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'language?language_id='+language._id, { headers: { 'language_id': language._id} }).success(function (response) {
+        $http.delete(apiBase + 'language?language_id='+language._id, { headers: { 'language_id': language._id , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -403,7 +423,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'event', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'event', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -421,7 +441,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             event
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -440,7 +460,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             event
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -455,7 +475,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteEvent = function (event) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'event?event_id='+event._id, { headers: { 'event_id': event._id} }).success(function (response) {
+        $http.delete(apiBase + 'event?event_id='+event._id, { headers: { 'event_id': event._id , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -472,7 +492,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'book/search',bookForSearch, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.post(apiBase + 'book/search',bookForSearch, { headers: { 'Content-Type': 'application/json' , "token": globalService.GetUserDetails().token } }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -484,7 +504,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     //===========================Search RESOURCE==============================
     var search = function () {
         var deferred = $q.defer();
-        $http.get(apiBase + 'book', { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.get(apiBase + 'book', { headers: { 'Content-Type': 'application/json' , "token": globalService.GetUserDetails().token } }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
@@ -501,7 +521,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             book
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
             deferred.resolve(data);
@@ -532,7 +552,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             book
             , {
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
                 }
             }).success(function (data) {
                 deferred.resolve(data);
@@ -548,7 +568,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     var DeleteBook = function (book) {
         var deferred = $q.defer();
 
-        $http.delete(apiBase + 'book?book_id='+book._id+"&ahmad=loveU", { headers: { 'book_id': book._id} }).success(function (response) {
+        $http.delete(apiBase + 'book?book_id='+book._id+"&ahmad=loveU", { headers: { 'book_id': book._id , "token": globalService.GetUserDetails().token} }).success(function (response) {
 
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
@@ -587,6 +607,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
 
 
+/*
 
 
 
@@ -657,16 +678,19 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
         return deferred.promise;
     };
+*/
 
 
 
 
+/*
     apiService.get = get;
+*/
     apiService.search = search;
 
-    apiService.create = create;
+ /*   apiService.create = create;
     apiService.update = update;
-    apiService.delet = delet;
+    apiService.delet = delet;*/
 
     //---------------------Book
 
@@ -737,7 +761,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
     apiService.EditPerson=EditPerson;
     apiService.DeletePerson=DeletePerson;
 //--------------------end of people
-
+apiService.GetPerson=GetPerson;
 apiService.getAllYears=getAllYears;
     apiService.AdvancedBookSearch=AdvancedBookSearch;
     return apiService;

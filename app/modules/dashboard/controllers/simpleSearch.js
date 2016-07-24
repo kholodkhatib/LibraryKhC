@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','$mdDialog', '$mdMedia','apiService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,$mdDialog, $mdMedia,apiService) {
+dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','$mdDialog', '$mdMedia','apiService','globalService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,$mdDialog, $mdMedia,apiService,globalService) {
     //
     //apiService.search()
     //    .then(function (books) {
@@ -57,6 +57,18 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
             vm.authorsArray = authors;
         }, function (err) {
         });
+    apiService.getAllCategories()
+        .then(function (categories) {
+            vm.categoriesArray = categories;
+        }, function (err) {
+        });
+    debugger
+    apiService.getAllLanguages()
+        .then(function (languages) {
+            vm.languagesArray = languages;
+        }, function (err) {
+        });
+    vm.yearsArray=   apiService.getAllYears();
     debugger
 /*
     vm.$watch('selectAuthor', function() {
@@ -66,6 +78,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
     /***********************************************************/
     vm.submitFormAdvancedSearch = function () {
+        vm.bookForSearch.author=$scope.selectedAuthor.title;
 
 
         apiService.AdvancedBookSearch(vm.bookForSearch)

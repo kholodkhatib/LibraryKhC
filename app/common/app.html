@@ -53,14 +53,14 @@
                     <li class="dropdown user user-menu">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <img src="images/ranjith.png" class="user-image" alt="User Image" />
-                            <span class="hidden-xs">Kholod Khatib</span>
+                            <span class="hidden-xs">{{vm.userlocal.id}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="images/ranjith.png" class="img-circle" alt="User Image">
                                 
-                                    <h3>Kholod Khatib</h3>
+                                    <h3>{{vm.userlocal.id}}</h3>
                                 <p class="text-center">
                                     Customer
                                  </p>
@@ -106,7 +106,7 @@
             <!-- /.search form -->
             <ul class="sidebar-menu">
                 <li class="treeview" ui-sref-active="active" ng-click="vm.sideBar();" data-ng-repeat="menu in vm.menuItems">
-                    <a ui-sref="app.{{menu.state}}">
+                    <a ui-sref="app.{{menu.state}}" ng-show="menu.isToShow">
                         <i class="fa fa-{{menu.icon}}"></i> <span>{{menu.title}}</span>
                     </a>
                 </li>

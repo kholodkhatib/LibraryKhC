@@ -7,14 +7,14 @@
     s.no      date    author     description     
  ===========================================================*/
 
-app.controller("appCtrl", ['$rootScope', '$scope', '$state', '$location', 'Flash','appSettings',
-function ($rootScope, $scope, $state, $location, Flash,appSettings) {
+app.controller("appCtrl", ['$rootScope', '$scope', '$state', '$location', 'Flash','appSettings','globalService',
+function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService) {
 
     $rootScope.theme = appSettings.theme;
     $rootScope.layout = appSettings.layout;
 
     var vm = this;
-
+    vm.userlocal=globalService.GetUserDetails();
 
     //avalilable themes
     vm.themes = [
@@ -115,74 +115,89 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
         {
             title: "Authors Handling",
             icon: "dashboard",
-            state: "authorsHandling"
+            state: "authorsHandling",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "Categories Handling",
             icon: "dashboard",
-            state: "categoriesHandling"
+            state: "categoriesHandling",
+            isToShow:vm.userlocal.isAdmin
+
         },
         {
             title: "Languages Handling",
             icon: "dashboard",
-            state: "languagesHandling"
+            state: "languagesHandling",
+            isToShow:vm.userlocal.isAdmin
         },
 
         {
             title: "Orders Handling",
             icon: "dashboard",
-            state: "ordersHandling"
+            state: "ordersHandling",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "Books Handling",
             icon: "dashboard",
-            state: "booksHandling"
+            state: "booksHandling",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "Rooms Handling",
             icon: "dashboard",
-            state: "roomsHandling"
+            state: "roomsHandling",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "Events Handling",
             icon: "dashboard",
-            state: "eventsHandling"
+            state: "eventsHandling",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "People",
             icon: "dashboard",
-            state: "people"
+            state: "people",
+            isToShow:vm.userlocal.isAdmin
         },
         {
             title: "Simple Search",
             icon: "dashboard",
-            state: "simpleSearch"
+            state: "simpleSearch" ,
+            isToShow:true
         },
 
         {
             title: "Setting",
             icon: "dashboard",
-            state: "setting"
+            state: "setting",
+            isToShow:true
         },
         {
             title: "Events",
             icon: "dashboard",
-            state: "events"
+            state: "events",
+            isToShow:true
         },
         {
         title: "Rooms",
         icon: "dashboard",
-        state: "rooms"
+        state: "rooms",
+            isToShow:true
 },
         {
             title: "Orders",
             icon: "graduation-cap",
-            state: "orders"
+            state: "orders",
+            isToShow:true
         },
         {
             title: "About Us",
             icon: "dashboard",
-            state: "aboutUs"
+            state: "aboutUs",
+            isToShow:true
         },
       /*  {
             title: "Dashboard",
@@ -227,7 +242,8 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
         {
             title: "Contact",
             icon: "phone",
-            state: "contact"
+            state: "contact",
+            isToShow:true
         }
     ];
 
@@ -267,5 +283,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
     };
 
     console.log('getting in to the app controller');
+
+
 
 }]);
