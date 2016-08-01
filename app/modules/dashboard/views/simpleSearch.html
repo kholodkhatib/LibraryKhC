@@ -259,18 +259,30 @@ Date: 05 Jan 2016
                         <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">
                             {{books.title}} </a></h3>
                         <div class="timeline-body">
+
+
+                            <table>
+                                <tr>
+                                    <div class="col-md-1">
+                                    <td>   <img src="images/recent/bookinfo.png" class="img-responsive"></td>
+                                        </div>
+                                    <td>
                             <ul>
-                                <li>Author : {{books.author }}</li>
+                                <bold>
+                                <li> <h4>Author : {{books.author }}</h4></li>
                                 <li>Description : {{books.description}}</li>
                                 <li>Language : {{books.language}}</li>
                                 <li>Category : {{books.category}}</li>
-                                <li>Publish Year : {{books.year}}</li>
-
-
-
+                                <li>Publish Year : {{books.year}}</li></bold>
                             </ul>
+                                    </td>
+                                </tr>
+
+
+                            </table>
 
                         </div>
+
                         <div class="timeline-footer">
                             <p>
                                 <!--<span class="label label-danger">HTML 5</span>-->
@@ -280,10 +292,18 @@ Date: 05 Jan 2016
                                 <!--<span class="label label-danger">jQuery</span>-->
                                 <!--<span class="label label-info">Angular JS</span>-->
                                 <!--<span class="label label-success">SAAS</span>-->
-                                <span class="label label-success">{{books.available}}</span>
+                              <!--  <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,book)">Edit</button>-->
+
+                                <span ng-class="{'label label-success': books.bookStatus == 'Available', 'label label-danger':  books.bookStatus == 'Not Available'}">{{books.bookStatus}}</span>
+                             <!--   <span class="label label-success">{{books.bookStatus}}</span>-->
                                 <span class="pull-right">
-                                    <a ng-show="books.available == 'available'" class="btn btn-primary btn-xs"
-                                       ui-sref="app.recent">Order Book</a>
+<!--
+                                            <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showOrderBook($event,books)">Essssssdit</button>
+-->
+
+
+                                    <button ng-show="books.bookStatus == 'Available'" class="btn btn-warning"
+                                            ng-click="vm.showOrderBook($event,books)">Order Book</button>
                                 </span>
                             </p>
                         </div>
@@ -303,75 +323,45 @@ Date: 05 Jan 2016
 
 
 
+<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Book"  ng-cloak>
+<form>
 
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Book</h2>
+            <span flex></span>
 
-<!--<angucomplete id="ex1"
-              placeholder="Search author"
-              pause="100"
-              selectedobject="selectedAuthor"
-              localdata="vm.authorsArray"
-              searchfields="name"
-              titlefield="name"
-              minlength="1"
-              inputclass="form-control form-control-small"/>-->
+        </div>
+    </md-toolbar>
 
-
-
-<!---------------------------------trying----------------------------->
-<!--
-<section class="content" ng-show="vm.showResults">
-    &lt;!&ndash; row &ndash;&gt;
-    <div class="row">
-        <div class="col-md-12">
-            &lt;!&ndash; The time line &ndash;&gt;
-            <ul class="timeline">
-                <li class="time-label">
-                    <span class="bg-red-gradient">
-                        Results Of Search:
-                    </span>
-                </li>
-                <li ng-repeat="books in vm.authorsArray | filter: (!disableFilter || '') && filterExpression">
-                    <i class="fa bg text-white"> {{$index+1}}</i>
-                    <div class="timeline-item">
-                        &lt;!&ndash;<span class="time text-bold"> Available</span>&ndash;&gt;
-                        <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Author : {{books.code }}</li>
-                                <li>Description : {{books.name}}</li>
+    <div>
+        <div class="md-dialog-content">
 
 
 
-                            </ul>
 
-                        </div>
-                        <div class="timeline-footer">
-                            <p>
-                                &lt;!&ndash;<span class="label label-danger">HTML 5</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-success">CSS 3</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-warning">Java Script</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-primary">Type Script</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-danger">jQuery</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-info">Angular JS</span>&ndash;&gt;
-                                &lt;!&ndash;<span class="label label-success">SAAS</span>&ndash;&gt;
-                                <span class="label label-success">{{books.available}}</span>
-                                <span class="pull-right">
-                                    <a ng-show="books.available == 'available'" class="btn btn-primary btn-xs"
-                                       ui-sref="app.recent">Order Book</a>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </li>
+            <form class="form-horizontal" role="form">
+               <label> aaaaaaaaaa </label>
 
+            </form>
+        </div>
+        </md-dialog-content>
 
-                <li>
-                    <i class="fa fa-arrows bg-gray"></i>
-                </li>
-            </ul>
-        </div>&lt;!&ndash; /.col &ndash;&gt;
+        <md-dialog-actions layout="row">
+            <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                      More on Wikipedia
+                  </md-button>
+                  <span flex></span>-->
+            <md-button ng-click="EditBook()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+        <!--   <label>
+           </label>-->
     </div>
-
-
-</section>&lt;!&ndash; /.content &ndash;&gt;
--->
+</form>
+</md-dialog>
+</script>

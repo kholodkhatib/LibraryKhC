@@ -23,7 +23,13 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
     vm.showAdvanced =false;
     vm.message = {};
     vm.showResults=false;
+    vm.choosedBook={};
 
+
+    //==============date============================
+
+    var today= globalService.GetTodayDate();
+    //==============================================
 
 
 
@@ -62,14 +68,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
             vm.categoriesArray = categories;
         }, function (err) {
         });
-    debugger
+
     apiService.getAllLanguages()
         .then(function (languages) {
             vm.languagesArray = languages;
         }, function (err) {
         });
     vm.yearsArray=   apiService.getAllYears();
-    debugger
+
 /*
     vm.$watch('selectAuthor', function() {
 
@@ -78,7 +84,10 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
     /***********************************************************/
     vm.submitFormAdvancedSearch = function () {
-        vm.bookForSearch.author=$scope.selectedAuthor.title;
+        if ($scope.selectedAuthor) {
+
+        vm.bookForSearch.author = $scope.selectedAuthor.title;
+    }
 
 
         apiService.AdvancedBookSearch(vm.bookForSearch)
@@ -89,9 +98,112 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
             });
         vm.showResults=true;
 
-
-
     };
+//get user
+
+
+
+    vm.showOrderBook = function(ev,books) {
+
+        vm.bookForOrder={};
+        vm.choosedBook=books;
+        vm.bookForOrder.bookTitle=books.title;
+
+        vm.bookForOrder.userID=globalService.GetUserDetails().id;
+        vm.bookForOrder.book_ID=books._id;
+        vm.bookForOrder.user_ID=globalService.GetUserDetails()._id;
+        vm.bookForOrder.issueDate=today;
+        vm.bookForOrder.status="Pending";
+
+            console.log(vm.bookForOrder);
+
+            apiService.createNewBookOrdering(vm.bookForOrder)
+                .then(function (data) {
+                 /*   vm.Refresh();*/
+                    console.log("Order Success");
+                    vm.choosedBook.bookStatus="Not Available";
+                    apiService.EditBook(vm.choosedBook) .then(function (data) {
+
+                    }, function (err) {
+                        /* vm.Refresh();*/
+                    });
+
+
+
+                }, function (err) {
+                   /* vm.Refresh();*/
+                });
+
+
+
+    }
+
+
+
+  /*  vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    vm.showOrderBook = function(ev,books) {
+
+        vm.choosedBook=books;
+
+        $scope.OrderBook();
+
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog2.tmp1.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     console.log("coming to Contact controller");
 
 }]);

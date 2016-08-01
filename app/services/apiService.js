@@ -24,7 +24,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'person/search',personForSearch, { headers: { 'Content-Type': 'application/json' }}).success(function (response) {
+        $http.post(apiBase + 'person/search',personForSearch, { headers: { 'Content-Type': 'application/json'}}).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data);
@@ -97,8 +97,9 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //===========================Edit People======== Kholod======================
     var EditPerson = function (person) {
+        debugger
         var deferred = $q.defer();
-
+        debugger
         $http.post(apiBase + 'person',
             person
             , {
@@ -141,6 +142,122 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
         });
         return deferred.promise;
     };
+
+
+
+
+
+
+
+    //====================================== Books Ordering
+
+    var GetBooksOrderingForUser = function (personForSearch) {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'bookOrdering/search', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token,"userID": personForSearch} }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+
+
+
+
+/*
+
+        $http.get(apiBase + 'bookOrdering/search', { headers: { 'Content-Type': 'application/json'}}).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data);
+        });
+
+*/
+
+
+
+       /*
+        $http.post(apiBase + 'bookOrdering/search',personForSearch, { headers: {'userID': personForSearch,"token": globalService.GetUserDetails().token}}).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data);
+        });
+*/
+       /* return deferred.promise;*/
+
+    };
+
+    //===========================Get All BooksOrdering RESOURCE==============================
+    var getAllBooksOrdering = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'bookOrdering', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+    //===========================Edit BooksOrdering======== Kholod======================
+    var EditBookOrdering = function (bookOrdering) {
+        var deferred = $q.defer();
+debugger
+        $http.post(apiBase + 'bookOrdering',
+            bookOrdering
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //===========================Delete BooksOrdering======== Kholod======================
+    var DeleteBookOrdering = function (bookOrdering) {
+        var deferred = $q.defer();
+debugger
+        $http.delete(apiBase + 'bookOrdering?bookOrdering_id='+bookOrdering._id, { headers: { 'bookOrdering_id': bookOrdering._id  , "token": globalService.GetUserDetails().token} }).success(function (response) {
+            debugger
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) {
+            // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+        return deferred.promise;
+    };
+
+
+    //===========================Create BooksOrdering RESOURCE======== Kholod======================
+    var createNewBookOrdering = function (bookOrdering) {
+        var deferred = $q.defer();
+debugger
+        $http.post(apiBase + 'bookOrdering',
+            bookOrdering
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
+
+    //====================================== books ordering
+
+
+
     //===========================Get All Rooms RESOURCE==============================
     var getAllRooms = function () {
         var deferred = $q.defer();
@@ -193,6 +310,26 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
         $http.post(apiBase + 'room',
             room
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //=================================save room order
+
+    var SaveOrderRoom = function (roomOrder) {
+        var deferred = $q.defer();
+        debugger
+        $http.post(apiBase + 'room/save',
+            roomOrder
             , {
                 headers: {
                     "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
@@ -747,6 +884,18 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
 
 
+
+    //---------------------Books Ordering
+    apiService.GetBooksOrderingForUser=GetBooksOrderingForUser;
+    apiService.getAllBooksOrdering=getAllBooksOrdering;
+    apiService.createNewBookOrdering=createNewBookOrdering;
+    apiService.EditBookOrdering=EditBookOrdering;
+    apiService.DeleteBookOrdering=DeleteBookOrdering;
+
+    //--------------------end ofBooks Ordering
+
+
+
     //---------------------Rooms
     apiService.getAllRooms=getAllRooms;
     apiService.createNewRoom=createNewRoom;
@@ -764,6 +913,8 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 apiService.GetPerson=GetPerson;
 apiService.getAllYears=getAllYears;
     apiService.AdvancedBookSearch=AdvancedBookSearch;
+
+    apiService.SaveOrderRoom=SaveOrderRoom;
     return apiService;
 
 }]);

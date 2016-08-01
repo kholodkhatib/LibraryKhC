@@ -16,6 +16,21 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
         vm.setUser = {};
         vm.signIn = true;
 
+
+    vm.message = {};
+    vm.myDate = new Date();
+    vm.minDate = new Date(
+        vm.myDate.getFullYear(),
+        vm.myDate.getMonth() - 2,
+        vm.myDate.getDate());
+    vm.maxDate = new Date(
+        vm.myDate.getFullYear(),
+        vm.myDate.getMonth() + 2,
+        vm.myDate.getDate());
+
+
+
+
         //access login
         vm.login = function (data) {
 
@@ -32,7 +47,7 @@ vm.userFound;
 
 
                 });
-            debugger
+
 
 /*            if (data.Username == vm.userFound.id) {
                 debugger
@@ -49,17 +64,26 @@ vm.userFound;
 
         //get registration details
         vm.register = function () {
-            if (vm.setUser.confirmPassword == vm.setUser.Password){
-                loginService.registerUser(vm.setUser).then(function (response) {
-                    if (response.message == 'success')
-                console.log('after post>>',response);
-                //if (response.length > 0)
-                //    $state.go('app');
-                //else
-                //    Flash.create('danger', 'Invalid Credentials', 'large-text');
-            });
+            if (vm.setUser.confirmPassword == vm.setUser.password){
+
+                vm.setUser.birthday= vm.myDate;
+                vm.setUser.isAdmin=false;
+
+                apiService.createNewPeople(vm.setUser).then(function () {
+
+                    globalService.SetUserDetails(vm.setUser);
+                    $state.go('app.simpleSearch');
+
+                }, function (err) {
+                    Flash.create('danger', ''+err.data, 'large-text');
+
+
+                });
             }
         };
+
+
+
 
     }]);
 

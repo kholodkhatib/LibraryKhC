@@ -71,6 +71,17 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
 
 
 
+    // books Ordering handling page state
+    $stateProvider.state('app.booksOrderingHandling', {
+        url: '/booksOrderingHandling',
+        templateUrl: 'app/modules/dashboard/views/booksOrderingHandling.html',
+        controller: 'BooksOrderingHandlingController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'booksOrderingHandling'
+        }
+    });
+
 
     // authors handling page state
     $stateProvider.state('app.authorsHandling', {
@@ -205,16 +216,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
-  /*  //Recent Projects page state
-    $stateProvider.state('app.recent', {
-        url: '/events',
-        templateUrl: 'app/modules/dashboard/views/recent.html',
-        controller: 'RecentController',
-        controllerAs: 'vm',
-        data: {
-            pageTitle: 'Recent Projects'
-        }
-    });*/
+
 
     // Events  page state
     $stateProvider.state('app.events', {

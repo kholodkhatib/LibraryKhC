@@ -8,12 +8,25 @@
 
  ===========================================================*/
 
-dashboard.controller("OrdersController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("OrdersController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','apiService','globalService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiService,globalService) {
     var vm = this;
 
+    vm.userID=globalService.GetUserDetails().id;
 
-    vm.ordersArray=[
+    vm.Refresh= function () {
+
+        apiService.GetBooksOrderingForUser(vm.userID)
+            .then(function (booksOrdering) {
+                vm.booksOrderingArray = booksOrdering;
+            }, function (err) {
+            });
+    };
+
+
+
+
+/*    vm.ordersArray=[
         { orderId:"123",
             bookTitle:"book1",
             issueDate:"1/2/2016",
@@ -25,7 +38,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         { orderId:"123", bookTitle:"book1", issueDate:"1/2/2016",dueDate:"5/2/2016",status:"finished",},
         { orderId:"123", bookTitle:"book1", issueDate:"1/2/2016",dueDate:"5/2/2016",status:"unfinished",}
 
-    ];
+    ];*/
  /*   vm.meMarks = false;
     vm.mscMarks = false;
     vm.hscMarks = false;
@@ -235,5 +248,6 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             var sslcChart = new Chart(sslc).Doughnut(vm.sslcData, vm.pieChartOptions);
         };*/
 
+    vm.Refresh();
 }]);
 

@@ -118,6 +118,14 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "authorsHandling",
             isToShow:vm.userlocal.isAdmin
         },
+
+        {
+            title: "Books Ordering Handling",
+            icon: "dashboard",
+            state: "booksOrderingHandling",
+            isToShow:vm.userlocal.isAdmin
+        },
+
         {
             title: "Categories Handling",
             icon: "dashboard",
@@ -132,12 +140,12 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             isToShow:vm.userlocal.isAdmin
         },
 
-        {
+      /*  {
             title: "Orders Handling",
             icon: "dashboard",
             state: "ordersHandling",
             isToShow:vm.userlocal.isAdmin
-        },
+        },*/
         {
             title: "Books Handling",
             icon: "dashboard",
@@ -279,7 +287,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
 
     //navigate to search page
     vm.search = function () {
-        $state.go('app.search');
+        $state.go('app.simpleSearch');
     };
 
     console.log('getting in to the app controller');

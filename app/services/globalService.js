@@ -33,9 +33,40 @@ app.service('globalService', ['$http', '$q', 'appSettings', function ($http, $q,
     };
 
 
+    var GetTodayDate= function(){
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd
+        }
+
+        if(mm<10) {
+            mm='0'+mm
+        }
+
+        today = mm+'/'+dd+'/'+yyyy;
+        return today;
+    };
+
+
+
+    var IsFemale=function(gender)
+    {
+        if(gender=="Female"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
     globalService.GetUserDetails=GetUserDetails;
     globalService.SetUserDetails=SetUserDetails;
-
+    globalService.GetTodayDate=GetTodayDate;
+    globalService.IsFemale=IsFemale;
     return globalService;
 
 }]);

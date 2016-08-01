@@ -53,23 +53,23 @@
                     <li class="dropdown user user-menu">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <img src="images/ranjith.png" class="user-image" alt="User Image" />
-                            <span class="hidden-xs">{{vm.userlocal.id}}</span>
+                            <span class="hidden-xs">{{vm.userlocal.firstName}} &nbsp; {{vm.userlocal.lastName}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="images/ranjith.png" class="img-circle" alt="User Image">
                                 
-                                    <h3>{{vm.userlocal.id}}</h3>
+                                    <h3>  {{vm.userlocal.firstName}} &nbsp; {{vm.userlocal.lastName}}  </h3>
                                 <p class="text-center">
-                                    Customer
-                                 </p>
+                                    {{vm.userlocal.id}}
+                                </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
 
                                 <div class="pull-right">
-                                    <a ui-sref="app.about" class="btn btn-success btn-flat">About Me</a>
+                                    <a ui-sref="app.setting" class="btn btn-success btn-flat">About Me</a>
                                     <a ui-sref="login" class="btn btn-facebook btn-flat">Messages</a>
                                     <a ui-sref="login" class="btn btn-danger btn-flat">Log Out</a>
                                 </div>
@@ -85,13 +85,16 @@
         <!-- sidebar -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
+            <div class="user-panel" >
+                <div style="min-height: 40px">
+
+                </div>
                 <div class="pull-left image">
                     <img src="images/ranjith.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Profile </p>
-                    <span class="text-aqua text-sm">Software Engineer</span>
+                    <span class="text-aqua text-sm"> {{vm.userlocal.firstName}} &nbsp; {{vm.userlocal.lastName}}</span>
                 </div>
             </div>
             <!-- search form -->
@@ -99,7 +102,7 @@
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
-                        <button type="button" name="search" id="search-btn" class="btn btn-flat" data-ng-click="vm.search();"><i class=" fa fa-search"></i></button>
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat" data-ng-click="vm.search();"><i class=" fa fa-search"></i></button> <!--Going to Search page-->
                     </span>
                 </div>
             </form>

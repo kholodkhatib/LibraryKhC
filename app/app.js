@@ -1,11 +1,10 @@
 /*==========================================================
-    Author      : Ranjithprabhu K
-    Date Created: 24 Dec 2015
-    Description : main application base
-    
-    Change Log
-    s.no      date    author     description     
-    
+ Author      : Ranjithprabhu K
+ Date Created: 24 Dec 2015
+ Description : main application base
+
+ Change Log
+ s.no      date    author     description
 
  ===========================================================*/
 
@@ -18,15 +17,15 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', functio
 
     //IdleScreenList
     $stateProvider
-       .state('app', {
-           url: '/app',
-           templateUrl: 'app/common/app.html',
-           controller: 'appCtrl',
-           controllerAs: 'vm',
-           data: {
-               pageTitle: 'Login'
-           }
-       });
+        .state('app', {
+            url: '/app',
+            templateUrl: 'app/common/app.html',
+            controller: 'appCtrl',
+            controllerAs: 'vm',
+            data: {
+                pageTitle: 'Login'
+            }
+        });
 
     $urlRouterProvider.otherwise('app/simpleSearch');
 

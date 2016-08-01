@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
-    function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
+dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','globalService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,globalService) {
     var vm = this;
 
 
@@ -26,7 +26,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
                 });
         };
         vm.newperson={};
-
+     /*   vm.userlocal=globalService.GetUserDetails();*/
 
 
         function DialogController($scope, $mdDialog,apiService) {
@@ -35,6 +35,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             $scope.person= {};
           //  $scope.personForEdit=vm.personForEdit;
             $scope.personForEdit=vm.example;
+
             $scope.personForDelete=vm.personForDelete;
 
 
@@ -68,7 +69,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             }
             $scope.CreateNewPeople= function(){
 
-
+debugger
                 console.log($scope.person);
 
                 apiService.createNewPeople($scope.person)
@@ -126,8 +127,12 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
 
         vm.showEditDialog = function(ev,personForEdit) {
             vm.personForEdit=personForEdit;
-
+vm.IsAdmin= personForEdit.isAdmin;
             vm.example = angular.copy(vm.personForEdit);
+            debugger
+            vm.IsChecked=globalService.IsFemale(vm.personForEdit.gender);
+           // vm.IsCheckedFemale=!vm.IsChecked;
+            debugger
 
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 

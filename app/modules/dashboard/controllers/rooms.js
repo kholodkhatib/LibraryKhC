@@ -8,11 +8,13 @@
 
  ===========================================================*/
 
-dashboard.controller("RoomsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
+dashboard.controller("RoomsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','globalService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,globalService) {
     var vm = this;
 
-
+    vm.userID=globalService.GetUserDetails().id;
+vm.roomOrder={};
+    vm.roomOrder.userID=vm.userID;
     vm.Refresh= function () {
 
         apiService.getAllRooms()
@@ -28,28 +30,28 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 vm.choosenRoom={};
     vm.hours = [
         {
-            hour: "08:00",
+            hour: 8,
         },
         {
-            hour: "09:00",
+            hour: 9,
         },
         {
-            hour: "10:00",
+            hour: 10,
         },  {
-            hour: "11:00",
+            hour: 11 ,
         },  {
-            hour: "12:00",
+            hour: 12 ,
         },  {
-            hour: "13:00",
+            hour: 13 ,
         },  {
-            hour: "14:00",
+            hour: 14 ,
         },
         {
-            hour: "15:00",
+            hour: 15 ,
         },  {
-            hour: "16:00",
+            hour: 16 ,
         },  {
-            hour: "17:00",
+            hour: 17 ,
         }
 
 
@@ -129,12 +131,20 @@ vm.choosenRoom={};
 $scope.choosenDate=vm.myDate;
 
         $scope.ChooseHour=function(x) {
-
-            $scope.choosenHour= x;
+            $scope.choosenHour=x;
 
 
         }
-        $scope.SaveHour=function() {
+        $scope.SaveRoomOrder=function() {
+            vm.roomOrder.hour=$scope.choosenHour.hour;
+            vm.roomOrder.date=$scope.choosenDate.getDate();
+            vm.roomOrder.room=$scope.choosenRoom.name;
+debugger
+            apiService.SaveOrderRoom(vm.roomOrder)
+                .then(function () {
+                    console.log("Order Saved")
+                }, function (err) {
+                });
 
 /*
             $scope.choosenHour; TODO

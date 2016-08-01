@@ -47,21 +47,58 @@ Date: 24 Dec 2015
             <div class="panel-body">
                 <form name="vm.registrationForm" data-ng-submit="vm.register();">
                     <div class="form-group">
-                        <label for="email" class="col-md-12 control-label">Email</label>
+                        <label for="id" class="col-md-12 control-label margin-top-10">ID</label>
                         <div class="col-md-12">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address" required data-ng-model="vm.setUser.Email">
+                            <input type="text" class="form-control" name="id" placeholder="ID" required data-ng-model="vm.setUser.id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname" class="col-md-12 control-label margin-top-10">User Name</label>
+                        <label for="firstName" class="col-md-12 control-label margin-top-10">First Name</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="lastname" placeholder="Last Name" required data-ng-model="vm.setUser.Username">
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required data-ng-model="vm.setUser.firstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-md-12 control-label margin-top-10">Last Name</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="lastname" placeholder="Last Name" required data-ng-model="vm.setUser.lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Gender" class="col-md-12 control-label margin-top-10">Gender</label>
+                        <div class="col-md-12">
+                            <!--<input type="text" class="form-control" name="lastname" placeholder="Last Name" required data-ng-model="vm.setUser.lastName">-->
+                            <INPUT TYPE="radio" Name="Browser" ng-model="vm.setUser.gender" ng-checked="true" Value ="Male" >Male
+                            <INPUT TYPE="radio" Name= "Browser"  ng-model="vm.setUser.gender" Value ="Female" checked>Female
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-md-12 control-label">Email</label>
+                        <div class="col-md-12">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address" required data-ng-model="vm.setUser.email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="col-md-12 control-label">Address</label>
+                        <div class="col-md-12">
+                            <input type="address" class="form-control" name="address" placeholder="Address" required data-ng-model="vm.setUser.address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday" class="col-md-12 control-label margin-top-10">Birthday</label>
+                        <div class="col-lg-6">
+                            <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>
+                        </div>
+                        <div class="col-md-12">
+                            <!--<input type="text" class="form-control" name="lastname" placeholder="Last Name" required data-ng-model="vm.setUser.Username">-->
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-12 control-label margin-top-10">Password</label>
                         <div class="col-md-12">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required data-ng-model="vm.setUser.Password">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required data-ng-model="vm.setUser.password">
                         </div>
                     </div>
 

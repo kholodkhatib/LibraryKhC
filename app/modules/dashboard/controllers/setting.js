@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("SettingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http) {
+dashboard.controller("SettingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','globalService','apiService',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,globalService,apiService) {
     var vm = this;
 
     vm.message = {};
@@ -28,6 +28,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http)
         var day = date.getDay();
         return day === 0 || day === 6;
     }
+
 
 
     vm.submitForm = function () {
@@ -52,6 +53,38 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http)
         });
     };
     console.log("coming to Contact controller");
+
+    vm.userlocal=globalService.GetUserDetails();
+
+    vm.IsChecked=globalService.IsFemale(vm.userlocal.gender);
+    vm.userlocalToEdit=vm.userlocal;
+    vm.userlocalToEdit.confirmPassword=vm.userlocalToEdit.password;
+debugger;
+    vm.cancel=function(){
+        $state.go('app.simpleSearch');
+    };
+
+
+    vm.saveChanges = function () {
+
+        if (vm.userlocalToEdit.confirmPassword == vm.userlocalToEdit.password) {
+            debugger
+            vm.userlocalToEdit.birthday = vm.myDate;
+
+            debugger
+            apiService.EditPerson(vm.userlocalToEdit)
+                .then(function (data) {
+                    debugger
+                    globalService.SetUserDetails(vm.userlocalToEdit);
+                    $state.go('app.simpleSearch');
+
+                    /*  vm.booksOrderingArray = booksOrdering;*/
+                }, function (err) {
+                });
+
+        }
+        ;
+    }
 
 }]);
 
