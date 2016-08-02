@@ -97,9 +97,9 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //===========================Edit People======== Kholod======================
     var EditPerson = function (person) {
-        debugger
+
         var deferred = $q.defer();
-        debugger
+
         $http.post(apiBase + 'person',
             person
             , {
@@ -189,11 +189,15 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //===========================Get All BooksOrdering RESOURCE==============================
     var getAllBooksOrdering = function () {
+
         var deferred = $q.defer();
         $http.get(apiBase + 'bookOrdering', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
+
         }).catch(function (data, status, headers, config) { // <--- catch instead error
+
             deferred.reject(data.statusText);
+
         });
 
         return deferred.promise;
@@ -202,7 +206,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
     //===========================Edit BooksOrdering======== Kholod======================
     var EditBookOrdering = function (bookOrdering) {
         var deferred = $q.defer();
-debugger
+
         $http.post(apiBase + 'bookOrdering',
             bookOrdering
             , {
@@ -221,9 +225,9 @@ debugger
     //===========================Delete BooksOrdering======== Kholod======================
     var DeleteBookOrdering = function (bookOrdering) {
         var deferred = $q.defer();
-debugger
+
         $http.delete(apiBase + 'bookOrdering?bookOrdering_id='+bookOrdering._id, { headers: { 'bookOrdering_id': bookOrdering._id  , "token": globalService.GetUserDetails().token} }).success(function (response) {
-            debugger
+
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) {
             // <--- catch instead error
@@ -233,10 +237,31 @@ debugger
     };
 
 
+
+    //===========================OrderBookIsFinished======= Kholod======================
+    var OrderBookIsFinished = function (bookID) {
+
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'book/finish',
+            bookID
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
     //===========================Create BooksOrdering RESOURCE======== Kholod======================
     var createNewBookOrdering = function (bookOrdering) {
         var deferred = $q.defer();
-debugger
+
         $http.post(apiBase + 'bookOrdering',
             bookOrdering
             , {
@@ -327,7 +352,7 @@ debugger
 
     var SaveOrderRoom = function (roomOrder) {
         var deferred = $q.defer();
-        debugger
+
         $http.post(apiBase + 'room/save',
             roomOrder
             , {
@@ -891,6 +916,7 @@ debugger
     apiService.createNewBookOrdering=createNewBookOrdering;
     apiService.EditBookOrdering=EditBookOrdering;
     apiService.DeleteBookOrdering=DeleteBookOrdering;
+    apiService.OrderBookIsFinished=OrderBookIsFinished;
 
     //--------------------end ofBooks Ordering
 

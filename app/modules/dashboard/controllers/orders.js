@@ -11,9 +11,13 @@
 dashboard.controller("OrdersController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','apiService','globalService',
 function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiService,globalService) {
     var vm = this;
-
+    vm.searchStatus={};
     vm.userID=globalService.GetUserDetails().id;
 
+    vm.getStatusFilter=function(status)
+    {
+        vm.searchStatus.status=status;
+    };
     vm.Refresh= function () {
 
         apiService.GetBooksOrderingForUser(vm.userID)

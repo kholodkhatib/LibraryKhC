@@ -30,7 +30,58 @@ Date: 15 Jan 2016
     }
 </style>
 
+<style>
 
+    .box{
+        width: 300px;
+        height: 30px;
+    }
+
+    .container-1{
+        width: 300px;
+        vertical-align: middle;
+        white-space: nowrap;
+        position: relative;
+    }
+    .container-1 input#search{
+        width: 300px;
+        height: 50px;
+        background: #2b303b;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        color: #63717f;
+        padding-left: 45px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    .container-1 input#search::-webkit-input-placeholder {
+        color: #65737e;
+    }
+
+    .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+        color: #65737e;
+    }
+
+    .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+        color: #65737e;
+    }
+
+    .container-1 input#search:-ms-input-placeholder {
+        color: #65737e;
+    }
+
+
+    .container-1 .icon{
+        position: absolute;
+        top: 50%;
+        margin-left: 17px;
+        margin-top: 17px;
+        z-index: 1;
+        color: #4f5b66;
+    }
+</style>
 
 <style>
 
@@ -56,23 +107,33 @@ Date: 15 Jan 2016
 
 
 
-
+<div class="box">
+    <div class="container-1">
+        <span class="icon"><i class="fa fa-search"></i></span>
+        <input ng-model="vm.searchFilter" type="search" id="search" placeholder="Search..." />
+    </div>
+</div>
+<br>
 <table class="table table-hover table-bordered" st-table>
 <thead>
 <tr>
+<!--
     <th ng-click="predicate='FirstName'; reverse=!reverse">Code</th>
+-->
     <th ng-click="predicate='FirstName'; reverse=!reverse">Name</th>
 
     <th>Actions</th>
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="category in vm.categoriesArray ">
+<tr ng-repeat="category in vm.categoriesArray | filter: vm.searchFilter ">
 
 
 
 
+<!--
     <td>  {{category.code}} </td>
+-->
     <td> {{category.name }}</td>
 
     <td class="action-column">
@@ -112,14 +173,14 @@ Date: 15 Jan 2016
 
 
                     <tr>
-                        <td>
+                       <!-- <td>
                 <div class="row">
                     <label class="col-lg-4 control-label">Code:</label>
                     <div class="col-lg-8">
                         <input class="form-control" ng-model="category.code" type="text">
                     </div>
                 </div>
-                        </td>
+                        </td>-->
 
                         <td>
                 <div class="row">
@@ -190,14 +251,14 @@ Date: 15 Jan 2016
 
 
                     <tr>
-                        <td>
+                      <!--  <td>
                             <div class="row">
                                 <label class="col-lg-4 control-label">Code:</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" ng-model="categoryForEdit.code" type="text">
                                 </div>
                             </div>
-                        </td>
+                        </td>-->
 
                         <td>
                             <div class="row">

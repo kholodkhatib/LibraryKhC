@@ -42,7 +42,30 @@ Date: 15 Jan 2016
 
 
 
-
+<table>
+    <tr>
+        <td>
+            <button class="btn btn-default"  ng-click="vm.getStatusFilter('')">
+                All</button>
+        </td>
+        <td>
+            <button class="btn btn-primary"  ng-click="vm.getStatusFilter('Pending')">
+                Pending</button>
+        </td> <td>
+        <button class="btn btn-success"  ng-click="vm.getStatusFilter('InProgress')">
+            InProgress</button>
+    </td> <td>
+        <button class="btn btn-info" ng-click="vm.getStatusFilter('OnGoing')">
+            OnGoing</button>
+    </td> <td>
+        <button  class="btn btn-warning" ng-click="vm.getStatusFilter('Finished')">
+            Finished</button>
+    </td> <td>
+        <button class="btn btn-danger"  ng-click="vm.getStatusFilter('Cancelled')">
+            Cancelled</button>
+    </td>
+    </tr>
+</table>
 <table class="table table-hover table-bordered" st-table>
     <thead>
     <tr>
@@ -60,7 +83,7 @@ Date: 15 Jan 2016
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: searchStatus">
+    <tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: vm.searchStatus">
 
 
 

@@ -64,16 +64,45 @@ vm.newBookOrdering={};
 
 
                 console.log($scope.bookOrderingForEdit);
+                if($scope.bookOrderingForEdit.status=="Finished"){
+                    debugger
+                    apiService.OrderBookIsFinished($scope.bookOrderingForEdit.book_ID)
+                        .then(function (data) {
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            vm.Refresh();
+                        });
+                }
 
-                apiService.EditBookOrdering($scope.bookOrderingForEdit)
+                /*apiService.EditBookOrdering($scope.bookOrderingForEdit)
                     .then(function (data) {
+                        debugger
+                       /!* if($scope.bookOrderingForEdit.status=="Finished"){
+                            debugger
+                            apiService.OrderBookIsFinished($scope.bookOrderingForEdit.book_ID)
+                                .then(function (data) {
+                                    vm.Refresh();
+                                    $mdDialog.cancel();
+                                }, function (err) {
+                                    vm.Refresh();
+                                });
+                        }
+                        else{
+                            $mdDialog.cancel();
+                        }*!/
                         vm.Refresh();
-                        $mdDialog.cancel();
+                      /!*  $mdDialog.cancel();*!/
                     }, function (err) {
                         vm.Refresh();
-                    });
+                    });*/
+
+
 
             }
+
+
+
 
             $scope.CreateNewBookOrdering= function(){
 
