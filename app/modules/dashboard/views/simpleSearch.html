@@ -29,14 +29,14 @@ Date: 05 Jan 2016
                     Search For a Book
                 </div>
                 <div class="panel-body" style="height: auto;">
-                    <form data-ng-submit="vm.submitForm();" name="vm.contactForm">
+                    <form data-ng-submit="vm.submitFormSimpleSearch();" name="vm.contactForm">
                         <md-content class="autoScroll">
 
                             <md-input-container class="md-icon-float md-block">
                                 <label>Search...</label>
                                 <md-icon class="fa fa-clipboard"></md-icon>
 
-                                <input type="text" required name="Search" ng-model="SearchText">
+                                <input type="text" required name="Search" ng-model="vm.bookForSimpleSearch.title">
                             </md-input-container>
                             <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(true) ">
                                 Advanced Search</a></h6>
@@ -142,6 +142,7 @@ Date: 05 Jan 2016
 
                             </md-input-container>
 
+<!--
 
                             <md-input-container class="md-icon-float md-block">
                                 <md-icon class="fa fa-sort-numeric-asc"></md-icon>
@@ -160,7 +161,7 @@ Date: 05 Jan 2016
                                               minlength="1"
                                               inputclass="form-control form-control-small"/>
 
-                            <!--    <input type="text" ng-model="vm.bookForSearch.fromYear">-->
+                            &lt;!&ndash;    <input type="text" ng-model="vm.bookForSearch.fromYear">&ndash;&gt;
 
 
                             </md-input-container>
@@ -180,10 +181,11 @@ Date: 05 Jan 2016
                                               titlefield="name"
                                               minlength="1"
                                               inputclass="form-control form-control-small"/>
-                               <!-- <input type="text" ng-model="vm.bookForSearch.toYear">-->
+                               &lt;!&ndash; <input type="text" ng-model="vm.bookForSearch.toYear">&ndash;&gt;
 
 
                             </md-input-container>
+-->
 
 
 
@@ -247,9 +249,12 @@ Date: 05 Jan 2016
         <div class="col-md-12">
             <!-- The time line -->
             <ul class="timeline">
+
+
+
                 <li class="time-label">
                     <span class="bg-red-gradient">
-                        Results Of Search:
+                       {{ vm.resultLength}} &nbsp; Results Of Search:
                     </span>
                 </li>
                 <li ng-repeat="books in vm.booksArray | filter: (!disableFilter || '') && filterExpression">

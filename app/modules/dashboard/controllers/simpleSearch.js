@@ -24,6 +24,9 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
     vm.message = {};
     vm.showResults=false;
     vm.choosedBook={};
+    vm.resultLength=0;
+
+    vm.bookForSimpleSearch={};
 
 
     //==============date============================
@@ -82,18 +85,41 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
         vm.bookForSearch.author=$scope.selectedAuthor.title;
     });*/
 
-    /***********************************************************/
+
+
+
+    /******************Simple**************************/
+
+    vm.submitFormSimpleSearch = function () {
+
+        apiService.AdvancedBookSearch(vm.bookForSimpleSearch)
+            .then(function (data) {
+
+                vm.booksArray=data;
+                vm.resultLength= vm.booksArray.length;
+            }, function (err) {
+            });
+        vm.showResults=true;
+
+    };
+
+
+    /************************Advanced***********************************/
     vm.submitFormAdvancedSearch = function () {
         if ($scope.selectedAuthor) {
+        vm.bookForSearch.author = $scope.selectedAuthor.title;}
+        if ($scope.selectedCategory) {
+            vm.bookForSearch.category = $scope.selectedCategory.title;}
+        if ($scope.selectedLanguage) {
+            vm.bookForSearch.language = $scope.selectedLanguage.title;}
 
-        vm.bookForSearch.author = $scope.selectedAuthor.title;
-    }
-
-
+        debugger
         apiService.AdvancedBookSearch(vm.bookForSearch)
             .then(function (data) {
 
                 vm.booksArray=data;
+                vm.resultLength= vm.booksArray.length;
+                debugger
             }, function (err) {
             });
         vm.showResults=true;
