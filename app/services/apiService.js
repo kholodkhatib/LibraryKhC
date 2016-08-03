@@ -239,11 +239,11 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
 
     //===========================OrderBookIsFinished======= Kholod======================
-    var OrderBookIsFinished = function (bookID) {
+  /*  var OrderBookIsFinished = function (bookID) {
 
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'book/finish',
+        $http.post(apiBase + 'bookOrdering/finish',
             bookID
             , {
                 headers: {
@@ -256,7 +256,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
                 //   $log.error(msg, code);
             });
         return deferred.promise;
-    };
+    };*/
 
     //===========================Create BooksOrdering RESOURCE======== Kholod======================
     var createNewBookOrdering = function (bookOrdering) {
@@ -916,7 +916,9 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
     apiService.createNewBookOrdering=createNewBookOrdering;
     apiService.EditBookOrdering=EditBookOrdering;
     apiService.DeleteBookOrdering=DeleteBookOrdering;
+/*
     apiService.OrderBookIsFinished=OrderBookIsFinished;
+*/
 
     //--------------------end ofBooks Ordering
 
