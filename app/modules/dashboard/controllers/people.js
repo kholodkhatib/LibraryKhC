@@ -77,6 +77,8 @@ debugger
                         vm.Refresh();
                         $mdDialog.cancel();
                     }, function (err) {
+                        Flash.create('danger', ''+err.data, 'large-text');
+                        $mdDialog.cancel();
                     });
             };
 

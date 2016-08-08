@@ -23,7 +23,7 @@ Date: 24 Jan 2016
         <div class="col-md-12" data-ng-repeat="event in vm.eventsArray">
             <div class="box box-warning box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{event.date}}</h3>
+                    <h3 class="box-title">{{event.date| date:'MM/dd/yyyy'}}</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-toggle="collapse" data-target="#content{{event._id}}"><span class="fa fa-caret-down"></span></button>
                     </div><!-- /.box-tools -->
@@ -41,7 +41,7 @@ Date: 24 Jan 2016
                             <p class="text-muted">{{event.description}}</p>
                             <hr>
                             <strong><i class="glyphicon glyphicon-info-sign margin-r-5"></i> Time</strong>
-                            <p class="text-muted">{{event.time}}</p>
+                            <p class="text-muted">{{event.time | date:'h:mma'}}</p>
                             <hr>
                         </div>
                     </div><!-- /.box -->

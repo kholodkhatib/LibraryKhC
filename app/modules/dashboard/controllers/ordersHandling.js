@@ -8,10 +8,211 @@
 
  ===========================================================*/
 
-dashboard.controller("ORdersHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
+dashboard.controller("OrdersHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','apiService','globalService','$mdDialog', '$mdMedia',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiService,globalService,$mdDialog, $mdMedia) {
     var vm = this;
+    vm.userID=globalService.GetUserDetails().id;
+    vm.userName=globalService.GetUserDetails().firstName;
+    vm.isAdmin=globalService.GetUserDetails().isAdmin;
+    vm.text={};
+    vm.searchFilterInbox={};
+    vm.searchFilterInbox.receiverUser= vm.userID;
+    vm.searchFilterMSG={};
+    vm.searchFilterMSG.senderUser= vm.userID;
+    vm.ShowInboxRow=true;
+vm.msgtoEdit={};
 
+
+    vm.Refresh= function () {
+
+        apiService.GetMessagesForThisUser(vm.userID)
+            .then(function (array) {
+                vm.messagesArray = array;
+            }, function (err) {
+            });
+
+    };
+
+
+
+
+
+    vm.ShowInbox=function(){
+debugger
+          vm.ShowInboxRow=true;
+
+    };
+    vm.HideInbox=function(){
+        debugger
+        vm.ShowInboxRow=false;
+
+    };
+
+
+    vm.changeStatus=function(msg,status){
+        vm.msgtoEdit=msg;
+        if(status=='unread'){
+            vm.msgtoEdit.isRead=true;
+        }else
+        {
+            vm.msgtoEdit.isRead=false;
+        }
+      /*  if(msg.isRead){
+            vm.msgtoEdit.isRead=false;
+        }
+        else{
+            vm.msgtoEdit.isRead=true;
+
+
+        }*/
+     /*  vm.msgtoEdit.isRead=!msg.isRead;*/
+        //api Edit status
+        debugger
+        apiService.EditAuthor(  vm.msgtoEdit)
+            .then(function (data) {
+                vm.Refresh();
+                $mdDialog.cancel();
+            }, function (err) {
+                vm.Refresh();
+            });
+
+    }
+
+
+
+
+
+
+
+
+    function DialogController($scope, $mdDialog,apiService) {
+        $scope.selectedPerson={};
+
+        apiService.getAllPeople()
+            .then(function (people) {
+                $scope.peopleArray = people;
+            }, function (err) {
+            });
+
+        $scope.message= {};
+        $scope.message.senderUser= vm.userID;
+        $scope.message.senderName=vm.userName;
+console.log($scope.selectedPerson.title);
+        debugger
+        $scope.CreateNewMSG= function(){
+            $scope.message.receiverUser=$scope.selectedPerson.originalObject.id;
+            $scope.message.receiverName=$scope.selectedPerson.originalObject.firstName;
+
+            console.log($scope.message);
+          /*  console.log($scope.selectedPerson.title);
+            console.log($scope.selectedPerson.originalObject.id);*/
+            apiService.createNewMessage($scope.message)
+                .then(function (data) {
+                    vm.Refresh();
+                    $mdDialog.cancel();
+                }, function (err) {
+                });
+        };
+
+        $scope.CreateNewToAdminMSG= function(){
+            $scope.message.receiverUser="123456";
+            $scope.message.receiverName="Admin"
+
+            console.log($scope.message);
+            /*  console.log($scope.selectedPerson.title);
+             console.log($scope.selectedPerson.originalObject.id);*/
+            apiService.createNewMessage($scope.message)
+                .then(function (data) {
+                    vm.Refresh();
+                    $mdDialog.cancel();
+                }, function (err) {
+                });
+        };
+
+
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    vm.showAdvanced = function(ev) {
+
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
+
+
+    vm.showSendToAdmin = function(ev) {
+
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog2.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: useFullScreen
+        })
+            .then(function(answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
+    };
+
+
+
+
+
+     vm.Refresh();
+
+
+
+
+
+
+/*
 
 
     vm.add== function() {
@@ -66,7 +267,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             vm.peopleArray.splice(index, 1);
         }
     }
- /*   vm.meMarks = false;
+ /!*   vm.meMarks = false;
     vm.mscMarks = false;
     vm.hscMarks = false;
     vm.sslcMarks = false;
@@ -220,9 +421,9 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     ];
 
 
-*/
+*!/
 
-      /*  var meChart = new Chart(me).Line(vm.meData, vm.lineChartOptions);
+      /!*  var meChart = new Chart(me).Line(vm.meData, vm.lineChartOptions);
         var mscChart = new Chart(msc).Bar(vm.mscData, vm.barChartOptions);
         var hscChart = new Chart(hsc).Radar(vm.hscData, vm.radarChartOptions);
         var sslcChart = new Chart(sslc).PolarArea(vm.sslcData, vm.polarChartOptions);
@@ -273,7 +474,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
 
         vm.sslcPolarChart = function () {
             var sslcChart = new Chart(sslc).Doughnut(vm.sslcData, vm.pieChartOptions);
-        };*/
+        };*!/*/
 
 }]);
 

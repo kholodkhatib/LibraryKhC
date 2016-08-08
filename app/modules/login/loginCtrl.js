@@ -70,7 +70,7 @@ vm.userFound;
                 vm.setUser.isAdmin=false;
 
                 apiService.createNewPeople(vm.setUser).then(function () {
-
+                    Flash.create('success', 'Register Done Succesfully', 'large-text');
                     globalService.SetUserDetails(vm.setUser);
                     $state.go('app.simpleSearch');
 
@@ -79,6 +79,10 @@ vm.userFound;
 
 
                 });
+            }
+            else{
+
+                Flash.create('danger', 'Password are not Compatible', 'large-text');
             }
         };
 

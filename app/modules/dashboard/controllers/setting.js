@@ -68,13 +68,13 @@ debugger;
     vm.saveChanges = function () {
 
         if (vm.userlocalToEdit.confirmPassword == vm.userlocalToEdit.password) {
-            debugger
-            vm.userlocalToEdit.birthday = vm.myDate;
 
-            debugger
+           /* vm.userlocalToEdit.birthday = vm.myDate;*/
+
+
             apiService.EditPerson(vm.userlocalToEdit)
                 .then(function (data) {
-                    debugger
+                    Flash.create('success', 'Editing Done Succesfully', 'large-text');
                     globalService.SetUserDetails(vm.userlocalToEdit);
                     $state.go('app.simpleSearch');
 
@@ -82,6 +82,10 @@ debugger;
                 }, function (err) {
                 });
 
+        }
+        else{
+
+            Flash.create('danger', 'Password are not Compatible', 'large-text');
         }
         ;
     }

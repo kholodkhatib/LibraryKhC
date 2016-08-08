@@ -20,6 +20,7 @@ dashboard.controller("EventsController", ['$rootScope', '$scope', '$state', '$lo
             .then(function (event) {
                 vm.eventsArray = event;
             }, function (err) {
+                console.log("Kholod Says it's an error")
             });
     };
 

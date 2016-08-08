@@ -89,7 +89,8 @@ Date: 24 Dec 2015
                     <div class="form-group">
                         <label for="birthday" class="col-md-12 control-label margin-top-10">Birthday</label>
                         <div class="col-lg-6">
-                            <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>
+                          <!--  <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>-->
+                            <input type="date" class="form-control" name="birthday" placeholder="Birthday" required data-ng-model="vm.setUser.birthday">
                         </div>
                         <div class="col-md-12">
                             <!--<input type="text" class="form-control" name="lastname" placeholder="Last Name" required data-ng-model="vm.setUser.Username">-->

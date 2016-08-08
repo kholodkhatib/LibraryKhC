@@ -137,7 +137,10 @@ $scope.choosenDate=vm.myDate;
         }
         $scope.SaveRoomOrder=function() {
             vm.roomOrder.hour=$scope.choosenHour.hour;
+/*
             vm.roomOrder.date=$scope.choosenDate.getDate();
+*/
+            vm.roomOrder.date="today"
             vm.roomOrder.room=$scope.choosenRoom.name;
 debugger
             apiService.SaveOrderRoom(vm.roomOrder)

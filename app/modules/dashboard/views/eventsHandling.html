@@ -170,8 +170,8 @@ Date: 15 Jan 2016
 
     <td>{{events.name}}</td>
     <td>{{events.description}}</td>
-    <td>{{events.time}}</td>
-  <td>{{events.date }}</td>
+    <td>{{events.time  | date:'h:mma'}}</td>
+  <td>{{events.date | date:'MM/dd/yyyy'}}</td>
     <td class="action-column">
         <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,events)">Edit</button>
 <!--
@@ -215,7 +215,7 @@ Date: 15 Jan 2016
                 <table>
                 <div class ="row">
                     <label class="col-lg-3 control-label">name:</label>
-                    <div class="col-lg-6">
+                    <div class="col-lg-9">
                         <input class="form-control" ng-model="event.name" type="text">
                     </div>
                 </div>
@@ -223,23 +223,23 @@ Date: 15 Jan 2016
 
                     <div class ="row">
                     <label class="col-lg-3 control-label">description:</label>
-                    <div class="col-lg-6">
+                    <div class="col-lg-9">
                         <input class="form-control" ng-model="event.description" type="text">
                     </div>
                 </div>
                     <br>
                 <div class ="row" >
                     <label class="col-lg-3 control-label">time:</label>
-                    <div class="col-lg-6">
-                        <input class="form-control"  ng-model="event.time" type="text">
+                    <div class="col-lg-9">
+                        <input type="time" class="form-control"  ng-model="event.time" type="text">
                     </div>
                 </div>
 
                     <br>
                 <div class ="row">
                     <label class="col-lg-3 control-label">date:</label>
-                    <div class="col-lg-6">
-                        <input class="form-control" ng-model="event.date" type="text">
+                    <div class="col-lg-9">
+                        <input  type="date" class="form-control" ng-model="event.date" type="text">
                     </div>
                 </div>
 
@@ -310,7 +310,7 @@ Date: 15 Jan 2016
                     <div class ="row" >
                         <label class="col-lg-3 control-label">time:</label>
                         <div class="col-lg-6">
-                            <input class="form-control"  ng-model="eventForEdit.time" type="text">
+                            <input type="time" class="form-control"  ng-model="eventForEdit.time" type="text">
                         </div>
                     </div>
 
@@ -318,7 +318,7 @@ Date: 15 Jan 2016
                     <div class ="row">
                         <label class="col-lg-3 control-label">date:</label>
                         <div class="col-lg-6">
-                            <input class="form-control" ng-model="eventForEdit.date" type="text">
+                            <input type="date" class="form-control" ng-model="eventForEdit.date" type="text">
                         </div>
                     </div>
 

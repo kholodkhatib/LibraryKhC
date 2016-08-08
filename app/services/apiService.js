@@ -87,10 +87,9 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
                 }
             }).success(function (data) {
                 deferred.resolve(data);
-            }).error(function (msg, code) {
-                deferred.reject(msg);
-                //   $log.error(msg, code);
-            });
+            }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data);
+        });
         return deferred.promise;
     };
 
@@ -584,6 +583,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {
+        debugger
         var deferred = $q.defer();
         $http.get(apiBase + 'event', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
@@ -746,7 +746,78 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
 
 
+//----------------------------------------------------start od messages
 
+
+    var GetMessagesForUser = function (personForSearch) {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'messages/search', {
+            headers: {
+                'Content-Type': 'application/json',
+                "token": globalService.GetUserDetails().token,
+                "userID": personForSearch
+            }
+        }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+
+
+    var createNewMessage = function (message) {
+        var deferred = $q.defer();
+debugger
+        $http.post(apiBase + 'messages',
+            message
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    var GetMessagesForThisUser = function (personForSearch) {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'messages', { headers: { 'Person_id':personForSearch, 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token}}).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+    var EditMessage = function (message) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'messages',
+            message
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+    //----------------------------------------------------end of messages
 
 
 
@@ -922,7 +993,12 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //--------------------end ofBooks Ordering
 
-
+//---------------------messages
+    apiService.GetMessagesForUser=GetMessagesForUser;
+    apiService.createNewMessage=createNewMessage;
+    apiService.GetMessagesForThisUser=GetMessagesForThisUser;
+    apiService.EditMessage=EditMessage;
+    //----------------------end of messages
 
     //---------------------Rooms
     apiService.getAllRooms=getAllRooms;

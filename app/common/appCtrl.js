@@ -140,12 +140,12 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             isToShow:vm.userlocal.isAdmin
         },
 
-      /*  {
-            title: "Orders Handling",
+        {
+            title: "Messages",
             icon: "dashboard",
             state: "ordersHandling",
-            isToShow:vm.userlocal.isAdmin
-        },*/
+            isToShow:true
+        },
         {
             title: "Books Handling",
             icon: "dashboard",
@@ -207,6 +207,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "aboutUs",
             isToShow:true
         },
+
       /*  {
             title: "Dashboard",
             icon: "dashboard",

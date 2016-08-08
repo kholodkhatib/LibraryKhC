@@ -27,12 +27,16 @@ Date: 05 Jan 2016
                     <form data-ng-submit="vm.submitForm();" name="vm.contactForm">
                         <md-content class="autoScroll">
                             <md-input-container class="md-icon-float md-block">
-                                <label>Name</label>
-                                <md-icon class="fa fa-user"></md-icon>
-                                <input type="text" required name="name" data-ng-model="vm.message.name">
-                            </md-input-container>
+                                <label> This Message is Sending to Library's Admin</label>
 
-                            <md-input-container class="md-icon-float md-block">
+                                <md-icon class="fa fa-user"></md-icon>
+<!--
+                               <label> This Mesaage is Sending to Library's Admin</label>
+-->
+                            </md-input-container>
+<br>
+
+                           <!-- <md-input-container class="md-icon-float md-block">
                                 <label>Phone</label>
                                 <md-icon class="fa fa-phone"></md-icon>
                                 <input type="text" required name="phone" data-ng-model="vm.message.phone" pattern="[0-9]{10,12}">
@@ -42,13 +46,15 @@ Date: 05 Jan 2016
                                 <label>Email</label>
                                 <md-icon class="fa fa-envelope"></md-icon>
                                 <input type="email" required name="email" data-ng-model="vm.message.email">
-                            </md-input-container>
+                            </md-input-container>-->
 
                             <md-input-container class="md-icon-float md-block">
                                 <label>Your Message</label>
                                 <md-icon class="fa fa-clipboard"></md-icon>
-                                <input type="text" required name="message" data-ng-model="vm.message.message">
+                                <!--<input type="text" required name="message" data-ng-model="vm.message.content">-->
+
                             </md-input-container>
+                            <textarea name="Text1" cols="80" rows="10" data-ng-model="vm.message.content"></textarea>
                             <div class="pull-right">
                                 <md-button class="md-raised md-primary" type="submit">Send <i class="fa fa-angle-double-right"></i></md-button>
                                 <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
