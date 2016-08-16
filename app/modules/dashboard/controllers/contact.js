@@ -17,7 +17,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
     vm.submitForm = function () {
         vm.message.senderUser= vm.userID;
-        vm.message.receiverUser="3123456";
+        vm.message.receiverUser="311538417";
         vm.message.isRead=false;
         vm.message.senderName=vm.userName;
         vm.message.receiverName="Admin";

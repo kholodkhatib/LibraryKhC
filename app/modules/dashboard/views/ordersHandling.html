@@ -65,8 +65,8 @@ Date: 05 Jan 2016
                                 <span class="label label-success">SAAS</span>-->
                                 <span class="pull-right" >
 
-                                    <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,'unread')" ng-show="msg.isRead==false" >Make As Read</a>
-                                     <a class="btn btn-warning btn-xs"ng-click="vm.changeStatus(msg,'read')" ng-show="msg.isRead==true" >Make As UnRead</a>
+                                    <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,msg.isRead)" ng-hide="msg.isRead" >Make As Read</a>
+                                     <a class="btn btn-warning btn-xs"ng-click="vm.changeStatus(msg,msg.isRead)" ng-show="msg.isRead" >Make As UnRead</a>
 
                                 </span>
                             </p>

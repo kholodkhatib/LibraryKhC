@@ -51,12 +51,13 @@ debugger
 
     vm.changeStatus=function(msg,status){
         vm.msgtoEdit=msg;
-        if(status=='unread'){
+        vm.msgtoEdit.isRead= !vm.msgtoEdit.isRead;
+      /*  if(status=='unread'){
             vm.msgtoEdit.isRead=true;
         }else
         {
             vm.msgtoEdit.isRead=false;
-        }
+        }*/
       /*  if(msg.isRead){
             vm.msgtoEdit.isRead=false;
         }
@@ -68,10 +69,10 @@ debugger
      /*  vm.msgtoEdit.isRead=!msg.isRead;*/
         //api Edit status
         debugger
-        apiService.EditAuthor(  vm.msgtoEdit)
+        apiService.EditMessage(  vm.msgtoEdit)
             .then(function (data) {
                 vm.Refresh();
-                $mdDialog.cancel();
+
             }, function (err) {
                 vm.Refresh();
             });
@@ -115,7 +116,7 @@ console.log($scope.selectedPerson.title);
         };
 
         $scope.CreateNewToAdminMSG= function(){
-            $scope.message.receiverUser="123456";
+            $scope.message.receiverUser="311538417";
             $scope.message.receiverName="Admin"
 
             console.log($scope.message);

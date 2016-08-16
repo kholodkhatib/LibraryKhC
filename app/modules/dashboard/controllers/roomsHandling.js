@@ -68,7 +68,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
 
 
             console.log($scope.room);
-
+            $scope.room.lastDate=
             apiService.createNewRoom($scope.room)
                 .then(function (data) {
                     vm.Refresh();

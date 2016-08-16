@@ -147,6 +147,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
                 .then(function (data) {
                  /*   vm.Refresh();*/
                     console.log("Order Success");
+                    Flash.create('success', 'Order Done Succesfully for book : '+vm.bookForOrder.bookTitle, 'large-text');
                     vm.choosedBook.bookStatus="Not Available";
                     apiService.EditBook(vm.choosedBook) .then(function (data) {
 

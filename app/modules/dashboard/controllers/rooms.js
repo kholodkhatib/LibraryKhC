@@ -27,8 +27,12 @@ vm.roomOrder={};
 
 
      vm.choosenHour ={hour:"Not Choosen yet.."};
+
 vm.choosenRoom={};
-    vm.hours = [
+
+
+
+   /* vm.hours = [
         {
             hour: 8,
         },
@@ -55,7 +59,7 @@ vm.choosenRoom={};
         }
 
 
-        ];
+        ];*/
 
    /* vm.rooms = {};
 
@@ -140,6 +144,7 @@ $scope.choosenDate=vm.myDate;
 /*
             vm.roomOrder.date=$scope.choosenDate.getDate();
 */
+            vm.roomOrder._id=$scope.choosenRoom._id;
             vm.roomOrder.date="today"
             vm.roomOrder.room=$scope.choosenRoom.name;
 debugger
