@@ -195,6 +195,17 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
+    //room orders page state
+    $stateProvider.state('app.roomOrders', {
+        url: '/orders',
+        templateUrl: 'app/modules/dashboard/views/roomOrders.html',
+        controller: 'RoomOrdersController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'RoomOrders'
+        }
+    });
+
     //orders page state
     $stateProvider.state('app.orders', {
         url: '/orders',

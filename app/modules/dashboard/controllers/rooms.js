@@ -11,7 +11,9 @@
 dashboard.controller("RoomsController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','globalService',
 function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,globalService) {
     var vm = this;
-
+    vm.chosedDay={};
+    vm.choosenDate={};
+    vm.statusHour=true;
     vm.userID=globalService.GetUserDetails().id;
 vm.roomOrder={};
     vm.roomOrder.userID=vm.userID;
@@ -24,100 +26,30 @@ vm.roomOrder={};
             });
     };
     vm.Refresh();
+vm.RemoveHour={};
 
-
-     vm.choosenHour ={hour:"Not Choosen yet.."};
+     /*vm.choosenHour ={};*/
 
 vm.choosenRoom={};
 
 
-
-   /* vm.hours = [
-        {
-            hour: 8,
-        },
-        {
-            hour: 9,
-        },
-        {
-            hour: 10,
-        },  {
-            hour: 11 ,
-        },  {
-            hour: 12 ,
-        },  {
-            hour: 13 ,
-        },  {
-            hour: 14 ,
-        },
-        {
-            hour: 15 ,
-        },  {
-            hour: 16 ,
-        },  {
-            hour: 17 ,
-        }
-
-
-        ];*/
-
-   /* vm.rooms = {};
-
-    //development stack
-    vm.rooms.development = [
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "yellow",
-            image: "mongodb"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "aqua",
-            image: "express"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "green",
-            image: "angular"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "purple",
-            image: "node"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "maroon",
-            image: "javascript"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "teal",
-            image: "typescript"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "yellow",
-            image: "jquery"
-        },
-        {
-            NumberOfSeats: "4 seats",
-            RoomName: "Room 1",
-            theme: "red",
-            image: "joomla"
-        }
-    ];*/
     vm.showRooms=false;
-    vm.ShowRoomsInSelectedDates=function(){
+    vm.ShowRoomsInSelectedDates=function(d){
+
+if(d=='today'){
+
+    vm.choosenDate=vm.myDate;
+        }else if(d=='tomorrow') {
+
+    vm.choosenDate=vm.tomorowDate;
+}
+    else{
+
+    vm.choosenDate=vm.afterTomorowDate;
+    }
 
         vm.showRooms=true;
+        vm.chosedDay=d;
     }
 
 /*
@@ -128,35 +60,89 @@ vm.choosenRoom={};
 
     function DialogController($scope, $mdDialog,apiService) {
 
-
+        $scope.showOrderInfo=false;
         $scope.hours=vm.hours;
-        $scope.choosenHour=vm.choosenHour;
+        $scope.choosenHour={};
         $scope.choosenRoom=vm.choosenRoom;
-$scope.choosenDate=vm.myDate;
+        $scope.user=vm.userID;
+        $scope.choosenDate=vm.choosenDate;
 
-        $scope.ChooseHour=function(x) {
-            $scope.choosenHour=x;
+        $scope.ChooseHour=function($event,x) {
+
+            if(x.status==false && x.user==$scope.user){
+                $scope.choosenHour=x;
+                vm.RemoveHour= x.hour
+                vm.ShowRemoveOrder($event,$scope,x);
+                $scope.showOrderInfo=false;
+            }
+            else if(x.status==false){
+                vm.statusHour=false;
+                Flash.create('warning', 'Cant Order This Room', 'large-text');
+                $scope.showOrderInfo=false;
+                //you cant choose this option
+            }
+            else{
+                $scope.user=vm.userID;
+                vm.statusHour=true;
+                $scope.choosenHour=x;
+                $scope.showOrderInfo=true;
+            }
+
 
 
         }
         $scope.SaveRoomOrder=function() {
-            vm.roomOrder.hour=$scope.choosenHour.hour;
-/*
-            vm.roomOrder.date=$scope.choosenDate.getDate();
-*/
+    debugger
+            if(vm.statusHour==false){
+                Flash.create('danger', 'Cant Order This Room', 'large-text');
+            }else {
+                vm.roomOrder.hour = $scope.choosenHour.hour;
+                /*
+                 vm.roomOrder.date=$scope.choosenDate.getDate();
+                 */
+                vm.roomOrder._id = $scope.choosenRoom._id;
+                vm.roomOrder.date = vm.chosedDay;
+                vm.roomOrder.room = $scope.choosenRoom.name;
+                vm.roomOrder.status = false;
+                vm.roomOrder.userID=vm.userID;
+                debugger
+                apiService.SaveOrderRoom(vm.roomOrder)
+                    .then(function () {
+                        console.log("Order Saved")
+                        vm.Refresh();
+                        Flash.create('success', 'Order Done Succesfully for Room : ' + vm.roomOrder.room + " at Hour: " + vm.roomOrder.hour + " on Date: " + vm.roomOrder.date, 'large-text');
+                        $mdDialog.cancel();
+                    }, function (err) {
+                    });
+
+                /*
+                 $scope.choosenHour; TODO
+                 */
+            }
+
+        }
+
+
+        $scope.RemoveOrder=function() {
+            vm.roomOrder.hour=vm.RemoveHour;
             vm.roomOrder._id=$scope.choosenRoom._id;
-            vm.roomOrder.date="today"
+            vm.roomOrder.date=vm.chosedDay;
             vm.roomOrder.room=$scope.choosenRoom.name;
-debugger
+            vm.roomOrder.status=true;
+            vm.roomOrder.userID="";
+            debugger
             apiService.SaveOrderRoom(vm.roomOrder)
                 .then(function () {
                     console.log("Order Saved")
+                    vm.Refresh();
+                    Flash.create('success', 'Order Removed Succesfully for Room : '+vm.roomOrder.room +" at Hour: "+vm.roomOrder.hour+" on Date: "+vm.roomOrder.date, 'large-text');
+                    $mdDialog.cancel();
                 }, function (err) {
                 });
 
-/*
-            $scope.choosenHour; TODO
-*/
+            /*
+             $scope.choosenHour; TODO
+             */
 
 
         }
@@ -179,24 +165,28 @@ debugger
 
 
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    vm.showAdvanced = function(ev,room) {
 
-        vm.choosenRoom=room;
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+    vm.ShowRemoveOrder = function(ev,$scope,x){
+      debugger
+        $scope.choosenHour=x;
 
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
-            });
+
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog4.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
 
 
 
@@ -206,7 +196,77 @@ debugger
             vm.customFullscreen = (wantsFullScreen === true);
         });
 
+    }
+
+
+    vm.showHoursForDate = function(ev,room) {
+
+        vm.choosenRoom = room;
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
+        if (vm.chosedDay == "today") {
+
+
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen
+        })
+            .then(function (answer) {
+                vm.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                vm.status = 'You cancelled the dialog.';
+            });
+
+    }
+        else if(  vm.chosedDay=="tomorrow"){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog2.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
+
+        }
+        else if(  vm.chosedDay=="afterTomorrow"){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog3.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
+
+        }
+        else{
+            console.log("please choose date")
+        }
+
+        $scope.$watch(function() {
+            return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+            vm.customFullscreen = (wantsFullScreen === true);
+        });
+
     };
+
 
     vm.myDate = new Date();
     vm.minDate = new Date(
@@ -217,10 +277,20 @@ debugger
         vm.myDate.getFullYear(),
         vm.myDate.getMonth() + 2,
         vm.myDate.getDate());
+    vm.tomorowDate = new Date(
+        vm.myDate.getFullYear(),
+        vm.myDate.getMonth(),
+        vm.myDate.getDate()+1);
+
+    vm.afterTomorowDate= new Date(
+        vm.myDate.getFullYear(),
+        vm.myDate.getMonth(),
+        vm.myDate.getDate()+2);
     vm.onlyWeekendsPredicate = function(date) {
         var day = date.getDay();
         return day === 0 || day === 6;
     }
+
 
 
 

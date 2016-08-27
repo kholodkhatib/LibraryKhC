@@ -140,12 +140,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             isToShow:vm.userlocal.isAdmin
         },
 
-        {
-            title: "Messages",
-            icon: "dashboard",
-            state: "ordersHandling",
-            isToShow:true
-        },
+
         {
             title: "Books Handling",
             icon: "dashboard",
@@ -176,29 +171,43 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "simpleSearch" ,
             isToShow:true
         },
-
         {
-            title: "Setting",
+            title: "Rooms",
             icon: "dashboard",
-            state: "setting",
+            state: "rooms",
             isToShow:true
         },
+
         {
             title: "Events",
             icon: "dashboard",
             state: "events",
             isToShow:true
         },
+
         {
-        title: "Rooms",
-        icon: "dashboard",
-        state: "rooms",
-            isToShow:true
-},
-        {
-            title: "Orders",
+            title: "My Books Orders",
             icon: "graduation-cap",
             state: "orders",
+            isToShow:true
+        },
+
+        {
+            title: "My Rooms Orders",
+            icon: "graduation-cap",
+            state: "roomOrders",
+            isToShow:true
+        },
+        {
+            title: "Messages",
+            icon: "dashboard",
+            state: "ordersHandling",
+            isToShow:true
+        },
+        {
+            title: "Setting",
+            icon: "dashboard",
+            state: "setting",
             isToShow:true
         },
         {

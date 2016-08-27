@@ -1,0 +1,79 @@
+﻿<!--
+Author: Ranjithprabhu K
+Page Description: Orders page
+Date: 15 Jan 2016
+-->
+<style>
+
+    .table th:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .table .action-column{
+        width: 230px;
+    }
+    .table .action-column:hover{
+        text-decoration: none;
+        cursor: default;
+    }
+    .table tfoot .pagination{
+        float: right;
+        margin: 0;
+    }
+    .table tfoot .pagination li{
+        cursor: pointer;
+    }
+    .table tfoot select{
+        width: 90px;
+        float: right;
+        margin-right: 8px;
+    }
+</style>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+          My Rooms Orders
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Room Orders</li>
+          </ol>
+        </section>
+
+
+<small>This Orders Only for the next three days</small>
+<table class="table table-hover table-bordered" st-table>
+    <thead>
+    <tr>
+
+
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Date</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Room</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Room Description </th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">from Hour</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">To Hour</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="roomOrdering in vm.MYroomsArray">
+
+
+
+
+
+        <td>  {{roomOrdering.date}} </td>
+        <td>  {{roomOrdering.room}} </td>
+        <td>  {{roomOrdering.info}} </td>
+        <td> {{roomOrdering.hour }}:00</td>
+        <td>  {{roomOrdering.hour+1}}:00 </td>
+
+
+    </tr>
+
+
+    </tbody>
+
+
+</table>
