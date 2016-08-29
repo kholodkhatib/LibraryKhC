@@ -171,12 +171,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "simpleSearch" ,
             isToShow:true
         },
-        {
-            title: "Rooms",
-            icon: "dashboard",
-            state: "rooms",
-            isToShow:true
-        },
+
 
         {
             title: "Events",
@@ -300,6 +295,10 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
         $state.go('app.simpleSearch');
     };
 
+
+    vm.GoToSetting=function(){
+        $state.go('app.setting');
+    }
     console.log('getting in to the app controller');
 
 

@@ -85,7 +85,7 @@
         <!-- sidebar -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel" >
+            <div class="user-panel" ng-click="vm.GoToSetting()" >
                 <div style="min-height: 40px">
 
                 </div>
@@ -93,7 +93,7 @@
                     <img src="images/ranjith.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Profile </p>
+                    <p >Profile </p>
                     <span class="text-aqua text-sm"> {{vm.userlocal.firstName}} &nbsp; {{vm.userlocal.lastName}}</span>
                 </div>
             </div>
@@ -128,7 +128,7 @@
         <ui-view></ui-view>
     </div>
 
-        <footer class="main-footer">
+        <footer class="main-footer" >
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0.0
             </div>

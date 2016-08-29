@@ -22,12 +22,13 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
     vm.showSimple=true;
     vm.showAdvanced =false;
     vm.message = {};
+    vm.message = {};
     vm.showResults=false;
     vm.choosedBook={};
     vm.resultLength=0;
 
     vm.bookForSimpleSearch={};
-
+vm.user_ID=globalService.GetUserDetails()._id;
 
     //==============date============================
 
@@ -96,6 +97,8 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
             .then(function (data) {
 
                 vm.booksArray=data;
+                /*vm.RefreshFollowers();*/
+
                 vm.resultLength= vm.booksArray.length;
             }, function (err) {
             });
@@ -165,39 +168,57 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
     }
 
+   /* vm.RefreshFollowers= function(){
+        var i=0;
+        if(!book.followersArray){
+            return true;
+        }
+        for(i=0;i<book.followersArray.length;i++){
+            if(book.followersArray[i].userId==vm.user_ID){
+                return false
+            }
+        }
+        return true
+    };*/
+
+    vm.isToFollow=function(book){
+        var i=0;
+        if(!book.followersArray){
+            return true;
+        }
+        for(i=0;i<book.followersArray.length;i++){
+            if(book.followersArray[i].userId==vm.user_ID){
+                return false
+            }
+        }
+        return true
+    }
+
+    vm.followBook = function(ev,books,status) {
+
+        vm.bookForfollow={};
+        vm.bookForfollow.book_ID=books._id;
+        vm.bookForfollow.status=status;
+        vm.bookForfollow.user_ID=globalService.GetUserDetails()._id;
+        console.log(vm.bookForOrder);
+        apiService.FollowBook(vm.bookForfollow)
+            .then(function (data) {
+                /*   vm.Refresh();*/
+                console.log("Follow Success");
+                Flash.create('success', 'Follow Done Successfully', 'large-text');
+                //change to unfollow
+                vm.submitFormAdvancedSearch();
 
 
-  /*  vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    vm.showOrderBook = function(ev,books) {
 
-        vm.choosedBook=books;
-
-        $scope.OrderBook();
-
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog2.tmp1.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            }, function (err) {
+                /* vm.Refresh();*/
             });
 
 
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
 
-    };*/
+    }
+
 
 
 

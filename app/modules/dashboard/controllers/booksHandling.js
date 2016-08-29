@@ -17,6 +17,32 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     vm.newbook={};
 
 
+vm.openCreateBookForm=function(){
+    debugger
+    var modalInstance = $uibModal.open({
+
+                 templateUrl: 'app/modules/dashboard/views/createbookmodal.html',
+                     controller: 'BooksHandlingController',
+                     resolve:{
+                         loadPlugin: function ($ocLazyLoad) {
+                                 return $ocLazyLoad.load([
+                                         {
+                                                 files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
+                                     },
+                                 {
+                                         name: 'ui.footable',
+                                             files: ['js/plugins/footable/angular-footable.js']
+                                     }
+                             ]);
+                         }
+                 }
+             });
+         modalInstance.result.then(function(new_org){
+                 getRulse();
+             });
+     }
+
+
 
     vm.Refresh= function () {
 

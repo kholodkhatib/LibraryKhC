@@ -11,7 +11,7 @@ Date: 05 Jan 2016
 
     </h1>
     <ol class="breadcrumb">
-        <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Search For A book</li>
     </ol>
 </section>
@@ -122,7 +122,7 @@ Date: 05 Jan 2016
 
 
                             <md-input-container class="md-icon-float md-block">
-                                <md-icon class="fa fa fa-th-large"></md-icon>
+                                <md-icon class="fa fa-font"></md-icon>
 
                                 <label>language</label>
 
@@ -215,7 +215,7 @@ Date: 05 Jan 2016
                                 </md-input-container>
 
                             </div>-->
-                            <br><br><br><br><br>
+
                             <div class="pull-left">
                                 <h6 class="timeline-header"><a target="_blank" ng-click="vm.showAdvancedSearch(false)">Return
                                     To Simple Search</a></h6>
@@ -236,7 +236,7 @@ Date: 05 Jan 2016
 
     </div>
     </div>
-    <div class="row" style="min-height:165px;">
+    <div class="row" style="min-height:10px;">
 
     </div>
 
@@ -268,8 +268,8 @@ Date: 05 Jan 2016
 
                             <table>
                                 <tr>
-                                    <div class="col-md-1">
-                                    <td>   <img src="images/recent/bookinfo.png" class="img-responsive"></td>
+                                    <div>
+                                    <td>   <img src="images/recent/bookinfo.png" class=" img-lg"></td>
                                         </div>
                                     <td>
                             <ul>
@@ -309,6 +309,11 @@ Date: 05 Jan 2016
 
                                     <button ng-show="books.bookStatus == 'Available'" class="btn btn-warning"
                                             ng-click="vm.showOrderBook($event,books)">Order Book</button>
+
+                                     <button ng-show="books.bookStatus == 'Not Available' && !vm.isToFollow(books)" class="btn btn-twitter"
+                                             ng-click="vm.followBook($event,books,'follow')">Follow Book</button>
+                                    <button ng-show="books.bookStatus == 'Not Available' && vm.isToFollow(books)" class="btn btn-facebook"
+                                            ng-click="vm.followBook($event,books,'unfollow')">UnFollow Book</button>
                                 </span>
                             </p>
                         </div>

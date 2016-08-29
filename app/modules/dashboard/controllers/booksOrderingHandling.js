@@ -42,8 +42,23 @@ vm.newBookOrdering={};
         $scope.bookOrderingForDelete=vm.bookOrderingForDelete;
 
 
+        $scope.selectedPerson={};
 
+        apiService.getAllPeople()
+            .then(function (people) {
+                $scope.peopleArray = people;
+            }, function (err) {
+            });
 
+        $scope.selectedBook={};
+debugger
+        apiService.search()
+            .then(function (books) {
+                $scope.booksArray = books;
+            }, function (err) {
+            });
+
+        debugger
 
 
             $scope.DeleteBookOrdering=function(){

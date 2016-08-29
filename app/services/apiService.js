@@ -237,6 +237,26 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
 
 
+    //===========================Follow Book======== Kholod======================
+    var FollowBook = function (book) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'book/FollowBook',
+            book
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
     //===========================OrderBookIsFinished======= Kholod======================
   /*  var OrderBookIsFinished = function (bookID) {
 
@@ -987,6 +1007,7 @@ debugger
     apiService.createNewBookOrdering=createNewBookOrdering;
     apiService.EditBookOrdering=EditBookOrdering;
     apiService.DeleteBookOrdering=DeleteBookOrdering;
+    apiService.FollowBook=FollowBook;
 /*
     apiService.OrderBookIsFinished=OrderBookIsFinished;
 */

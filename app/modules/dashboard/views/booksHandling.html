@@ -111,7 +111,7 @@ Date: 15 Jan 2016
         </section>
 
 
-
+<div style="min-height: 200px">
 <div class="box">
     <div class="container-1">
         <span class="icon"><i class="fa fa-search"></i></span>
@@ -120,7 +120,8 @@ Date: 15 Jan 2016
 </div>
 <br>
 
-<table class="table table-hover table-bordered" st-table>
+<!--<table class="table table-hover table-bordered" st-table >-->
+    <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 <thead>
 <tr>
     <th ng-click="predicate='title'; reverse=!reverse">Title</th>
@@ -174,10 +175,11 @@ Date: 15 Jan 2016
 </tr>
 </tbody>
     <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Book</button>
+  <!--  <button type="button" class="btn btn-info btn-sm" ng-click="vm.openCreateBookForm()">Add New Book</button>-->
 
 </table>
 
-
+</div>
 <!--Add New-->
 <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="New Book"  ng-cloak style="max-width: 40%;">
 <form >
