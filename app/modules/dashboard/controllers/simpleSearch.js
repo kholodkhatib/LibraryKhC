@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','$mdDialog', '$mdMedia','apiService','globalService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,$mdDialog, $mdMedia,apiService,globalService) {
+dashboard.controller("SimpleSearchController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$http','$mdDialog', '$mdMedia','apiService','globalService','$uibModal',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,$mdDialog, $mdMedia,apiService,globalService,$uibModal) {
     //
     //apiService.search()
     //    .then(function (books) {
@@ -195,7 +195,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
     }
 
     vm.followBook = function(ev,books,status) {
-
+debugger
         vm.bookForfollow={};
         vm.bookForfollow.book_ID=books._id;
         vm.bookForfollow.status=status;
@@ -203,12 +203,17 @@ vm.user_ID=globalService.GetUserDetails()._id;
         console.log(vm.bookForOrder);
         apiService.FollowBook(vm.bookForfollow)
             .then(function (data) {
-                /*   vm.Refresh();*/
-                console.log("Follow Success");
-                Flash.create('success', 'Follow Done Successfully', 'large-text');
-                //change to unfollow
-                vm.submitFormAdvancedSearch();
 
+                apiService.FollowUser(vm.bookForfollow)
+                    .then(function (data) {
+
+                        console.log("Follow Success");
+                        Flash.create('success', 'Follow Done Successfully', 'large-text');
+
+                        vm.submitFormAdvancedSearch();
+                    }, function (err) {
+                        /* vm.Refresh();*/
+                    });
 
 
             }, function (err) {

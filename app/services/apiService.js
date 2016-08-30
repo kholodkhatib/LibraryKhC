@@ -256,6 +256,62 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
         return deferred.promise;
     };
 
+    var FollowUser = function (book) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'person/FollowBook',
+            book
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
+
+
+    //===========================Follow Book======== Kholod======================
+    var AddRate = function (book) {
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'book/AddRate',
+            book
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
+
+
+
+    var getTopTen = function () {
+        var deferred = $q.defer();
+        $http.get(apiBase + 'book/getTopTen', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+    };
+
+
+
+
 
     //===========================OrderBookIsFinished======= Kholod======================
   /*  var OrderBookIsFinished = function (bookID) {
@@ -300,7 +356,23 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //====================================== books ordering
 
+    var hah = function (bookOrdering) {
+        var deferred = $q.defer();
 
+        $http.post(apiBase + 'book/f',
+            bookOrdering
+            , {
+                headers: {
+                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, code) {
+                deferred.reject(msg);
+                //   $log.error(msg, code);
+            });
+        return deferred.promise;
+    };
 
     //===========================Get All Rooms RESOURCE==============================
     var getAllRooms = function () {
@@ -1008,6 +1080,11 @@ debugger
     apiService.EditBookOrdering=EditBookOrdering;
     apiService.DeleteBookOrdering=DeleteBookOrdering;
     apiService.FollowBook=FollowBook;
+    apiService.FollowUser=FollowUser;
+/*    apiService.GetFollowingByUserId=GetFollowingByUserId;*/
+    apiService.AddRate=AddRate;
+    apiService.getTopTen=getTopTen;
+
 /*
     apiService.OrderBookIsFinished=OrderBookIsFinished;
 */
@@ -1026,6 +1103,7 @@ debugger
     apiService.createNewRoom=createNewRoom;
     apiService.EditRoom=EditRoom;
     apiService.DeleteRoom=DeleteRoom;
+    apiService.hah=hah;
 
     //--------------------end of Rooms
 

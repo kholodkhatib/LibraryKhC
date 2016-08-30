@@ -8,8 +8,8 @@
 
  ===========================================================*/
 
-dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService) {
+dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','$uibModal',
+function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,$uibModal) {
     var vm = this;
 
     vm.bookForEdit={};
@@ -17,30 +17,33 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     vm.newbook={};
 
 
-vm.openCreateBookForm=function(){
+/*vm.openCreateBookForm=function(){
     debugger
-    var modalInstance = $uibModal.open({
 
-                 templateUrl: 'app/modules/dashboard/views/createbookmodal.html',
-                     controller: 'BooksHandlingController',
-                     resolve:{
-                         loadPlugin: function ($ocLazyLoad) {
-                                 return $ocLazyLoad.load([
-                                         {
-                                                 files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
-                                     },
-                                 {
-                                         name: 'ui.footable',
-                                             files: ['js/plugins/footable/angular-footable.js']
-                                     }
-                             ]);
-                         }
-                 }
-             });
-         modalInstance.result.then(function(new_org){
-                 getRulse();
-             });
-     }
+    const modalInstance = $uibModal.open({
+            animation: true,
+            template: 'app/modules/dashboard/views/createbookmodal.html',
+            controller: 'BooksHandlingController',
+        resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+                return $ocLazyLoad.load([
+                    {
+                        files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
+                    },
+                    {
+                        name: 'ui.footable',
+                        files: ['js/plugins/footable/angular-footable.js']
+                    }
+                ]);
+            }
+
+        }
+
+});
+return modalInstance;
+}*/
+
+
 
 
 

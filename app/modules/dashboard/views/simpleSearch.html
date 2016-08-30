@@ -279,6 +279,7 @@ Date: 05 Jan 2016
                                 <li>Language : {{books.language}}</li>
                                 <li>Category : {{books.category}}</li>
                                 <li>Publish Year : {{books.year}}</li></bold>
+                                <li><input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1"></li>
                             </ul>
                                     </td>
                                 </tr>
@@ -310,9 +311,9 @@ Date: 05 Jan 2016
                                     <button ng-show="books.bookStatus == 'Available'" class="btn btn-warning"
                                             ng-click="vm.showOrderBook($event,books)">Order Book</button>
 
-                                     <button ng-show="books.bookStatus == 'Not Available' && !vm.isToFollow(books)" class="btn btn-twitter"
+                                     <button ng-show="books.bookStatus == 'Not Available' && vm.isToFollow(books)" class="btn btn-twitter"
                                              ng-click="vm.followBook($event,books,'follow')">Follow Book</button>
-                                    <button ng-show="books.bookStatus == 'Not Available' && vm.isToFollow(books)" class="btn btn-facebook"
+                                    <button ng-show="books.bookStatus == 'Not Available' && !vm.isToFollow(books)" class="btn btn-facebook"
                                             ng-click="vm.followBook($event,books,'unfollow')">UnFollow Book</button>
                                 </span>
                             </p>

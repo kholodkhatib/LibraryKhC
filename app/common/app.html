@@ -1,9 +1,9 @@
-﻿<div class="wrapper">
-    <header class="main-header">
+﻿<div class="wrapper" >
+    <header class="main-header" >
         <!-- Logo -->
         <a class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>RD</b></span>
+            <span class="logo-mini"><b>YL</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Yaffa Library</b></span>
         </a>
@@ -14,25 +14,73 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
             <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown notifications-menu hidden-xs hidden-sm">
+            <div class="navbar-custom-menu" style="background-color: #a6a6a6;">
+                <ul class="nav navbar-nav"  >
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-align-justify"></i> Layouts
+                            <i class="fa fa-align-justify"></i> Books Handling
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" >
                             <li>
                                 <ul class="menu">
-                                    <li data-ng-repeat="screen in vm.layouts" data-ng-click="vm.setLayout(screen.layout);">
+                                    <li ui-sref="app.booksHandling">
                                         <a>
-                                            <i class="fa fa-indent"></i> {{screen.name}}
+                                            <i class="fa fa-indent"></i> Books
+                                        </a>
+                                    </li>
+                                    <li ui-sref="app.authorsHandling">
+                                        <a>
+                                            <i class="fa fa-indent"></i> Authors
+                                        </a>
+                                    </li>
+                                    <li ui-sref="app.languagesHandling">
+                                        <a>
+                                            <i class="fa fa-indent"></i> Languages
+                                        </a>
+                                    </li>
+                                    <li ui-sref="app.categoriesHandling">
+                                        <a >
+                                            <i class="fa fa-indent"></i> Categories
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown notifications-menu">
+
+
+
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
+                        <a class="dropdown-toggle" data-toggle="dropdown"ui-sref="app.roomsHandling">
+                            <i class="fa fa-align-justify"></i> Rooms
+                        </a>
+                    </li>
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.eventsHandling" ng-show="vm.userlocal.isAdmin">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-align-justify"></i> Events
+                        </a>
+                    </li>
+
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.booksOrderingHandling"ng-show="vm.userlocal.isAdmin" >
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-align-justify"></i> Book Ordering
+                        </a>
+                    </li>
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.people" ng-show="vm.userlocal.isAdmin">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-align-justify"></i>People
+                        </a>
+                    </li>
+                    <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
+                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="app.ordersHandling">
+                            <i class="fa fa-align-justify"></i>Messages
+                        </a>
+                    </li>
+
+
+
+
+                  <!--  <li class="dropdown notifications-menu">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-gears"></i> Themes
                         </a>
@@ -47,7 +95,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
 
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
@@ -83,7 +131,7 @@
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar -->
-        <section class="sidebar">
+        < class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel" ng-click="vm.GoToSetting()" >
                 <div style="min-height: 40px">
@@ -106,6 +154,10 @@
                     </span>
                 </div>
             </form>
+
+
+
+
             <!-- /.search form -->
             <ul class="sidebar-menu">
                 <li class="treeview" ui-sref-active="active" ng-click="vm.sideBar();" data-ng-repeat="menu in vm.menuItems">
@@ -124,9 +176,10 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper"  >
         <ui-view></ui-view>
-    </div>
+        </div>
+  <!--  </div>
 
         <footer class="main-footer" >
             <div class="pull-right hidden-xs">
@@ -134,4 +187,4 @@
             </div>
             <strong>Copyright &copy; Kholod Khatib </strong> All rights reserved.
         </footer>
-    </div>
+    </div>-->

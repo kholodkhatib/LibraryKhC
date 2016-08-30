@@ -216,6 +216,32 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
             pageTitle: 'Orders'
         }
     });
+
+
+    //following page state
+    $stateProvider.state('app.following', {
+        url: '/following',
+        templateUrl: 'app/modules/dashboard/views/following.html',
+        controller: 'FollowingController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'Following'
+        }
+    });
+
+
+
+    //top ten page state
+    $stateProvider.state('app.topten', {
+        url: '/topten',
+        templateUrl: 'app/modules/dashboard/views/topten.html',
+        controller: 'ToptenController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'TopTen'
+        }
+    });
+
     //Achievements page state
     $stateProvider.state('app.achievements', {
         url: '/achievements',

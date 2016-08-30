@@ -1,0 +1,249 @@
+﻿<!--
+Author: Ranjithprabhu K
+Page Description:  booksHandling page
+Date: 15 Jan 2016
+-->
+<!--<style>
+
+    .table th:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .table .action-column{
+        width: 230px;
+    }
+    .table .action-column:hover{
+        text-decoration: none;
+        cursor: default;
+    }
+    .table tfoot .pagination{
+        float: right;
+        margin: 0;
+    }
+    .table tfoot .pagination li{
+        cursor: pointer;
+    }
+    .table tfoot select{
+        width: 90px;
+        float: right;
+        margin-right: 8px;
+    }
+</style>
+
+
+<style>
+
+    .box{
+        width: 300px;
+        height: 30px;
+    }
+
+    .container-1{
+        width: 300px;
+        vertical-align: middle;
+        white-space: nowrap;
+        position: relative;
+    }
+    .container-1 input#search{
+        width: 300px;
+        height: 50px;
+        background: #2b303b;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        color: #63717f;
+        padding-left: 45px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    .container-1 input#search::-webkit-input-placeholder {
+        color: #65737e;
+    }
+
+    .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+        color: #65737e;
+    }
+
+    .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+        color: #65737e;
+    }
+
+    .container-1 input#search:-ms-input-placeholder {
+        color: #65737e;
+    }
+
+
+    .container-1 .icon{
+        position: absolute;
+        top: 50%;
+        margin-left: 17px;
+        margin-top: 17px;
+        z-index: 1;
+        color: #4f5b66;
+    }
+</style>
+<style>
+    .angucomplete-dropdown {
+    ...
+    overflow-y: auto;
+        background-color: #c5d5e6; // your preference
+    ...
+    }
+
+    table.ex2 {
+        border-collapse: separate;
+        border-spacing: 10px 10px;
+    }
+</style>-->
+<!-- Content Header (Page header) -->
+<section class="content-header" >
+    <h1>
+        Top Ten Books
+
+
+    </h1>
+    <br>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Top 10 Books</li>
+    </ol>
+</section>
+
+
+
+
+
+
+
+<section class="content">
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- The time line -->
+            <ul class="timeline">
+
+
+
+                <li class="time-label">
+                    <span class="bg-red-gradient">
+                       {{ vm.resultLength}} &nbsp; Here is The Top 10 Books:
+                    </span>
+                </li>
+                <li ng-repeat="books in vm.booksArray">
+                    <i class="fa bg text-white"> {{$index+1}}</i>
+                    <div class="timeline-item">
+                        <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">
+                            {{books.title}} </a></h3>
+                        <div class="timeline-body">
+
+
+                            <table>
+                                <tr>
+                                    <div>
+                                        <td>   <img src="images/recent/bookinfo.png" class=" img-lg"></td>
+                                    </div>
+                                    <td>
+                                        <ul>
+                                            <bold>
+                                                <li> <h4>Author : {{books.author }}</h4></li>
+                                                <li>Description : {{books.description}}</li>
+                                                <li>Language : {{books.language}}</li>
+                                                <li>Category : {{books.category}}</li>
+                                                <li>Publish Year : {{books.year}}</li></bold>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <p>
+
+                                <span ng-class="{'label label-success': books.bookStatus == 'Available', 'label label-danger':  books.bookStatus == 'Not Available'}">{{books.bookStatus}}</span>
+                                <!--   <span class="label label-success">{{books.bookStatus}}</span>-->
+                                <span class="pull-right">
+ <button ng-show="books.bookStatus == 'Available'" class="btn btn-warning"
+         ng-click="vm.showOrderBook($event,books)">Order Book</button>
+                                     <button ng-show="books.bookStatus == 'Not Available' && vm.isToFollow(books)" class="btn btn-twitter"
+                                             ng-click="vm.followBook($event,books,'follow')">Follow Book</button>
+                                    <button ng-show="books.bookStatus == 'Not Available' && !vm.isToFollow(books)" class="btn btn-facebook"
+                                            ng-click="vm.followBook($event,books,'unfollow')">UnFollow Book</button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <i class="fa fa-arrows bg-gray"></i>
+                </li>
+            </ul>
+        </div><!-- /.col -->
+    </div>
+
+
+</section><!-- /.content -->
+
+
+
+
+
+
+
+
+<!--
+<div style="min-height: 200px">
+
+    <br>
+
+    &lt;!&ndash;<table class="table table-hover table-bordered" st-table >&ndash;&gt;
+    <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+        <tr style="z-index: 1">
+            <th ng-click="predicate='title'; reverse=!reverse">Title</th>
+            <th ng-click="predicate='description'; reverse=!reverse">Description</th>
+            <th ng-click="predicate='year'; reverse=!reverse">Publish Year</th>
+            <th ng-click="predicate='author'; reverse=!reverse">Author</th>
+            <th ng-click="predicate='category'; reverse=!reverse">Category</th>
+
+            <th ng-click="predicate='language'; reverse=!reverse">Language</th>
+            <th ng-click="predicate='bookStatus'; reverse=!reverse">Status</th>
+
+
+
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="book in vm.booksArray">
+
+
+
+
+            <td>  {{book.title}} </td>
+            <td> {{book.description }}</td>
+            <td> {{book.year }}</td>
+            <td> {{book.author }}</td>
+            <td> {{book.category }}</td>
+            <td> {{book.language }}</td>
+            <td> {{book.bookStatus }}</td>
+            <td class="action-column">
+                <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,book)">Edit</button>
+
+                <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,book)">Delete</button>
+            </td>
+
+
+        </tr>
+        </tbody>
+        <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Book</button>
+        &lt;!&ndash;  <button type="button" class="btn btn-info btn-sm" ng-click="vm.openCreateBookForm()">Add New Book</button>&ndash;&gt;
+
+    </table>
+
+</div>-->

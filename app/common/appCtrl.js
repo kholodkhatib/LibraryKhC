@@ -112,7 +112,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
     //Main menu items of the dashboard
     vm.menuItems = [
 
-        {
+      /*  {
             title: "Authors Handling",
             icon: "dashboard",
             state: "authorsHandling",
@@ -164,7 +164,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             icon: "dashboard",
             state: "people",
             isToShow:vm.userlocal.isAdmin
-        },
+        },*/
         {
             title: "Simple Search",
             icon: "dashboard",
@@ -186,7 +186,20 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "orders",
             isToShow:true
         },
+        {
+            title: "Following Books",
+            icon: "graduation-cap",
+            state: "following",
+            isToShow:true
+        },
 
+
+        {
+            title: "Top 10 Books",
+            icon: "graduation-cap",
+            state: "topten",
+            isToShow:true
+        },
         {
             title: "My Rooms Orders",
             icon: "graduation-cap",
@@ -211,6 +224,18 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
             state: "aboutUs",
             isToShow:true
         },
+
+
+
+
+
+
+
+
+
+
+
+
 
       /*  {
             title: "Dashboard",
@@ -260,7 +285,79 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
         }
     ];
 
-    //set the theme selected
+
+    vm.menuHeaderItems = [
+
+
+        {
+            title: "Books Ordering ",
+            icon: "dashboard",
+            state: "booksOrderingHandling",
+            isToShow:vm.userlocal.isAdmin
+        },
+
+        {
+            title: "Rooms ",
+            icon: "dashboard",
+            state: "roomsHandling",
+            isToShow:vm.userlocal.isAdmin
+        },
+        {
+            title: "Events ",
+            icon: "dashboard",
+            state: "eventsHandling",
+            isToShow:vm.userlocal.isAdmin
+        },
+        {
+            title: "People",
+            icon: "dashboard",
+            state: "people",
+            isToShow:vm.userlocal.isAdmin
+        },
+        {
+            title: "Messages",
+            icon: "dashboard",
+            state: "ordersHandling",
+            isToShow:true
+        },
+];
+
+
+
+
+    vm.menuBookItems = [
+        {
+            title: "Authors",
+            icon: "dashboard",
+            state: "authorsHandling",
+            isToShow:vm.userlocal.isAdmin
+        },
+
+        {
+        title: "Categories ",
+            icon: "dashboard",
+        state: "categoriesHandling",
+        isToShow:vm.userlocal.isAdmin
+
+    },
+    {
+        title: "Languages",
+            icon: "dashboard",
+        state: "languagesHandling",
+        isToShow:vm.userlocal.isAdmin
+    },
+
+
+    {
+        title: "Books ",
+            icon: "dashboard",
+        state: "booksHandling",
+        isToShow:vm.userlocal.isAdmin
+    },
+
+];
+
+        //set the theme selected
     vm.setTheme = function (value) {
         $rootScope.theme = value;
     };
