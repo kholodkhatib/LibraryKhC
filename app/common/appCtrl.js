@@ -183,7 +183,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
         {
             title: "My Books Orders",
             icon: "graduation-cap",
-            state: "orders",
+            state: "myBookOrders",
             isToShow:true
         },
         {
@@ -397,6 +397,18 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings,globalService
         $state.go('app.setting');
     }
     console.log('getting in to the app controller');
+
+
+
+
+
+    $rootScope.$on("CallParentMethod", function(){
+        $scope.parentmethod();
+    });
+
+    $scope.parentmethod = function() {
+        vm.userlocal=globalService.GetUserDetails();
+    }
 
 
 

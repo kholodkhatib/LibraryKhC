@@ -59,7 +59,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
     vm.IsChecked=globalService.IsFemale(vm.userlocal.gender);
     vm.userlocalToEdit=vm.userlocal;
     vm.userlocalToEdit.confirmPassword=vm.userlocalToEdit.password;
-debugger;
+
     vm.cancel=function(){
         $state.go('app.simpleSearch');
     };

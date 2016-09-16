@@ -92,7 +92,7 @@ if(d=='today'){
 
         }
         $scope.SaveRoomOrder=function() {
-    debugger
+
             if(vm.statusHour==false){
                 Flash.create('danger', 'Cant Order This Room', 'large-text');
             }else {
@@ -105,7 +105,7 @@ if(d=='today'){
                 vm.roomOrder.room = $scope.choosenRoom.name;
                 vm.roomOrder.status = false;
                 vm.roomOrder.userID=vm.userID;
-                debugger
+
                 apiService.SaveOrderRoom(vm.roomOrder)
                     .then(function () {
                         console.log("Order Saved")
@@ -130,7 +130,7 @@ if(d=='today'){
             vm.roomOrder.room=$scope.choosenRoom.name;
             vm.roomOrder.status=true;
             vm.roomOrder.userID="";
-            debugger
+
             apiService.SaveOrderRoom(vm.roomOrder)
                 .then(function () {
                     console.log("Order Saved")
@@ -167,7 +167,7 @@ if(d=='today'){
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
     vm.ShowRemoveOrder = function(ev,$scope,x){
-      debugger
+
         $scope.choosenHour=x;
 
 

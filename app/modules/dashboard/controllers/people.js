@@ -69,7 +69,6 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             }
             $scope.CreateNewPeople= function(){
 
-debugger
                 console.log($scope.person);
 
                 apiService.createNewPeople($scope.person)
@@ -128,13 +127,14 @@ debugger
         };
 
         vm.showEditDialog = function(ev,personForEdit) {
+
             vm.personForEdit=personForEdit;
-vm.IsAdmin= personForEdit.isAdmin;
+            vm.IsAdmin= personForEdit.isAdmin;
             vm.example = angular.copy(vm.personForEdit);
-            debugger
+
             vm.IsChecked=globalService.IsFemale(vm.personForEdit.gender);
            // vm.IsCheckedFemale=!vm.IsChecked;
-            debugger
+
 
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
 

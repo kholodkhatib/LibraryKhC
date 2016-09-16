@@ -34,7 +34,21 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     };
 
+    var GetPersonById = function (id) {
 
+
+
+
+        var deferred = $q.defer();
+        $http.get(apiBase + 'person/getPersonById', { headers: { 'Person_id': id , 'Content-Type': 'application/json' , "token": globalService.GetUserDetails().token } }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
+        return deferred.promise;
+
+    };
 
     var getAllYears= function () {
 /*
@@ -359,19 +373,16 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
     var hah = function (bookOrdering) {
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'book/f',
-            bookOrdering
-            , {
-                headers: {
-                    "Content-Type":"application/json" , "token": globalService.GetUserDetails().token
-                }
-            }).success(function (data) {
-                deferred.resolve(data);
-            }).error(function (msg, code) {
-                deferred.reject(msg);
-                //   $log.error(msg, code);
-            });
+
+        var deferred = $q.defer();
+        $http.get(apiBase + 'book/f', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
+            deferred.resolve(response);
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data.statusText);
+        });
+
         return deferred.promise;
+
     };
 
     //===========================Get All Rooms RESOURCE==============================
@@ -675,7 +686,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
     //===========================Get All Events RESOURCE==============================
     var getAllEvents = function () {
-        debugger
+
         var deferred = $q.defer();
         $http.get(apiBase + 'event', { headers: { 'Content-Type': 'application/json'  , "token": globalService.GetUserDetails().token} }).success(function (response) {
             deferred.resolve(response);
@@ -1112,6 +1123,7 @@ debugger
     apiService.createNewPeople=createNewPeople;
     apiService.EditPerson=EditPerson;
     apiService.DeletePerson=DeletePerson;
+    apiService.GetPersonById=GetPersonById;
 //--------------------end of people
 apiService.GetPerson=GetPerson;
 apiService.getAllYears=getAllYears;

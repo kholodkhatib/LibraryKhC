@@ -50,7 +50,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
 
         vm.showAdvanced=flag;
         vm.showSimple=!flag;
-
+        vm.showResults=false;
 
     }
 
@@ -80,11 +80,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
         });
     vm.yearsArray=   apiService.getAllYears();
 
-/*
-    vm.$watch('selectAuthor', function() {
 
-        vm.bookForSearch.author=$scope.selectedAuthor.title;
-    });*/
 
 
 
@@ -100,6 +96,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
                 /*vm.RefreshFollowers();*/
 
                 vm.resultLength= vm.booksArray.length;
+                vm.getStartsInfo();
             }, function (err) {
             });
         vm.showResults=true;
@@ -116,13 +113,14 @@ vm.user_ID=globalService.GetUserDetails()._id;
         if ($scope.selectedLanguage) {
             vm.bookForSearch.language = $scope.selectedLanguage.title;}
 
-        debugger
+
         apiService.AdvancedBookSearch(vm.bookForSearch)
             .then(function (data) {
 
                 vm.booksArray=data;
                 vm.resultLength= vm.booksArray.length;
-                debugger
+                vm.getStartsInfo();
+
             }, function (err) {
             });
         vm.showResults=true;
@@ -130,7 +128,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
     };
 //get user
 
-
+/*******************************/
 
     vm.showOrderBook = function(ev,books) {
 
@@ -143,6 +141,7 @@ vm.user_ID=globalService.GetUserDetails()._id;
         vm.bookForOrder.user_ID=globalService.GetUserDetails()._id;
         vm.bookForOrder.issueDate=today;
         vm.bookForOrder.status="Pending";
+        vm.bookForOrder.user=vm.user_ID;
 
             console.log(vm.bookForOrder);
 
@@ -152,6 +151,8 @@ vm.user_ID=globalService.GetUserDetails()._id;
                     console.log("Order Success");
                     Flash.create('success', 'Order Done Succesfully for book : '+vm.bookForOrder.bookTitle, 'large-text');
                     vm.choosedBook.bookStatus="Not Available";
+                   /* books.followersArray.push({userId:vm.bookForOrder.user_ID});*/
+                    books.user=vm.user_ID;
                     apiService.EditBook(vm.choosedBook) .then(function (data) {
 
                     }, function (err) {
@@ -168,19 +169,6 @@ vm.user_ID=globalService.GetUserDetails()._id;
 
     }
 
-   /* vm.RefreshFollowers= function(){
-        var i=0;
-        if(!book.followersArray){
-            return true;
-        }
-        for(i=0;i<book.followersArray.length;i++){
-            if(book.followersArray[i].userId==vm.user_ID){
-                return false
-            }
-        }
-        return true
-    };*/
-
     vm.isToFollow=function(book){
         var i=0;
         if(!book.followersArray){
@@ -195,12 +183,12 @@ vm.user_ID=globalService.GetUserDetails()._id;
     }
 
     vm.followBook = function(ev,books,status) {
-debugger
+
         vm.bookForfollow={};
         vm.bookForfollow.book_ID=books._id;
         vm.bookForfollow.status=status;
         vm.bookForfollow.user_ID=globalService.GetUserDetails()._id;
-        console.log(vm.bookForOrder);
+
         apiService.FollowBook(vm.bookForfollow)
             .then(function (data) {
 
@@ -209,10 +197,9 @@ debugger
 
                         console.log("Follow Success");
                         Flash.create('success', 'Follow Done Successfully', 'large-text');
-
                         vm.submitFormAdvancedSearch();
                     }, function (err) {
-                        /* vm.Refresh();*/
+
                     });
 
 
@@ -227,7 +214,75 @@ debugger
 
 
 
+    vm.postRate=function(book,SumRates) {
+        var CountRates = book.CountRates;
+        var AvgRates = book.AvgRates;
+        var newAvg;
+        if (CountRates && AvgRates) {
 
+            var newSum=0
+            newSum = (AvgRates * CountRates);
+            newSum+= Number(SumRates)
+            CountRates++;
+            newAvg=newSum/CountRates;
+        }
+        else
+        {
+            CountRates=1;
+            newAvg=SumRates;
+        }
+        // change view
+        book.CountRates=CountRates;
+        book.AvgRates=newAvg;
+        //save to server
+        apiService.AddRate(book)
+            .then(function (following) {
+                vm.getStartsInfo();
+            }, function (err) {
+            });
+
+
+
+    }
+
+    vm.getStartsInfo=function(){
+
+
+        for(var i=0; i<vm.booksArray.length;i++) {
+            var book = vm.booksArray[i];
+            var CountRates = book.CountRates;
+            var AvgRates = book.AvgRates;
+            vm.case;
+            if (CountRates && AvgRates) {
+
+                if (AvgRates >= 0 && AvgRates < 1) {
+                    vm.case = 0;
+                }
+                if (AvgRates >= 1 && AvgRates < 2) {
+                    vm.case = 1;
+                }
+                if (AvgRates >= 2 && AvgRates < 3) {
+                    vm.case = 2;
+                }
+                if (AvgRates >= 3 && AvgRates < 4) {
+                    vm.case = 3;
+                }
+                if (AvgRates >= 4 && AvgRates < 5) {
+                    vm.case = 4;
+                }
+                if (AvgRates >= 5) {
+                    vm.case = 5
+                }
+
+
+            } else {
+                vm.case = 0;
+            }
+
+            vm.booksArray[i].case = vm.case;
+        }
+
+    }
 
 
 

@@ -8,7 +8,7 @@
 
  ===========================================================*/
 
-dashboard.controller("OrdersController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','apiService','globalService',
+dashboard.controller("MyBookOrdersController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','apiService','globalService',
 function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiService,globalService) {
     var vm = this;
     vm.searchStatus={};

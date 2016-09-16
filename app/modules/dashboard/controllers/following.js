@@ -14,7 +14,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiServ
 
     vm.user_ID=globalService.GetUserDetails()._id;
 
-
+vm.mybookfollowing=[];
     vm.Refresh= function () {
 
 
@@ -28,8 +28,23 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiServ
         apiService.hah(vm.user_ID)
             .then(function (following) {
                 vm.booksArray = following;
+                debugger
+                for(var i=0;i<vm.booksArray.length;i++){
+                    var thisBook=vm.booksArray[i];
+                    for(var j=0;j<thisBook.followersArray.length;j++){
+                        if(thisBook.followersArray[j].userId==vm.user_ID){
+                            vm.mybookfollowing.push(thisBook)
+                        }
+                    }
+
+
+                }
+
             }, function (err) {
             });
+
+
+
 
        /* apiService.GetFollowingByUserId(vm.user_ID)
             .then(function (following) {

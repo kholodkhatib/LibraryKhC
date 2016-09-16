@@ -17,6 +17,18 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
     vm.newbook={};
 
 
+
+   /* vm.openCreateBookForm = function () {
+
+        var modalInstance = $uibModal.open({
+
+            templateUrl: 'views/categoriesHandling.html',
+            controller: 'CategoriesHandlingController'
+
+
+        });}*/
+
+
 /*vm.openCreateBookForm=function(){
     debugger
 
@@ -70,7 +82,7 @@ return modalInstance;
                 $scope.categoriesArray = categories;
             }, function (err) {
             });
-        debugger
+
         apiService.getAllLanguages()
             .then(function (languages) {
                 $scope.languagesArray = languages;
@@ -162,6 +174,7 @@ return modalInstance;
                 $scope.book.category=$scope.selectedCategory.title;
                 $scope.book.language=$scope.selectedLanguage.title;
                 $scope.book.year=$scope.selectedYear.title;
+                $scope.book.user_ID="";
 
                 apiService.createNewBook($scope.book)
                     .then(function (data) {

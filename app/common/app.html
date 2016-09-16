@@ -73,7 +73,7 @@
                     </li>
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="app.ordersHandling">
-                            <i class="fa fa-align-justify"></i>Messages
+                            <i class="fa fa-align-justify"></i>Messages &nbsp; {{vm.userlocal.MessagesLength}}
                         </a>
                     </li>
 
@@ -110,16 +110,16 @@
                                 
                                     <h3>  {{vm.userlocal.firstName}} &nbsp; {{vm.userlocal.lastName}}  </h3>
                                 <p class="text-center">
-                                    {{vm.userlocal.id}}
+                                   ID: {{vm.userlocal.id}}
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
 
                                 <div class="pull-right">
-                                    <a ui-sref="app.setting" class="btn btn-success btn-flat">About Me</a>
-                                    <a ui-sref="app.ordersHandling" class="btn btn-facebook btn-flat">Messages</a>
-                                    <a ui-sref="login" class="btn btn-danger btn-flat">Log Out</a>
+                                    <a ui-sref="app.setting" class="btn btn-success btn-flat">AboutMe</a>
+                                    <a ui-sref="app.ordersHandling" class="btn btn-facebook btn-flat">Messages  <span class="label label-warning"> {{vm.userlocal.MessagesLength}}</span></a>
+                                    <a ui-sref="login" class="btn btn-danger btn-flat">LogOut</a>
                                 </div>
                             </li>
                         </ul>
@@ -162,8 +162,10 @@
             <ul class="sidebar-menu">
                 <li class="treeview" ui-sref-active="active" ng-click="vm.sideBar();" data-ng-repeat="menu in vm.menuItems">
                     <a ui-sref="app.{{menu.state}}" ng-show="menu.isToShow">
-                        <i class="fa fa-{{menu.icon}}"></i> <span>{{menu.title}}</span>
+                        <i class="fa fa-{{menu.icon}}"></i> <span>{{menu.title}}   <span class="label label-warning " ng-show="menu.title=='Messages'">&nbsp; {{vm.userlocal.MessagesLength}}</span></span>
                     </a>
+
+
                 </li>
                <!-- <li class="treeview" ui-sref-active="active" ng-click="vm.sideBar();">
                     <a href="https://github.com/ranjithprabhuk/Angular-Bootstrap-Dashboard" target="_blank">

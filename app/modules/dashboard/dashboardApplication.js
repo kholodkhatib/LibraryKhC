@@ -54,7 +54,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         controller: 'OrdersHandlingController',
         controllerAs: 'vm',
         data: {
-            pageTitle: 'orders'
+            pageTitle: 'ordersHandling'
         }
     });
 
@@ -128,6 +128,29 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
+
+/*
+
+    $stateProvider.state('app.CreateBookModalInstanceCtrl', {
+        url: '/booksHandling',
+        templateUrl: 'app/modules/dashboard/views/createbookmodal.html',
+        controller: 'CreateBookModalInstanceCtrl',
+        controllerAs: 'vm',
+        resolve: {
+
+            parent_id: function(){ return $scope.orgId; },
+
+            small: function(){ if($scope.organization) return $scope.organization.small; }
+
+        },
+        data: {
+            pageTitle: 'Createbook'
+        }
+    });
+*/
+
+
+
 // event handling page state
     $stateProvider.state('app.eventsHandling', {
         url: '/eventsHandling',
@@ -197,7 +220,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
 
     //room orders page state
     $stateProvider.state('app.roomOrders', {
-        url: '/orders',
+        url: '/roomOrders',
         templateUrl: 'app/modules/dashboard/views/roomOrders.html',
         controller: 'RoomOrdersController',
         controllerAs: 'vm',
@@ -207,13 +230,13 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
     });
 
     //orders page state
-    $stateProvider.state('app.orders', {
-        url: '/orders',
-        templateUrl: 'app/modules/dashboard/views/orders.html',
-        controller: 'OrdersController',
+    $stateProvider.state('app.myBookOrders', {
+        url: '/myBookOrders',
+        templateUrl: 'app/modules/dashboard/views/myBookOrders.html',
+        controller: 'MyBookOrdersController',
         controllerAs: 'vm',
         data: {
-            pageTitle: 'Orders'
+            pageTitle: 'MyBookOrders'
         }
     });
 

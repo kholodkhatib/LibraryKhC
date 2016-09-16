@@ -51,14 +51,14 @@ vm.newBookOrdering={};
             });
 
         $scope.selectedBook={};
-debugger
+
         apiService.search()
             .then(function (books) {
                 $scope.booksArray = books;
             }, function (err) {
             });
 
-        debugger
+
 
 
             $scope.DeleteBookOrdering=function(){
@@ -92,7 +92,7 @@ debugger
 */
                 apiService.EditBookOrdering($scope.bookOrderingForEdit)
                     .then(function (data) {
-                        debugger
+
                         vm.Refresh();
                         $mdDialog.cancel();
                     }, function (err) {
@@ -121,10 +121,10 @@ debugger
 
 
         $scope.getDateForOnGoing=function(statusValue) {
-debugger
+
 
             if (statusValue == "OnGoing") {
-                debugger
+
             $scope.bookOrderingForEdit.dueDate = globalService.GetTodayDate();
             }
             else if (statusValue == "Finished"){
