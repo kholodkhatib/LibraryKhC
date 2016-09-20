@@ -1,43 +1,46 @@
 ﻿<!--
-Author: Ranjithprabhu K
+Author: Kholod Khatib
 Page Description:  authorsHandling page
 Date: 15 Jan 2016
 -->
 <style>
 
-    .table th:hover{
+    .table th:hover {
         text-decoration: underline;
         cursor: pointer;
     }
-    .table .action-column{
+
+    .table .action-column {
         width: 230px;
     }
-    .table .action-column:hover{
+
+    .table .action-column:hover {
         text-decoration: none;
         cursor: default;
     }
-    .table tfoot .pagination{
+
+    .table tfoot .pagination {
         float: right;
         margin: 0;
     }
-    .table tfoot .pagination li{
+
+    .table tfoot .pagination li {
         cursor: pointer;
     }
-    .table tfoot select{
+
+    .table tfoot select {
         width: 90px;
         float: right;
         margin-right: 8px;
     }
 
-    input[type=radio   ]:not(old){
-        width   : 35px;
-        margin  : 0;
-        padding : 0;
-        opacity : 0;
+    input[type=radio   ]:not(old) {
+        width: 35px;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
         background-color: #005384;
     }
-
-
 
     .radio-inline input {
         list-style: none;
@@ -48,24 +51,23 @@ Date: 15 Jan 2016
         background-color: #00733e;
     }
 
-
-
     /*body{
         background: #343d46;
     }*/
 
-    .box{
+    .box {
         width: 300px;
         height: 30px;
     }
 
-    .container-1{
+    .container-1 {
         width: 300px;
         vertical-align: middle;
         white-space: nowrap;
         position: relative;
     }
-    .container-1 input#search{
+
+    .container-1 input#search {
         width: 300px;
         height: 50px;
         background: #2b303b;
@@ -78,15 +80,18 @@ Date: 15 Jan 2016
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
+
     .container-1 input#search::-webkit-input-placeholder {
         color: #65737e;
     }
 
-    .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    .container-1 input#search:-moz-placeholder {
+        /* Firefox 18- */
         color: #65737e;
     }
 
-    .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    .container-1 input#search::-moz-placeholder {
+        /* Firefox 19+ */
         color: #65737e;
     }
 
@@ -94,8 +99,7 @@ Date: 15 Jan 2016
         color: #65737e;
     }
 
-
-    .container-1 .icon{
+    .container-1 .icon {
         position: absolute;
         top: 50%;
         margin-left: 17px;
@@ -106,12 +110,12 @@ Date: 15 Jan 2016
 </style>
 
 
-
 <style>
 
     .btn-red {
     @include round-button(#E53030);
     }
+
     .btn-blue {
     @include round-button;
     }
@@ -126,480 +130,368 @@ Date: 15 Jan 2016
         border-spacing: 10px 10px;
     }
 </style>
-        <!-- Content Header (Page header) -->
-        <section class="content-header" >
-          <h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
         Books Ordering Information
 
 
-          </h1>
-            <br>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Book Ordering Handling</li>
-          </ol>
-        </section>
-
-
-<!--<div class="input-group">-->
-
-    <!--<input class="form-control" ng-model="searchStatus.status" placeholder="searchStatus" type="search" ng-change="search()" /> <span class="input-group-addon">-->
-
-      <!--<span class="glyphicon glyphicon-search"></span>-->
-
-<!--</span>-->
-
-<!--</div>-->
-
-
-<!--
-<div class="input-group">
-
-    <button  ng-click="searchStatus.status= OnGoing">   On Going  </button>
-
-</div>
--->
-<!--<div class="input-group">-->
-    <!--<button>   <input ng-model="searchStatus.status" type="radio" name="search-type" value="">All        </button>-->
-    <!--<button> <input ng-model="searchStatus.status" type="radio" name="search-type" value="OnGoing">OnGoing       </button>-->
-    <!--<button>       <input ng-model="searchStatus.status" type="radio" name="search-type" value="Finished">  Finished       </button>-->
-    <!--<button>    <input ng-model="searchStatus.status" type="radio" name="search-type" value="InProgress">InProgress         </button>-->
-    <!--<button>    <input ng-model="searchStatus.status" type="radio" name="search-type" value="Pending"> Pending          </button>-->
-    <!--<button>  <input ng-model="searchStatus.status" type="radio" name="search-type" value="Cancelled">Cancelled         </button>-->
-
-<!--&lt;!&ndash;-->
-<!--<input ng-model="searchStatus.status" type="radio" name="search-type" value="OnGoing">OnGoing-->
-    <!--<input ng-model="searchStatus.status" type="radio" name="search-type" value="Finished">  Finished-->
-    <!--<input ng-model="searchStatus.status" type="radio" name="search-type" value="InProgress">InProgress-->
-    <!--<input ng-model="searchStatus.status" type="radio" name="search-type" value="Pending"> Pending-->
-    <!--<input ng-model="searchStatus.status" type="radio" name="search-type" value="Cancelled">Cancelled&ndash;&gt;-->
-    <!--</div>-->
-
-
+    </h1>
+    <br>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Book Ordering Handling</li>
+    </ol>
+</section>
 
 <table>
     <tr>
         <td>
-            <button class="btn btn-default"  ng-click="vm.getStatusFilter('')">
-                All</button>
+            <button class="btn btn-default" ng-click="vm.getStatusFilter('')">
+                All
+            </button>
         </td>
         <td>
-            <button class="btn btn-primary"  ng-click="vm.getStatusFilter('Pending')">
-                Pending</button>
-        </td> <td>
-        <button class="btn btn-success"  ng-click="vm.getStatusFilter('InProgress')">
-            InProgress</button>
-    </td> <td>
-        <button class="btn btn-info" ng-click="vm.getStatusFilter('OnGoing')">
-            OnGoing</button>
-    </td> <td>
-        <button  class="btn btn-warning" ng-click="vm.getStatusFilter('Finished')">
-            Finished</button>
-    </td> <td>
-        <button class="btn btn-danger"  ng-click="vm.getStatusFilter('Cancelled')">
-            Cancelled</button>
-    </td>
+            <button class="btn btn-primary" ng-click="vm.getStatusFilter('Pending')">
+                Pending
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-success" ng-click="vm.getStatusFilter('InProgress')">
+                InProgress
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-info" ng-click="vm.getStatusFilter('OnGoing')">
+                OnGoing
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-warning" ng-click="vm.getStatusFilter('Finished')">
+                Finished
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="vm.getStatusFilter('Cancelled')">
+                Cancelled
+            </button>
+        </td>
     </tr>
 </table>
-
-
-
-
 <div class="box">
     <div class="container-1">
         <span class="icon"><i class="fa fa-search"></i></span>
-        <input ng-model="vm.searchStatus" type="search" id="search" placeholder="Search..." />
+        <input ng-model="vm.searchStatus.bookTitle" type="search" id="search" placeholder="Search..."/>
     </div>
 </div>
 <br>
-
-<!--<table class="table table-hover table-bordered" st-table>-->
 <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-<thead>
-<tr>
-
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Book Ttile</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">User ID</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Issue Date</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Due Date</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Finish Date</th>
-    <th ng-click="predicate='FirstName'; reverse=!reverse">Status</th>
-
-
-
-    <th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: vm.searchStatus">
-
-
-
-
-
-
-    <td>  {{bookOrdering.bookTitle}} </td>
-    <td> {{bookOrdering.userID }}</td>
-    <td>  {{bookOrdering.issueDate}} </td>
-    <td> {{bookOrdering.dueDate }}</td>
-    <td>  {{bookOrdering.finishDate}} </td>
-    <td>  {{bookOrdering.status}} </td>
-
-    <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,bookOrdering)">Edit</button>
-
-        
-    </td>
+    <thead>
+    <tr>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Book Ttile</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">User ID</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Issue Date</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Due Date</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Finish Date</th>
+        <th ng-click="predicate='FirstName'; reverse=!reverse">Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: vm.searchStatus">
+        <td> {{bookOrdering.bookTitle}}</td>
+        <td> {{bookOrdering.userID }}</td>
+        <td> {{bookOrdering.issueDate}}</td>
+        <td> {{bookOrdering.dueDate }}</td>
+        <td> {{bookOrdering.finishDate}}</td>
+        <td> {{bookOrdering.status}}</td>
+        <td class="action-column">
+            <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,bookOrdering)"><span
+                    class="glyphicon glyphicon-edit"></span>&nbsp; Edit
+            </button>
+        </td>
+    </tr>
 
 
-</tr>
-
-
-
-
-</tbody>
+    </tbody>
     <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Order</button>
 
 </table>
 
 <!--add new-->
 
-<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="New Order"  ng-cloak style="max-width: 40%;">
-<form >
+<script type="text/ng-template" id="dialog1.tmpl.html">
+    <md-dialog
+    aria-label="New Order"  ng-cloak style="max-width: 40%;">
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>New Order</h2>
-           <!-- <span flex></span>-->
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Order</h2>
+                <!-- <span flex></span>-->
 
-        </div>
-    </md-toolbar>
+            </div>
+        </md-toolbar>
 
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form">
-                <table  class="ex2" >
+        <md-dialog-content>
+            <div class="md-dialog-content">
 
 
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-6 control-label">This Order for user: </label>
-                                <div class="col-lg-6">
-                                    <!--<input class="form-control" ng-model="bookOrdering.issueDate" type="text">-->
-                                    <angucomplete id="ex1"
-                                                  placeholder="Search People"
-                                                  pause="100"
-                                                  selectedobject="selectedPerson"
-                                                  localdata="peopleArray"
-                                                  searchfields="firstName,lastName"
-                                                  titlefield="firstName,lastName"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small" autocomplete="off"/>
+                <form class="form-horizontal" role="form">
+                    <table class="ex2">
+
+
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-6 control-label">This Order for user: </label>
+
+                                    <div class="col-lg-6">
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search People"
+                                                      pause="100"
+                                                      selectedobject="selectedPerson"
+                                                      localdata="peopleArray"
+                                                      searchfields="firstName,lastName"
+                                                      titlefield="firstName,lastName"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-
-
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-6 control-label">Choose Book: </label>
-                                <div class="col-lg-6">
-                                    <!--<input class="form-control" ng-model="bookOrdering.issueDate" type="text">-->
-                                    <angucomplete id="ex1"
-                                                  placeholder="Search book"
-                                                  pause="100"
-                                                  selectedobject="selectedBook"
-                                                  localdata="booksArray"
-                                                  searchfields="bookTitle"
-                                                  titlefield="bookTitle"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small" autocomplete="off"/>
-                                </div>
-                            </div>
-                            <label class="col-lg-4 control-label" ng-if="vm.bookchoosedIsAvailable=='Not Available'">this book is not available  </label>
-                        </td>
-
-
-                    </tr>
-
-
-                    <tr>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-6 control-label">issueDate:</label>
-                    <div class="col-lg-6">
-                        <input class="form-control" ng-model="bookOrdering.issueDate" type="text">
-                    </div>
-                </div>
-                        </td>
+                            </td>
 
 
                         </tr>
 
-                </table>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-6 control-label">Choose Book: </label>
+
+                                    <div class="col-lg-6">
+                                        <!--<input class="form-control" ng-model="bookOrdering.issueDate" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search book"
+                                                      pause="100"
+                                                      selectedobject="selectedBook"
+                                                      localdata="booksArray"
+                                                      searchfields="title"
+                                                      titlefield="title"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
+                                </div>
+                                <label class="col-lg-8 control-label"
+                                       ng-show="selectedBook.originalObject.bookStatus=='Not Available'"
+                                       style="color: red">this book is not available </label>
+
+                            </td>
 
 
-        </form>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-6 control-label">issueDate:</label>
+
+                                    <div class="col-lg-6">
+                                        <input class="form-control" ng-model="bookOrdering.issueDate" type="text">
+                                    </div>
+                                </div>
+                            </td>
+
+
+                        </tr>
+
+                    </table>
+
+
+                </form>
             </div>
-    </md-dialog-content>
+        </md-dialog-content>
 
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="CreateNewBookOrdering()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-   <!-- <label>
-        book= {{book | json}}
-    </label>-->
+        <md-dialog-actions layout="row">
 
-</form>
-</md-dialog>
+            <md-button ng-click="CreateNewBookOrdering()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
 
 
+<script type="text/ng-template" id="dialog2.tmpl.html">
+    <md-dialog
+    aria-label="Edit Order"  ng-cloak>
+    <form>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Order</h2>
+                <span flex></span>
+
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
 
 
-
-
-
-
-
-
-
-<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Order"  ng-cloak>
-<form>
-
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Edit Order</h2>
-            <span flex></span>
-
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form">
-                <table  class="ex2" >
-
-
+                <form class="form-horizontal" role="form">
+                    <table class="ex2">
 
 
                         <td>
                             <div class="row">
                                 <label class="col-lg-4 control-label">Status:</label>
+
                                 <div class="col-lg-8">
-                                 <!--   <input class="form-control" ng-model="bookOrderingForEdit.status" type="text">-->
 
 
-
-<!--
-                                        <label class="radio-inline">
-
-
-                                            <input ng-model="bookOrderingForEdit.status" type="radio"  value="1"  ng-click="getDateForOnGoing()">OnGoing <br>
-                                            <input ng-model="bookOrderingForEdit.status" type="radio" value="2"  ng-click="getDateForOnGoing()">  Finished
-                                            <br>
-                                         <input ng-model="bookOrderingForEdit.status" type="radio"  value="3"  ng-click="getDateForOnGoing()">InProgress       <br>
-                                        <input ng-model="bookOrderingForEdit.status" type="radio" value="4"  ng-click="getDateForOnGoing()"> Pending       <br>
-                                         <input ng-model="bookOrderingForEdit.status" type="radio" value="5"  ng-click="getDateForOnGoing()">Cancelled            <br>
-
-                                            <br>
-
-                                        </label>-->
-
-
-
-
-
-
-<table>
-    <tr>
-        <td>
-                                        <button class="btn btn-primary" ng-model="bookOrderingForEdit.status" value="Pending" ng-click="getDateForOnGoing('Pending')">
-                                        Pending</button>
-        </td> <td>
-                                        <button class="btn btn-success" type="radio" ng-model="bookOrderingForEdit.status" value="InProgress" ng-click="getDateForOnGoing('InProgress')">
-                                        InProgress</button>
-    </td> <td>
-                                        <button class="btn btn-info" type="radio" ng-model="bookOrderingForEdit.status" value="OnGoing" ng-click="getDateForOnGoing('OnGoing')">
-                                        OnGoing</button>
-    </td> <td>
-                                        <button  class="btn btn-warning"type="radio" ng-model="bookOrderingForEdit.status" value="Finished" ng-click="getDateForOnGoing('Finished')">
-                                        Finished</button>
-    </td> <td>
-                                        <button class="btn btn-danger" type="radio" ng-model="bookOrderingForEdit.status" value="Cancelled" ng-click="getDateForOnGoing('Cancelled')">
-                                        Cancelled</button>
-        </td>
-    </tr>
-</table>
-
-
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" ng-model="bookOrderingForEdit.status"
+                                                        value="Pending" ng-click="getDateForOnGoing('Pending')">
+                                                    Pending
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success" type="radio"
+                                                        ng-model="bookOrderingForEdit.status" value="InProgress"
+                                                        ng-click="getDateForOnGoing('InProgress')">
+                                                    InProgress
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-info" type="radio"
+                                                        ng-model="bookOrderingForEdit.status" value="OnGoing"
+                                                        ng-click="getDateForOnGoing('OnGoing')">
+                                                    OnGoing
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-warning" type="radio"
+                                                        ng-model="bookOrderingForEdit.status" value="Finished"
+                                                        ng-click="getDateForOnGoing('Finished')">
+                                                    Finished
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" type="radio"
+                                                        ng-model="bookOrderingForEdit.status" value="Cancelled"
+                                                        ng-click="getDateForOnGoing('Cancelled')">
+                                                    Cancelled
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                     <label>{{bookOrderingForEdit.status}}</label>
-                                    <!--
-                                    <label>
-                                        <input type="radio" ng-model="bookOrderingForEdit.status" value="Pending" ng-click="getDateForOnGoing()">
-                                        Pending
-                                    </label><br/>
-                                    <label>
-                                        <input type="radio" ng-model="bookOrderingForEdit.status" value="InProgress" ng-click="getDateForOnGoing()">
-                                        InProgress
-                                    </label><br/>
-                                    <label>
-                                        <input type="radio" ng-model="bookOrderingForEdit.status" value="OnGoing" ng-click="getDateForOnGoing()">
-                                        OnGoing
-                                    </label><br/>
-                                    <label>
-                                        <input type="radio" ng-model="bookOrderingForEdit.status" value="Finished" ng-click="getDateForOnGoing()">
-                                        Finished
-                                    </label><br/>
-                                    <label>
-                                        <input type="radio" ng-model="bookOrderingForEdit.status" value="Cancelled" ng-click="getDateForOnGoing()">
-                                        Cancelled
-                                    </label><br/>-->
-
-
-                                        <!--
-                                        <input ng-model="searchStatus.status" type="radio" name="search-type" value="OnGoing">OnGoing
-                                            <input ng-model="searchStatus.status" type="radio" name="search-type" value="Finished">  Finished
-                                            <input ng-model="searchStatus.status" type="radio" name="search-type" value="InProgress">InProgress
-                                            <input ng-model="searchStatus.status" type="radio" name="search-type" value="Pending"> Pending
-                                            <input ng-model="searchStatus.status" type="radio" name="search-type" value="Cancelled">Cancelled-->
-
-
-
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                        </tr>
 
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">issueDate:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookOrderingForEdit.issueDate" type="text">
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">issueDate:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="bookOrderingForEdit.issueDate"
+                                               type="text">
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-</tr>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">dueDate:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookOrderingForEdit.dueDate" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">dueDate:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="bookOrderingForEdit.dueDate" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
 
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">finishDate:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookOrderingForEdit.finishDate" type="text">
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">finishDate:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="bookOrderingForEdit.finishDate"
+                                               type="text">
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
 
-
-                </table>
-
+                    </table>
 
 
+                </form>
+            </div>
+        </md-dialog-content>
 
+        <md-dialog-actions layout="row">
+            <md-button ng-click="EditBookOrdering()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
 
-
-
-            </form>
-        </div>
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="EditBookOrdering()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-    <!--   <label>
-       </label>-->
-
-</form>
-</md-dialog>
+    </form>
+    </md-dialog>
 </script>
 
 
+<script type="text/ng-template" id="dialog3.tmpl.html">
+    <md-dialog
+    aria-label="Delete Order"  ng-cloak>
+    <form>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Delete Order</h2>
+                <span flex></span>
+
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
 
 
+                <form class="form-horizontal" role="form">
 
 
-<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Order"  ng-cloak>
-<form>
+                    <label> Are You suye you want to delete this Order &nbsp ?</label>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Delete Order</h2>
-            <span flex></span>
+                </form>
+            </div>
+        </md-dialog-content>
 
-        </div>
-    </md-toolbar>
+        <md-dialog-actions layout="row">
 
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form">
+            <md-button ng-click="DeleteBookOrdering()">
+                Yes
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                No
+            </md-button>
+        </md-dialog-actions>
 
 
-                <label> Are You suye you want to delete this Order &nbsp ?</label>
-
-            </form>
-        </div>
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="DeleteBookOrdering()">
-            Yes
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            No
-        </md-button>
-    </md-dialog-actions>
-
-
-</form>
-</md-dialog>
+    </form>
+    </md-dialog>
 </script>

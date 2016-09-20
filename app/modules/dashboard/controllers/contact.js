@@ -12,12 +12,15 @@ dashboard.controller("ContactController", ['$rootScope', '$scope', '$state', '$l
 function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,apiService,globalService) {
     var vm = this;
     vm.userID=globalService.GetUserDetails().id;
+    vm.user_ID=globalService.GetUserDetails()._id;
     vm.userName=globalService.GetUserDetails().firstName;
     vm.message = {};
-
+    vm.userlocal=globalService.GetUserDetails();
     vm.submitForm = function () {
         vm.message.senderUser= vm.userID;
         vm.message.receiverUser="311538417";
+        vm.message.senderUser_ID= vm.user_ID;
+        vm.message.receiverUser_ID="578222e48b1293d035e0341c";
         vm.message.isRead=false;
         vm.message.senderName=vm.userName;
         vm.message.receiverName="Admin";
@@ -27,30 +30,20 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
         apiService.createNewMessage(vm.message)
             .then(function (data) {
+
+                if( vm.message.receiverUser_ID==vm.user_ID){
+                    vm.userlocal.MessagesLength++;
+                    globalService.SetUserDetails(vm.userlocal);
+
+
+                    $rootScope.$emit("CallParentMethod", {});
+                }
                 console.log("msg sent");
                 $state.go('app.simpleSearch');
             }, function (err) {
                 console.log("msg error");
             });
 
-       /* var request = $http({
-            method: "post",
-            url: "contact.php",
-            data: vm.message,
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        });*/
-
-        /* Check whether the HTTP Request is successful or not. */
-      /*  request.success(function (data) {
-            console.log(data);
-            if (data == "success") {
-                Flash.create('success', 'Message Sent Succesfully', 'large-text');
-                vm.message = {};
-                vm.contactForm.$pristine();
-                vm.contactForm.$setUntouched();
-
-            }
-        });*/
     };
     console.log("coming to Contact controller");
 

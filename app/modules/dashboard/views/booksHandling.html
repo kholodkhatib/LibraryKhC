@@ -1,29 +1,34 @@
 ﻿<!--
-Author: Ranjithprabhu K
+Author: Kholod Khatib
 Page Description:  booksHandling page
 Date: 15 Jan 2016
 -->
 <style>
 
-    .table th:hover{
+    .table th:hover {
         text-decoration: underline;
         cursor: pointer;
     }
-    .table .action-column{
+
+    .table .action-column {
         width: 230px;
     }
-    .table .action-column:hover{
+
+    .table .action-column:hover {
         text-decoration: none;
         cursor: default;
     }
-    .table tfoot .pagination{
+
+    .table tfoot .pagination {
         float: right;
         margin: 0;
     }
-    .table tfoot .pagination li{
+
+    .table tfoot .pagination li {
         cursor: pointer;
     }
-    .table tfoot select{
+
+    .table tfoot select {
         width: 90px;
         float: right;
         margin-right: 8px;
@@ -33,18 +38,19 @@ Date: 15 Jan 2016
 
 <style>
 
-    .box{
+    .box {
         width: 300px;
         height: 30px;
     }
 
-    .container-1{
+    .container-1 {
         width: 300px;
         vertical-align: middle;
         white-space: nowrap;
         position: relative;
     }
-    .container-1 input#search{
+
+    .container-1 input#search {
         width: 300px;
         height: 50px;
         background: #2b303b;
@@ -57,15 +63,18 @@ Date: 15 Jan 2016
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
+
     .container-1 input#search::-webkit-input-placeholder {
         color: #65737e;
     }
 
-    .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    .container-1 input#search:-moz-placeholder {
+        /* Firefox 18- */
         color: #65737e;
     }
 
-    .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    .container-1 input#search::-moz-placeholder {
+        /* Firefox 19+ */
         color: #65737e;
     }
 
@@ -73,8 +82,7 @@ Date: 15 Jan 2016
         color: #65737e;
     }
 
-
-    .container-1 .icon{
+    .container-1 .icon {
         position: absolute;
         top: 50%;
         margin-left: 17px;
@@ -85,10 +93,9 @@ Date: 15 Jan 2016
 </style>
 <style>
     .angucomplete-dropdown {
-    ...
-    overflow-y: auto;
-       background-color: #c5d5e6; // your preference
-    ...
+    . . . overflow-y : auto;
+        background-color: #c5d5e6;
+    / / your preference . . .
     }
 
     table.ex2 {
@@ -96,469 +103,395 @@ Date: 15 Jan 2016
         border-spacing: 10px 10px;
     }
 </style>
-        <!-- Content Header (Page header) -->
-        <section class="content-header" >
-          <h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
         Books Information
 
 
-          </h1>
-            <br>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Books Handling</li>
-          </ol>
-        </section>
+    </h1>
+    <br>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Books Handling</li>
+    </ol>
+</section>
 
 
 <div style="min-height: 200px">
-<div class="box">
-    <div class="container-1">
-        <span class="icon"><i class="fa fa-search"></i></span>
-        <input ng-model="vm.searchFilter" type="search" id="search" placeholder="Search..." />
+    <div class="box">
+        <div class="container-1">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <input ng-model="vm.searchFilter" type="search" id="search" placeholder="Search..."/>
+        </div>
     </div>
-</div>
-<br>
-
-<!--<table class="table table-hover table-bordered" st-table >-->
+    <br>
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-<thead>
-<tr style="z-index: 1">
-    <th ng-click="predicate='title'; reverse=!reverse">Title</th>
-    <th ng-click="predicate='description'; reverse=!reverse">Description</th>
-    <th ng-click="predicate='year'; reverse=!reverse">Publish Year</th>
-    <th ng-click="predicate='author'; reverse=!reverse">Author</th>
-    <th ng-click="predicate='category'; reverse=!reverse">Category</th>
+        <thead>
+        <tr style="z-index: 1">
+            <th ng-click="predicate='title'; reverse=!reverse">Title</th>
+            <th ng-click="predicate='description'; reverse=!reverse">Description</th>
+            <th ng-click="predicate='year'; reverse=!reverse">Publish Year</th>
+            <th ng-click="predicate='author'; reverse=!reverse">Author</th>
+            <th ng-click="predicate='category'; reverse=!reverse">Category</th>
 
-    <th ng-click="predicate='language'; reverse=!reverse">Language</th>
-    <th ng-click="predicate='bookStatus'; reverse=!reverse">Status</th>
-
-
-
-    <th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="book in vm.booksArray | filter: vm.searchFilter">
-
-   <!-- <td>
-        &lt;!&ndash; editable username (text with validation) &ndash;&gt;
-        <span editable-text="books.title" e-name="name" e-form="rowform" onbeforesave="vm.checkName($data, user.id)" e-required>
-          {{books.title || 'empty' }}
-        </span>
-    </td>
-
-    <td> {{books.description || 'empty'}}</td>
-    <td> {{books.year }}</td>
-    <td> {{books.author }}</td>
-    <td> {{books.category }}</td>
-    <td> {{books.language }}</td>
-    <td> {{books.available }}</td>-->
+            <th ng-click="predicate='language'; reverse=!reverse">Language</th>
+            <th ng-click="predicate='bookStatus'; reverse=!reverse">Status</th>
 
 
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="book in vm.booksArray | filter: vm.searchFilter">
+
+            <td> {{book.title}}</td>
+            <td> {{book.description }}</td>
+            <td> {{book.year }}</td>
+            <td> {{book.author }}</td>
+            <td> {{book.category }}</td>
+            <td> {{book.language }}</td>
+            <td> {{book.bookStatus }}</td>
+            <td class="action-column">
+                <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,book)"><span
+                        class="glyphicon glyphicon-edit"></span>&nbsp;Edit
+                </button>
+
+                <button type="button" class="btn btn-danger btn-sm" ng-click="vm.showDeleteDialog($event,book)"><span
+                        class="glyphicon glyphicon-trash"></span> &nbsp;Delete
+                </button>
+            </td>
 
 
-    <td>  {{book.title}} </td>
-    <td> {{book.description }}</td>
-    <td> {{book.year }}</td>
-    <td> {{book.author }}</td>
-    <td> {{book.category }}</td>
-    <td> {{book.language }}</td>
-    <td> {{book.bookStatus }}</td>
-    <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,book)">Edit</button>
+        </tr>
+        </tbody>
+        <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Book</button>
 
-        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,book)">Delete</button>
-    </td>
-
-
-</tr>
-</tbody>
-    <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Book</button>
-<!--    <button type="button" class="btn btn-info btn-sm" ng-click="vm.openCreateBookForm()">Add New Book</button>-->
-
-</table>
+    </table>
 
 </div>
 <!--Add New-->
-<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="New Book"  ng-cloak style="max-width: 40%;">
-<form >
+<script type="text/ng-template" id="dialog1.tmpl.html">
+    <md-dialog
+    aria-label="New Book"  ng-cloak style="max-width: 40%;">
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>New Book</h2>
-           <!-- <span flex></span>-->
-
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form">
-                <table  class="ex2" >
-
-
-                    <tr>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">title:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" ng-model="book.title" type="text">
-                    </div>
-                </div>
-                        </td>
-
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">author:</label>
-                    <div class="col-lg-8">
-                        <!--<input class="form-control" ng-model="book.author" type="text">-->
-                        <angucomplete id="ex1"
-                                      placeholder="Search author"
-                                      pause="100"
-                                      selectedobject="selectedAuthor"
-                                      localdata="authorsArray"
-                                      searchfields="name"
-                                      titlefield="name"
-                                      minlength="1"
-                                      inputclass="form-control form-control-small" autocomplete="off"/>
-                    </div>
-                </div>
-                        </td>
-                        </tr>
-                    <tr>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">description:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" ng-model="book.description" type="text">
-                    </div>
-                </div>
-                        </td>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">category:</label>
-                    <div class="col-lg-8">
-                     <!--   <input class="form-control"  ng-model="book.category" type="text">-->
-                        <angucomplete id="ex1"
-                                      placeholder="Search category"
-                                      pause="100"
-                                      selectedobject="selectedCategory"
-                                      localdata="categoriesArray"
-                                      searchfields="name"
-                                      titlefield="name"
-                                      minlength="1"
-                                      inputclass="form-control form-control-small" autocomplete="off"/>
-                    </div>
-                </div>
-                        </td>
-
-</tr>
-                    <tr>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">year:</label>
-                    <div class="col-lg-8">
-<!--
-                        <input class="form-control" ng-model="book.year" type="text">
--->
-                        <angucomplete id="ex1"
-                                      placeholder="Search Year"
-                                      pause="100"
-                                      selectedobject="selectedYear"
-                                      localdata="yearsArray"
-                                      searchfields="name"
-                                      titlefield="name"
-                                      minlength="1"
-                                      inputclass="form-control form-control-small" autocomplete="off"/>
-                    </div>
-                </div>
-                            </td>
-                        <td>
-                <div class="row">
-                    <label class="col-lg-4 control-label">language:</label>
-                    <div class="col-lg-8">
-                      <!--  <input class="form-control" ng-model="book.language" type="text">-->
-                        <angucomplete id="ex1"
-                                      placeholder="Search Language"
-                                      pause="100"
-                                      selectedobject="selectedLanguage"
-                                      localdata="languagesArray"
-                                      searchfields="name"
-                                      titlefield="name"
-                                      minlength="1"
-                                      inputclass="form-control form-control-small" autocomplete="off"/>
-                    </div>
-                </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-        </form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Book</h2>
             </div>
-    </md-dialog-content>
+        </md-toolbar>
 
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="CreateNewBook()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-   <!-- <label>
-        book= {{book | json}}
-    </label>-->
+        <md-dialog-content>
+            <div class="md-dialog-content">
 
-</form>
-</md-dialog>
+                <form class="form-horizontal" role="form">
+                    <table class="ex2">
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">title:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="book.title" type="text">
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">author:</label>
+
+                                    <div class="col-lg-8">
+                                        <!--<input class="form-control" ng-model="book.author" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search author"
+                                                      pause="100"
+                                                      selectedobject="selectedAuthor"
+                                                      localdata="authorsArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">description:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="book.description" type="text">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">category:</label>
+
+                                    <div class="col-lg-8">
+                                        <!--   <input class="form-control"  ng-model="book.category" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search category"
+                                                      pause="100"
+                                                      selectedobject="selectedCategory"
+                                                      localdata="categoriesArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">year:</label>
+
+                                    <div class="col-lg-8">
+                                        <!--
+                                                                <input class="form-control" ng-model="book.year" type="text">
+                                        -->
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search Year"
+                                                      pause="100"
+                                                      selectedobject="selectedYear"
+                                                      localdata="yearsArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">language:</label>
+
+                                    <div class="col-lg-8">
+                                        <!--  <input class="form-control" ng-model="book.language" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder="Search Language"
+                                                      pause="100"
+                                                      selectedobject="selectedLanguage"
+                                                      localdata="languagesArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="CreateNewBook()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
-
-
-
-
-
-
-
-
 
 
 <!--Edit-->
-<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Book"  ng-cloak>
-<form autocomplete="off">
+<script type="text/ng-template" id="dialog2.tmpl.html">
+    <md-dialog
+    aria-label="Edit Book"  ng-cloak>
+    <form autocomplete="off">
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Edit Book</h2>
-            <span flex></span>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Book</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <div>
+            <div class="md-dialog-content">
+                <form class="form-horizontal" role="form" autocomplete="off">
+                    <table class="ex2">
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">title:</label>
 
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="bookForEdit.title" type="text">
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">author:</label>
+
+                                    <div class="col-lg-8">
+                                        <angucomplete id="ex1"
+                                                      placeholder={{bookForEdit.author}}
+                                                      pause="100"
+                                                      selectedobject="selectedAuthor"
+                                                      localdata="authorsArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small"/>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">description:</label>
+
+                                    <div class="col-lg-8">
+                                        <input class="form-control" ng-model="bookForEdit.description" type="text">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">category:</label>
+
+                                    <div class="col-lg-8">
+                                        <!-- <input class="form-control"  ng-model="bookForEdit.category" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder={{bookForEdit.category}}
+                                                      pause="100"
+                                                      selectedobject="selectedCategory"
+                                                      localdata="categoriesArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small"/>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">year:</label>
+
+                                    <div class="col-lg-8">
+                                        <angucomplete id="ex1"
+                                                      placeholder={{bookForEdit.year}}
+                                                      pause="100"
+                                                      selectedobject="selectedYear"
+                                                      localdata="yearsArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">language:</label>
+
+                                    <div class="col-lg-8">
+                                        <!--  <input class="form-control" ng-model="bookForEdit.language" type="text">-->
+                                        <angucomplete id="ex1"
+                                                      placeholder={{bookForEdit.language}}
+                                                      pause="100"
+                                                      selectedobject="selectedLanguage"
+                                                      localdata="languagesArray"
+                                                      searchfields="name"
+                                                      titlefield="name"
+                                                      minlength="1"
+                                                      inputclass="form-control form-control-small"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <div class="row">
+                                    <label class="col-lg-4 control-label">Status:</label>
+
+                                    <div class="col-lg-10">
+                                        <form action="">
+                                            <INPUT TYPE="radio" Name="Browser" ng-model="pbookForEdit.bookStatus"
+                                                   ng-checked="bookForEdit.bookStatus=='Available'" Value="Available">Available
+                                            &nbsp; &nbsp;
+                                            <INPUT TYPE="radio" Name="Browser" ng-model="bookForEdit.bookStatus"
+                                                   ng-checked="bookForEdit.bookStatus=='Not Available'"
+                                                   Value="Not Available">Not Available
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </form>
+            </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+
+                <md-button ng-click="EditBook()">
+                    Save
+                </md-button>
+                <md-button ng-click="answer('useful')">
+                    Close
+                </md-button>
+            </md-dialog-actions>
+            <!--   <label>
+               </label>-->
         </div>
-    </md-toolbar>
-
-    <div>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form" autocomplete="off">
-                <table  class="ex2" >
-
-
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">title:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookForEdit.title" type="text">
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">author:</label>
-
-                                <div class="col-lg-8">
-                                    <angucomplete id="ex1"
-                                                  placeholder={{bookForEdit.author}}
-                                                  pause="100"
-                                                  selectedobject="selectedAuthor"
-                                                  localdata="authorsArray"
-                                                  searchfields="name"
-                                                  titlefield="name"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small"/>
-                                </div>
-
-                            </div>
-
-                            <!--<div class="col-lg-8">
-                                <input class="form-control" ng-model="bookForEdit.author" type="text">
-                            </div>-->
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">description:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookForEdit.description" type="text">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">category:</label>
-                                <div class="col-lg-8">
-                                   <!-- <input class="form-control"  ng-model="bookForEdit.category" type="text">-->
-                                    <angucomplete id="ex1"
-                                                  placeholder={{bookForEdit.category}}
-                                                  pause="100"
-                                                  selectedobject="selectedCategory"
-                                                  localdata="categoriesArray"
-                                                  searchfields="name"
-                                                  titlefield="name"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small"/>
-                                </div>
-                            </div>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">year:</label>
-                                <div class="col-lg-8">
-                                    <angucomplete id="ex1"
-                                                  placeholder={{bookForEdit.year}}
-                                                  pause="100"
-                                                  selectedobject="selectedYear"
-                                                  localdata="yearsArray"
-                                                  searchfields="name"
-                                                  titlefield="name"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small"/>
-
-
-<!--
-                                    <input class="form-control" ng-model="bookForEdit.year" type="text">
--->
-
-
-
-                             <!--       <angucomplete id="ex1"
-                                                  placeholder="Search Year"
-                                                  pause="100"
-                                                  selectedobject="selectedYear"
-                                                  localdata=languagesArray"
-                                                  searchfields="name"
-                                                  titlefield="name"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small"/>
--->
-<!--
-                                            <md-datepicker ng-model="vm.myDate.getFullYear()"></md-datepicker>
--->
-
-
-
-
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">language:</label>
-                                <div class="col-lg-8">
-                                  <!--  <input class="form-control" ng-model="bookForEdit.language" type="text">-->
-                                    <angucomplete id="ex1"
-                                                  placeholder={{bookForEdit.language}}
-                                                  pause="100"
-                                                  selectedobject="selectedLanguage"
-                                                  localdata="languagesArray"
-                                                  searchfields="name"
-                                                  titlefield="name"
-                                                  minlength="1"
-                                                  inputclass="form-control form-control-small"/>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-
-                        <td>
-                            <div class="row">
-                                <label class="col-lg-4 control-label">Status:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" ng-model="bookForEdit.bookStatus" type="text">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-            </form>
-        </div>
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="EditBook()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-    <!--   <label>
-       </label>-->
-</div>
-</form>
-</md-dialog>
+    </form>
+    </md-dialog>
 </script>
 
 
-
-
-
 <!--Remove-->
-<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Book"  ng-cloak>
-<form>
+<script type="text/ng-template" id="dialog3.tmpl.html">
+    <md-dialog
+    aria-label="Delete Book"  ng-cloak>
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Delete Book</h2>
-            <span flex></span>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Delete Book</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form class="form-horizontal" role="form">
+                    <label> Are You suye you want to delete Book: {{bookForDelete.title}} &nbsp ?</label>
+                </form>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
 
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-
-
-            <form class="form-horizontal" role="form">
-
-
-                <label> Are You suye you want to delete Book: {{bookForDelete.title}} &nbsp ?</label>
-
-            </form>
-        </div>
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="DeleteBook()">
-            Yes
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            No
-        </md-button>
-    </md-dialog-actions>
+            <md-button ng-click="DeleteBook()">
+                Yes
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                No
+            </md-button>
+        </md-dialog-actions>
 
 
-</form>
-</md-dialog>
+    </form>
+    </md-dialog>
 </script>

@@ -139,25 +139,11 @@ Date: 15 Jan 2016
   <td>{{person.birthday |date:"dd/mm/yyyy" }}</td>
     <td>{{person.isAdmin }}</td>
     <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,person)">Edit</button>
+        <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,person)"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit</button>
 
-        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,person)">Delete</button>
+        <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,person)"><span class="glyphicon glyphicon-trash"></span> &nbsp; Delete</button>
     </td>
-   <!-- <td style="white-space: nowrap">
-        &lt;!&ndash; form &ndash;&gt;
-        <form editable-form name="rowform" onbeforesave="vm.saveUser($data, person._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == person">
-            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                save
-            </button>
-            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-                cancel
-            </button>
-        </form>
-        <div class="buttons" ng-show="!rowform.$visible">
-            <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-            <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
-        </div>
-    </td>-->
+
 </tr>
 </tbody>
     <button type="button" class="btn btn-info btn-sm" ng-click="vm.showAdvanced($event)">Add New Person</button>
@@ -218,9 +204,11 @@ Date: 15 Jan 2016
                     <div class="row">
                         <label class="col-lg-3 control-label">gender:</label>
                         <div class="col-lg-6">
-                            <!--<input class="form-control"  ng-model="person.gender" type="text">-->
-                            <INPUT TYPE="radio" Name="Browser"  ng-model="person.gender"  Value ="Male" >Male
-                            <INPUT TYPE="radio" Name= "Browser"  ng-model="person.gender"  Value ="Female">Female
+                            <form action="">
+                                <INPUT TYPE="radio" Name="Browser"  ng-model="person.gender" ng-checked="person.gender=='Male'" Value ="Male" >Male
+                                &nbsp; &nbsp;
+                                <INPUT TYPE="radio" Name= "Browser"  ng-model="person.gender" ng-checked="person.gender=='Female'" Value ="Female">Female
+                            </form>
 
                         </div>
                     </div>
@@ -265,10 +253,12 @@ Date: 15 Jan 2016
                         <td>
                     <div class="row">
                         <label class="col-lg-3 control-label">isAdmin:</label>
-                        <div class="col-lg-6">
-                         <!--   <input class="form-control" ng-model="person.isAdmin" type="text">-->
-                            <INPUT TYPE="radio" Name="Browser"  ng-model="person.isAdmin"  Value ="true" >Admin
-                            <INPUT TYPE="radio" Name= "Browser"  ng-model="person.isAdmin"  Value ="false">not Admin
+                        <div class="col-lg-9">
+                            <form action="">
+                                <INPUT TYPE="radio" Name="Browser"  ng-model="person.isAdmin"  Value ="true" ng-checked="person.isAdmin==true" >Admin
+                                &nbsp; &nbsp;
+                                <INPUT TYPE="radio" Name= "Browser"  ng-model="person.isAdmin"  Value ="false" ng-checked="person.isAdmin==false">Not Admin
+                            </form>
                         </div>
                     </div>
                         </td>
@@ -371,9 +361,11 @@ Date: 15 Jan 2016
                                 <label class="col-lg-3 control-label">gender:</label>
                                 <div class="col-lg-9">
                                    <!-- <input class="form-control"  ng-model="personForEdit.gender" type="text">-->
-
-                                    <INPUT TYPE="radio" Name="Browser"  ng-model="personForEdit.gender" ng-checked="!vm.IsChecked" Value ="Male" >Male
-                                    <INPUT TYPE="radio" Name= "Browser"  ng-model="personForEdit.gender" ng-checked="vm.IsChecked" Value ="Female">Female
+                                    <form action="">
+                                    <INPUT TYPE="radio" Name="Browser"  ng-model="personForEdit.gender" ng-checked="personForEdit.gender=='Male'" Value ="Male" >Male
+                                        &nbsp; &nbsp;
+                                    <INPUT TYPE="radio" Name= "Browser"  ng-model="personForEdit.gender" ng-checked="personForEdit.gender=='Female'" Value ="Female">Female
+                                        </form>
                                 </div>
                             </div>
                         </td>
@@ -417,11 +409,14 @@ Date: 15 Jan 2016
                         <td>
                             <div class="row">
                                 <label class="col-lg-3 control-label">isAdmin:</label>
-                                <div class="col-lg-6">
-                                   <!-- <input class="form-control" ng-model="personForEdit.isAdmin" type="text">-->
+                                <div class="col-lg-9">
+                                    <!-- <input class="form-control" ng-model="personForEdit.isAdmin" type="text">-->
                                     <!--   <input class="form-control" ng-model="person.isAdmin" type="text">-->
-                                    <INPUT TYPE="radio" Name="Browser"  ng-model="personForEdit.isAdmin"  Value ="true" ng-checked="vm.IsAdmin==true" >Yes
-                                    <INPUT TYPE="radio" Name= "Browser"  ng-model="personForEdit.isAdmin"  Value ="false" ng-checked="vm.IsAdmin==false">No
+                                    <form action="">
+                                    <INPUT TYPE="radio" Name="Browser"  ng-model="personForEdit.isAdmin"  Value ="true" ng-checked="personForEdit.isAdmin==true" >Admin
+                                        &nbsp; &nbsp;
+                                    <INPUT TYPE="radio" Name= "Browser"  ng-model="personForEdit.isAdmin"  Value ="false" ng-checked="personForEdit.isAdmin==false">Not Admin
+                                        </form>
                                 </div>
                             </div>
                         </td>

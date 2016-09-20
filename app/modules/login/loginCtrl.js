@@ -1,15 +1,15 @@
 ﻿/*==========================================================
-    Author      : Ranjithprabhu K
-    Date Created: 24 Dec 2015
-    Description : Controller to handle Login module
-    Change Log
-    s.no      date    author     description     
+ Author      : Ranjithprabhu K
+ Date Created: 24 Dec 2015
+ Description : Controller to handle Login module
+ Change Log
+ s.no      date    author     description
 
 
  ===========================================================*/
 
-login.controller("loginCtrl", ['$rootScope', '$scope', '$state', '$location', 'loginService', 'Flash','apiService','globalService',
-function ($rootScope, $scope, $state, $location, loginService, Flash, apiService,globalService) {
+login.controller("loginCtrl", ['$rootScope', '$scope', '$state', '$location', 'loginService', 'Flash', 'apiService', 'globalService',
+    function ($rootScope, $scope, $state, $location, loginService, Flash, apiService, globalService) {
         var vm = this;
 
         vm.getUser = {};
@@ -17,25 +17,23 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
         vm.signIn = true;
 
 
-    vm.message = {};
-    vm.myDate = new Date();
-    vm.minDate = new Date(
-        vm.myDate.getFullYear(),
-        vm.myDate.getMonth() - 2,
-        vm.myDate.getDate());
-    vm.maxDate = new Date(
-        vm.myDate.getFullYear(),
-        vm.myDate.getMonth() + 2,
-        vm.myDate.getDate());
-
-
+        vm.message = {};
+        vm.myDate = new Date();
+        vm.minDate = new Date(
+            vm.myDate.getFullYear(),
+            vm.myDate.getMonth() - 2,
+            vm.myDate.getDate());
+        vm.maxDate = new Date(
+            vm.myDate.getFullYear(),
+            vm.myDate.getMonth() + 2,
+            vm.myDate.getDate());
 
 
         //access login
         vm.login = function (data) {
 
 
-vm.userFound;
+            vm.userFound;
             apiService.GetPerson(data)
                 .then(function (userFound) {
 
@@ -43,31 +41,19 @@ vm.userFound;
                     globalService.SetUserDetails(vm.userFound);
                     $state.go('app.simpleSearch');
                 }, function (err) {
-                    Flash.create('danger', ''+err.data, 'large-text');
+                    Flash.create('danger', '' + err.data, 'large-text');
 
 
                 });
 
-
-/*            if (data.Username == vm.userFound.id) {
-                debugger
-                if (data.Password == vm.userFound.password) {
-                    debugger
-                    $state.go('app.simpleSearch');
-                }
-                else
-                    Flash.create('danger', 'Invalid Password', 'large-text');
-            }
-            else
-                Flash.create('danger', 'Invalid Username', 'large-text');*/
         };
 
         //get registration details
         vm.register = function () {
-            if (vm.setUser.confirmPassword == vm.setUser.password){
+            if (vm.setUser.confirmPassword == vm.setUser.password) {
 
-                vm.setUser.birthday= vm.myDate;
-                vm.setUser.isAdmin=false;
+                vm.setUser.birthday = vm.myDate;
+                vm.setUser.isAdmin = false;
 
                 apiService.createNewPeople(vm.setUser).then(function () {
                     Flash.create('success', 'Register Done Succesfully', 'large-text');
@@ -75,18 +61,16 @@ vm.userFound;
                     $state.go('app.simpleSearch');
 
                 }, function (err) {
-                    Flash.create('danger', ''+err.data, 'large-text');
+                    Flash.create('danger', '' + err.data, 'large-text');
 
 
                 });
             }
-            else{
+            else {
 
                 Flash.create('danger', 'Password are not Compatible', 'large-text');
             }
         };
-
-
 
 
     }]);

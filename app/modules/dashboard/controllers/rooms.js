@@ -68,7 +68,7 @@ if(d=='today'){
         $scope.choosenDate=vm.choosenDate;
 
         $scope.ChooseHour=function($event,x) {
-
+debugger
             if(x.status==false && x.user==$scope.user){
                 $scope.choosenHour=x;
                 vm.RemoveHour= x.hour

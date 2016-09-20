@@ -175,14 +175,15 @@ Date: 15 Jan 2016
     <td>{{events.time  | date:'h:mma'}}</td>
   <td>{{events.date | date:'MM/dd/yyyy'}}</td>
     <td class="action-column">
-        <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,events)">Edit</button>
+        <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,events)"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit</button>
+
+
 <!--
         <button type="button" class="btn btn-danger btn-sm"  ng-click="vm.showDeleteDialog($event,events)">Delete</button>
 -->
 
         <button type="button"  ng-click="vm.showDeleteDialog($event,events)" class="btn btn-sm btn-danger">
-            <i class="glyphicon glyphicon-remove-circle">
-            </i>
+            <span class="glyphicon glyphicon-trash"></span>&nbsp; Delete
         </button>
     </td>
 </tr>

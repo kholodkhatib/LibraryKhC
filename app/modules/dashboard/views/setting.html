@@ -47,19 +47,19 @@ Date: 05 Jan 2016
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">ID:</label>
                                         <div class="col-lg-6">
-                                            <input disabled class="form-control" type="text" ng-model="vm.userlocalToEdit.id">
+                                            <input disabled class="form-control" type="text" ng-model="vm.userlocalToEdit.id" >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">First name:</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.firstName">
+                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.firstName" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Last name:</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.lastName">
+                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.lastName" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -73,7 +73,7 @@ Date: 05 Jan 2016
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Email:</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.email">
+                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.email" required>
                                         </div>
                                     </div>
 
@@ -81,27 +81,27 @@ Date: 05 Jan 2016
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Address:</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.address">
+                                            <input class="form-control" type="text"  ng-model="vm.userlocalToEdit.address" required>
                                         </div>
                                     </div>
 
 
 
 
-                                        <div class="row">
+                                    <!--    <div class="row">
 
 
                                                     <label class="col-lg-3 control-label">Birthday:</label>
                                                     <div class="col-lg-6">
-                                                        <input class="form-control" ng-model="vm.userlocalToEdit.birthday | date:d/mm/yyyy">
-                                                 <!--   <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>-->
+                                                        <input class="form-control" ng-model="vm.userlocalToEdit.birthday  | date :'dd/MM/yyyy'">
+                                                 &lt;!&ndash;   <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>&ndash;&gt;
                                                     </div>
 
 
 
 
                                         </div>
-
+-->
                                         `
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Password:</label>

@@ -7,6 +7,16 @@ Date: 05 Jan 2016
 <style>
     .button5 {border-radius: 80%;}
 
+    #divNotRead {
+        background-color: rgba(255, 0, 0, 0.4);
+      /*  background-color: yellow;*/
+   /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /!* IE 8 *!/
+    filter: alpha(opacity=50);  /!* IE 5-7 *!/
+    -moz-opacity: 0.5;          /!* Netscape *!/
+    -khtml-opacity: 0.5;        /!* Safari 1.x *!/
+    opacity: 0.5;               /!* Good browsers *!/*/}
+
+
 </style>
 <section class="content-header">
     <h1>
@@ -44,12 +54,12 @@ Date: 05 Jan 2016
                        {{msg.addedTime| date:'MM/dd/yyyy'}}
                     </span>
                 </li>
-                <li>
+                <li >
                     <i class="fa fa-suitcase bg-blue-gradient text-white"></i>
-                    <div class="timeline-item">
+                    <div class="timeline-item" >
                         <span class="time text-bold"> {{msg.isRead}}</span>
                         <h3 class="timeline-header"><a href="http://kmitsolutions.com" target="_blank">From: &nbsp; {{msg.senderName}}</a></h3>
-                        <div class="timeline-body">
+                        <div class="timeline-body" >
 
                                 {{msg.content}}
 
@@ -58,13 +68,8 @@ Date: 05 Jan 2016
                         </div>
                         <div class="timeline-footer">
                             <p>
-                                <span class="label label"> </span>
-                               <!-- <span class="label label-success">CSS 3</span>
-                                <span class="label label-warning">Java Script</span>
-                                <span class="label label-primary">Type Script</span>
-                                <span class="label label-danger">jQuery</span>
-                                <span class="label label-info">Angular JS</span>
-                                <span class="label label-success">SAAS</span>-->
+                              <!--  <span id="divNotRead"> hhhhhhh</span>-->
+
                                 <span class="pull-right" >
 
                                     <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,msg.isRead)" ng-hide="msg.isRead" >Make As Read</a>

@@ -73,3 +73,9 @@ a{
 .text-white{
     color:#fff!important;
 }
+.md-dialog-container{
+    top:0px !important;
+}
+body{
+    top:0px !important;
+}

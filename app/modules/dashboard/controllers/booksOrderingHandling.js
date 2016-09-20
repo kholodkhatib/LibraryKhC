@@ -20,6 +20,7 @@ vm.Refresh= function () {
 
     apiService.getAllBooksOrdering()
         .then(function (booksOrdering) {
+
             vm.booksOrderingArray = booksOrdering;
         }, function (err) {
         });
@@ -41,7 +42,7 @@ vm.newBookOrdering={};
         $scope.bookOrderingForEdit=vm.example;
         $scope.bookOrderingForDelete=vm.bookOrderingForDelete;
 
-
+        $scope.bookOrdering.issueDate= globalService.GetTodayDate();
         $scope.selectedPerson={};
 
         apiService.getAllPeople()
@@ -55,6 +56,7 @@ vm.newBookOrdering={};
         apiService.search()
             .then(function (books) {
                 $scope.booksArray = books;
+
             }, function (err) {
             });
 
@@ -75,23 +77,12 @@ vm.newBookOrdering={};
 
             }
             $scope.EditBookOrdering=function(){
-
-
-
-              /*  console.log($scope.bookOrderingForEdit);
-                if($scope.bookOrderingForEdit.status=="Finished"){
-                    debugger
-                    apiService.OrderBookIsFinished($scope.bookOrderingForEdit.book_ID)
-                        .then(function (data) {
-                            vm.Refresh();
-                            $mdDialog.cancel();
-                        }, function (err) {
-                            vm.Refresh();
-                        });
-                }
-*/
                 apiService.EditBookOrdering($scope.bookOrderingForEdit)
                     .then(function (data) {
+
+                        if($scope.bookOrderingForEdit.status=="Finished" || $scope.bookOrderingForEdit.status == "Cancelled"){
+                            $rootScope.$emit("RefreshLocalUser", {});
+                        }
 
                         vm.Refresh();
                         $mdDialog.cancel();
@@ -107,16 +98,40 @@ vm.newBookOrdering={};
 
 
             $scope.CreateNewBookOrdering= function(){
+                vm.choosedBook=$scope.selectedPerson.originalObject;
+
+                $scope.bookOrdering.bookTitle=$scope.selectedBook.originalObject.title;
+                $scope.bookOrdering.book_ID=$scope.selectedBook.originalObject._id;
 
 
+                $scope.bookOrdering.userID=$scope.selectedPerson.originalObject.id;
+                $scope.bookOrdering.user_ID=$scope.selectedPerson.originalObject._id;
+                $scope.bookOrdering.status='Pending';
+
+                console.log($scope.selectedBook);
                 console.log($scope.bookOrdering);
 
+                if($scope.selectedBook.originalObject.bookStatus=='Not Available'){
+                    Flash.create('warning', 'this book is not available ', 'large-text');
+                }else{
                 apiService.createNewBookOrdering($scope.bookOrdering)
                     .then(function (data) {
+                        Flash.create('success', 'Order Done Succesfully for book : '+$scope.bookOrdering.bookTitle, 'large-text');
+                        vm.choosedBook.bookStatus="Not Available";
+                        vm.choosedBook.user=$scope.selectedPerson.originalObject._id;
+                        /* books.followersArray.push({userId:vm.bookForOrder.user_ID});*/
+
+                        apiService.EditBook(vm.choosedBook) .then(function (data) {
+
+                        }, function (err) {
+                            /* vm.Refresh();*/
+                        });
+
+
                         vm.Refresh();
                         $mdDialog.cancel();
                     }, function (err) {
-                    });
+                    });}
             };
 
 
@@ -202,7 +217,7 @@ vm.newBookOrdering={};
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: useFullScreen
+            //fullscreen: true
         })
             .then(function(answer) {
                 vm.status = 'You said the information was "' + answer + '".';

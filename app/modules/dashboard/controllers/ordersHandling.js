@@ -12,13 +12,16 @@ dashboard.controller("OrdersHandlingController", ['$rootScope', '$scope', '$stat
 function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiService,globalService,$mdDialog, $mdMedia,globalService) {
     var vm = this;
     vm.userID=globalService.GetUserDetails().id;
+    vm.user_ID=globalService.GetUserDetails()._id;
     vm.userName=globalService.GetUserDetails().firstName;
     vm.isAdmin=globalService.GetUserDetails().isAdmin;
     vm.text={};
     vm.searchFilterInbox={};
-    vm.searchFilterInbox.receiverUser= vm.userID;
+   /* vm.searchFilterInbox.receiverUser= vm.userID;*/
+    vm.searchFilterInbox.receiverUser_ID= vm.user_ID;
     vm.searchFilterMSG={};
-    vm.searchFilterMSG.senderUser= vm.userID;
+  /*  vm.searchFilterMSG.senderUser= vm.userID;*/
+    vm.searchFilterMSG.senderUser_ID= vm.user_ID;
     vm.ShowInboxRow=true;
 vm.msgtoEdit={};
     vm.userlocal=globalService.GetUserDetails();
@@ -52,22 +55,6 @@ vm.msgtoEdit={};
     vm.changeStatus=function(msg,status){
         vm.msgtoEdit=msg;
         vm.msgtoEdit.isRead= !vm.msgtoEdit.isRead;
-      /*  if(status=='unread'){
-            vm.msgtoEdit.isRead=true;
-        }else
-        {
-            vm.msgtoEdit.isRead=false;
-        }*/
-      /*  if(msg.isRead){
-            vm.msgtoEdit.isRead=false;
-        }
-        else{
-            vm.msgtoEdit.isRead=true;
-
-
-        }*/
-     /*  vm.msgtoEdit.isRead=!msg.isRead;*/
-        //api Edit status
 
         apiService.EditMessage(  vm.msgtoEdit)
             .then(function (data) {
@@ -109,11 +96,13 @@ vm.msgtoEdit={};
 
         $scope.message= {};
         $scope.message.senderUser= vm.userID;
+        $scope.message.senderUser_ID= vm.user_ID;
         $scope.message.senderName=vm.userName;
 console.log($scope.selectedPerson.title);
 
         $scope.CreateNewMSG= function(){
             $scope.message.receiverUser=$scope.selectedPerson.originalObject.id;
+            $scope.message.receiverUser_ID=$scope.selectedPerson.originalObject._id;
             $scope.message.receiverName=$scope.selectedPerson.originalObject.firstName;
 
             console.log($scope.message);
@@ -121,6 +110,17 @@ console.log($scope.selectedPerson.title);
             console.log($scope.selectedPerson.originalObject.id);*/
             apiService.createNewMessage($scope.message)
                 .then(function (data) {
+
+
+                    if(  $scope.message.receiverUser_ID==vm.user_ID){
+                        vm.userlocal.MessagesLength++;
+                        globalService.SetUserDetails(vm.userlocal);
+
+
+                        $rootScope.$emit("CallParentMethod", {});
+                    }
+
+
                     vm.Refresh();
                     $mdDialog.cancel();
                 }, function (err) {
@@ -128,14 +128,21 @@ console.log($scope.selectedPerson.title);
         };
 
         $scope.CreateNewToAdminMSG= function(){
+
             $scope.message.receiverUser="311538417";
-            $scope.message.receiverName="Admin"
+            $scope.message.receiverUser_ID="578222e48b1293d035e0341c";
+            $scope.message.receiverName="Secretary";
 
             console.log($scope.message);
-            /*  console.log($scope.selectedPerson.title);
-             console.log($scope.selectedPerson.originalObject.id);*/
             apiService.createNewMessage($scope.message)
                 .then(function (data) {
+                    if(  $scope.message.receiverUser_ID==vm.user_ID){
+                        vm.userlocal.MessagesLength++;
+                        globalService.SetUserDetails(vm.userlocal);
+
+
+                        $rootScope.$emit("CallParentMethod", {});
+                    }
                     vm.Refresh();
                     $mdDialog.cancel();
                 }, function (err) {

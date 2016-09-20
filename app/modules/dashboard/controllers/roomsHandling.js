@@ -30,6 +30,7 @@ dashboard.controller("RoomsHandlingController", ['$rootScope', '$scope', '$state
         $scope.room= {};
         $scope.roomForEdit=vm.example;
         $scope.roomForDelete=vm.roomForDelete;
+        $scope.room.status='Available';
         vm.IsChecked=$scope.roomForEdit;
 
         $scope.DeleteRoom=function(){

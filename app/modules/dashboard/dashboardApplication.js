@@ -265,19 +265,6 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
-    //Achievements page state
-    $stateProvider.state('app.achievements', {
-        url: '/achievements',
-        templateUrl: 'app/modules/dashboard/views/achievements.html',
-        controller: 'AchievementsController',
-        controllerAs: 'vm',
-        data: {
-            pageTitle: 'Achievements'
-        }
-    });
-
-
-
     // Events  page state
     $stateProvider.state('app.events', {
         url: '/events',
@@ -311,16 +298,7 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
-    //About Me page state
-    $stateProvider.state('app.about', {
-        url: '/about-me',
-        templateUrl: 'app/modules/dashboard/views/about.html',
-        controller: 'AboutController',
-        controllerAs: 'vm',
-        data: {
-            pageTitle: 'About Me'
-        }
-    });
+
 
     //'Simple Search page state
     $stateProvider.state('app.simpleSearch', {

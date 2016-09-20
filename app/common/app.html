@@ -18,29 +18,29 @@
                 <ul class="nav navbar-nav"  >
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-align-justify"></i> Books Handling
+                            <i class="glyphicon glyphicon-book"></i> &nbsp; Books Handling
                         </a>
                         <ul class="dropdown-menu" >
                             <li>
                                 <ul class="menu">
                                     <li ui-sref="app.booksHandling">
                                         <a>
-                                            <i class="fa fa-indent"></i> Books
+                                            <i class="glyphicon glyphicon-book"></i> Books
                                         </a>
                                     </li>
                                     <li ui-sref="app.authorsHandling">
                                         <a>
-                                            <i class="fa fa-indent"></i> Authors
+                                            <i class="glyphicon glyphicon-user"></i> Authors
                                         </a>
                                     </li>
                                     <li ui-sref="app.languagesHandling">
                                         <a>
-                                            <i class="fa fa-indent"></i> Languages
+                                            <i class="glyphicon glyphicon-font"></i> Languages
                                         </a>
                                     </li>
                                     <li ui-sref="app.categoriesHandling">
                                         <a >
-                                            <i class="fa fa-indent"></i> Categories
+                                            <i class="glyphicon glyphicon-check"></i> Categories
                                         </a>
                                     </li>
                                 </ul>
@@ -52,28 +52,29 @@
 
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown"ui-sref="app.roomsHandling">
-                            <i class="fa fa-align-justify"></i> Rooms
+                            <i class="glyphicon glyphicon-indent-left"></i> &nbsp; Rooms
                         </a>
                     </li>
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.eventsHandling" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-align-justify"></i> Events
+                            <i class="glyphicon glyphicon-calendar"></i> Events
+
                         </a>
                     </li>
 
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.booksOrderingHandling"ng-show="vm.userlocal.isAdmin" >
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-align-justify"></i> Book Ordering
+                            <i class="glyphicon glyphicon-shopping-cart"></i> &nbsp; Book Ordering
                         </a>
                     </li>
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ui-sref="app.people" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-align-justify"></i>People
+                            <i class="glyphicon glyphicon-user"></i>  &nbsp; People
                         </a>
                     </li>
                     <li class="dropdown notifications-menu hidden-xs hidden-sm" ng-show="vm.userlocal.isAdmin">
                         <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="app.ordersHandling">
-                            <i class="fa fa-align-justify"></i>Messages &nbsp; {{vm.userlocal.MessagesLength}}
+                            <i class="glyphicon glyphicon-comment"></i> &nbsp; Messages &nbsp; <span class="label label-warning"> {{vm.userlocal.MessagesLength}}</span>
                         </a>
                     </li>
 
@@ -162,7 +163,7 @@
             <ul class="sidebar-menu">
                 <li class="treeview" ui-sref-active="active" ng-click="vm.sideBar();" data-ng-repeat="menu in vm.menuItems">
                     <a ui-sref="app.{{menu.state}}" ng-show="menu.isToShow">
-                        <i class="fa fa-{{menu.icon}}"></i> <span>{{menu.title}}   <span class="label label-warning " ng-show="menu.title=='Messages'">&nbsp; {{vm.userlocal.MessagesLength}}</span></span>
+                        <i class="fa fa-{{menu.icon}}"></i> <span>{{menu.title}}  &nbsp;  <span class="label label-warning " ng-show="menu.title=='Messages'">{{vm.userlocal.MessagesLength}}</span></span>
                     </a>
 
 
