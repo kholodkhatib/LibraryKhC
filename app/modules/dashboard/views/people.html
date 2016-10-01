@@ -133,7 +133,7 @@ Date: 15 Jan 2016
     <td>{{person.id}}</td>
 
     <td>{{person.firstName}}  &nbsp;{{person.lastName}} </td>
-    <td>{{person.gender}}</td>
+    <td>  <span ng-show="person.gender=='Female'"> &#9792;</span>    <span ng-show="person.gender=='Male'"> &#x2642;</span>  </td>
     <td>{{person.email}}</td>
   <td>{{person.address }}</td>
   <td>{{person.birthday |date:"dd/mm/yyyy" }}</td>

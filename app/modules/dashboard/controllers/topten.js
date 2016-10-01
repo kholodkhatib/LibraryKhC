@@ -171,7 +171,10 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiServ
     }
 
     vm.followBook = function(ev,books,status) {
-
+        var un="";
+        if(status==' unfollow'){
+            un="Un"
+        }
         vm.bookForfollow={};
         vm.bookForfollow.book_ID=books._id;
         vm.bookForfollow.status=status;
@@ -184,7 +187,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,apiServ
                     .then(function (data) {
 
                         console.log("Follow Success");
-                        Flash.create('success', 'Follow Done Successfully', 'large-text');
+                        Flash.create('success', un+'Follow Done Successfully', 'large-text');
                         vm.Refresh();
                     }, function (err) {
 

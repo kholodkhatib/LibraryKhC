@@ -53,6 +53,7 @@ vm.msgtoEdit={};
 
 
     vm.changeStatus=function(msg,status){
+        debugger
         vm.msgtoEdit=msg;
         vm.msgtoEdit.isRead= !vm.msgtoEdit.isRead;
 
@@ -65,10 +66,10 @@ vm.msgtoEdit={};
 
 
                 if(vm.msgtoEdit.isRead){
-                    vm.userlocal.MessagesLength--;
+                    vm.userlocal.MessagesLength++;
                 }
                 else {
-                    vm.userlocal.MessagesLength++;
+                    vm.userlocal.MessagesLength--;
                 }
 
 
