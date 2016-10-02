@@ -15,6 +15,11 @@ app.controller("appCtrl", ['$rootScope', '$scope', '$state', '$location', 'Flash
 
         var vm = this;
         vm.userlocal = globalService.GetUserDetails();
+        if(!vm.userlocal)
+        {
+            $state.go('login');
+            return;
+        }
 
         //avalilable themes
         vm.themes = [
