@@ -1,0 +1,26 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "Angular Bootstrap Dashboard is a web dashboard application based on Bootstrap and AngularJS. \r All components included in this dashboard template has been developed to bring all the potential of HTML5 and Bootstrap plus a set of new features (JS and CSS) ideal for your next dashboard admin theme or admin web app project. \r Angular Bootstrap Dashboard can be used in any type of web applications dashboard. \r Angular Bootstrap Dashboard uses ui-router for routing purposes.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kholodkhatib/LibraryKhC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kholodkhatib/LibraryKhC/issues"
+  },
+  "homepage": "https://github.com/kholodkhatib/LibraryKhC#readme"
+}
