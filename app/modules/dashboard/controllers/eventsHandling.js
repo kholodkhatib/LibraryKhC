@@ -86,14 +86,20 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
 
             console.log($scope.event);
+            if ($scope.eventForEdit.name && $scope.eventForEdit.description && $scope.eventForEdit.time &&$scope.eventForEdit.date) {
+                apiService.EditEvent($scope.eventForEdit)
+                    .then(function (data) {
+                        Flash.create('success', 'Edited Successfully', 'large-text');
+                        vm.Refresh();
+                        $mdDialog.cancel();
+                    }, function (err) {
+                        vm.Refresh();
+                    });
+            }
+            else{
+                Flash.create('danger', 'Fill All Data Please', 'large-text');
+            }
 
-            apiService.EditEvent($scope.eventForEdit)
-                .then(function (data) {
-                    vm.Refresh();
-                    $mdDialog.cancel();
-                }, function (err) {
-                    vm.Refresh();
-                });
 
         }
 
@@ -102,13 +108,19 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDial
 
 
             console.log($scope.event);
+            if ($scope.event.name && $scope.event.description && $scope.event.time &&$scope.event.date) {
+                apiService.createNewEvent($scope.event)
+                    .then(function (data) {
+                        Flash.create('success', 'Added Successfully', 'large-text');
+                        vm.Refresh();
+                        $mdDialog.cancel();
+                    }, function (err) {
+                    });
+            }
+            else{
+                Flash.create('danger', 'Fill All Data Please', 'large-text');
+            }
 
-            apiService.createNewEvent($scope.event)
-                .then(function (data) {
-                    vm.Refresh();
-                    $mdDialog.cancel();
-                }, function (err) {
-                });
         };
         $scope.hide = function() {
 

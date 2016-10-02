@@ -1,141 +1,131 @@
 ﻿/*==========================================================
-    Author      : Ranjithprabhu K
-    Date Created: 13 Jan 2016
-    Description : Controller to handle people page
-    Change Log
-    s.no      date    author     description     
+ Author      : Ranjithprabhu K
+ Date Created: 13 Jan 2016
+ Description : Controller to handle people page
+ Change Log
+ s.no      date    author     description
 
 
  ===========================================================*/
 
-dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','$uibModal',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,$uibModal) {
-    var vm = this;
+dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$mdDialog', '$mdMedia', 'apiService', '$uibModal',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash, $mdDialog, $mdMedia, apiService, $uibModal) {
+        var vm = this;
 
-    vm.bookForEdit={};
-    vm.bookForDelete={};
-    vm.newbook={};
-
-
-
-   /* vm.openCreateBookForm = function () {
-
-        var modalInstance = $uibModal.open({
-
-            templateUrl: 'views/categoriesHandling.html',
-            controller: 'CategoriesHandlingController'
+        vm.bookForEdit = {};
+        vm.bookForDelete = {};
+        vm.newbook = {};
 
 
-        });}*/
+        /* vm.openCreateBookForm = function () {
+
+         var modalInstance = $uibModal.open({
+
+         templateUrl: 'views/categoriesHandling.html',
+         controller: 'CategoriesHandlingController'
 
 
-/*vm.openCreateBookForm=function(){
-    debugger
-
-    const modalInstance = $uibModal.open({
-            animation: true,
-            template: 'app/modules/dashboard/views/createbookmodal.html',
-            controller: 'BooksHandlingController',
-        resolve: {
-            loadPlugin: function ($ocLazyLoad) {
-                return $ocLazyLoad.load([
-                    {
-                        files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
-                    },
-                    {
-                        name: 'ui.footable',
-                        files: ['js/plugins/footable/angular-footable.js']
-                    }
-                ]);
-            }
-
-        }
-
-});
-return modalInstance;
-}*/
+         });}*/
 
 
+        /*vm.openCreateBookForm=function(){
+         debugger
+
+         const modalInstance = $uibModal.open({
+         animation: true,
+         template: 'app/modules/dashboard/views/createbookmodal.html',
+         controller: 'BooksHandlingController',
+         resolve: {
+         loadPlugin: function ($ocLazyLoad) {
+         return $ocLazyLoad.load([
+         {
+         files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
+         },
+         {
+         name: 'ui.footable',
+         files: ['js/plugins/footable/angular-footable.js']
+         }
+         ]);
+         }
+
+         }
+
+         });
+         return modalInstance;
+         }*/
 
 
+        vm.Refresh = function () {
 
-    vm.Refresh= function () {
-
-    apiService.search()
-        .then(function (books) {
-            vm.booksArray = books;
-        }, function (err) {
-        });
-};
-
+            apiService.search()
+                .then(function (books) {
+                    vm.booksArray = books;
+                }, function (err) {
+                });
+        };
 
 
-    function DialogController($scope, $mdDialog,apiService) {
+        function DialogController($scope, $mdDialog, apiService) {
 
-        apiService.getAllAuthors()
-            .then(function (authors) {
-                $scope.authorsArray = authors;
-            }, function (err) {
-            });
-        apiService.getAllCategories()
-            .then(function (categories) {
-                $scope.categoriesArray = categories;
-            }, function (err) {
-            });
+            apiService.getAllAuthors()
+                .then(function (authors) {
+                    $scope.authorsArray = authors;
+                }, function (err) {
+                });
+            apiService.getAllCategories()
+                .then(function (categories) {
+                    $scope.categoriesArray = categories;
+                }, function (err) {
+                });
 
-        apiService.getAllLanguages()
-            .then(function (languages) {
-                $scope.languagesArray = languages;
-            }, function (err) {
-            });
-        $scope.yearsArray=   apiService.getAllYears();
+            apiService.getAllLanguages()
+                .then(function (languages) {
+                    $scope.languagesArray = languages;
+                }, function (err) {
+                });
+            $scope.yearsArray = apiService.getAllYears();
 
-     /*   debugger
-        $scope.yearsArray =   vm.years;
-        debugger
-*/
+            /*   debugger
+             $scope.yearsArray =   vm.years;
+             debugger
+             */
 
-/*
-        $scope.$watch('selectAuthor', function() {
-           $scope.book.author=$scope.selectedAuthor.title;
-            $scope.bookForEdit.author=$scope.selectedAuthor.title;
-        });
-        $scope.$watch('selectCategory', function() {
-            $scope.book.category=$scope.selectedCategory.title;
+            /*
+             $scope.$watch('selectAuthor', function() {
+             $scope.book.author=$scope.selectedAuthor.title;
+             $scope.bookForEdit.author=$scope.selectedAuthor.title;
+             });
+             $scope.$watch('selectCategory', function() {
+             $scope.book.category=$scope.selectedCategory.title;
 
-            $scope.bookForEdit.category=$scope.selectedCategory.title;
+             $scope.bookForEdit.category=$scope.selectedCategory.title;
 
-        });
-        $scope.$watch('selectLanguage', function() {
-            $scope.book.language=$scope.selectedLanguage.title;
+             });
+             $scope.$watch('selectLanguage', function() {
+             $scope.book.language=$scope.selectedLanguage.title;
 
-            $scope.bookForEdit.language=$scope.selectedLanguage.title;
+             $scope.bookForEdit.language=$scope.selectedLanguage.title;
 
-        });
-        $scope.$watch('selectYear', function() {
-            $scope.book.year=$scope.selectedYear.title;
+             });
+             $scope.$watch('selectYear', function() {
+             $scope.book.year=$scope.selectedYear.title;
 
-            $scope.bookForEdit.year=$scope.selectedYear.title;
+             $scope.bookForEdit.year=$scope.selectedYear.title;
 
-        });*/
-
-
-
-        $scope.selectedAuthor={};
-        $scope.selectedCategory={};
-        $scope.selectedLanguage={};
-        $scope.selectedYear={};
-
-        $scope.book= {};
-        $scope.bookForEdit=vm.example;
-        $scope.bookForDelete=vm.bookForDelete;
+             });*/
 
 
+            $scope.selectedAuthor = {};
+            $scope.selectedCategory = {};
+            $scope.selectedLanguage = {};
+            $scope.selectedYear = {};
+
+            $scope.book = {};
+            $scope.bookForEdit = vm.example;
+            $scope.bookForDelete = vm.bookForDelete;
 
 
-
-
-            $scope.DeleteBook=function(){
+            $scope.DeleteBook = function () {
 
                 console.log($scope.bookForDelete);
 
@@ -148,154 +138,160 @@ return modalInstance;
                     });
 
             }
-            $scope.EditBook=function(){
-
+            $scope.EditBook = function () {
 
 
                 console.log($scope.book);
-                $scope.bookForEdit.author=$scope.selectedAuthor.title;
-                $scope.bookForEdit.category=$scope.selectedCategory.title;
-                $scope.bookForEdit.language=$scope.selectedLanguage.title;
-                $scope.bookForEdit.year=$scope.selectedYear.title;
+                $scope.bookForEdit.author = $scope.selectedAuthor.title;
+                $scope.bookForEdit.category = $scope.selectedCategory.title;
+                $scope.bookForEdit.language = $scope.selectedLanguage.title;
+                $scope.bookForEdit.year = $scope.selectedYear.title;
 
-                apiService.EditBook($scope.bookForEdit)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                        vm.Refresh();
-                    });
+                if ($scope.bookForEdit.author && $scope.bookForEdit.category && $scope.bookForEdit.language && $scope.bookForEdit.year && $scope.bookForEdit.year && $scope.bookForEdit.title) {
+
+                    apiService.EditBook($scope.bookForEdit)
+                        .then(function (data) {
+                            Flash.create('success', 'Edited Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            vm.Refresh();
+                        });
+                }
+                else
+                {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
 
             }
 
-            $scope.CreateNewBook= function(){
+            $scope.CreateNewBook = function () {
                 console.log($scope.book);
-                $scope.book.author=$scope.selectedAuthor.title;
-                $scope.book.category=$scope.selectedCategory.title;
-                $scope.book.language=$scope.selectedLanguage.title;
-                $scope.book.year=$scope.selectedYear.title;
-                $scope.book.user_ID="";
+                $scope.book.author = $scope.selectedAuthor.title;
+                $scope.book.category = $scope.selectedCategory.title;
+                $scope.book.language = $scope.selectedLanguage.title;
+                $scope.book.year = $scope.selectedYear.title;
+                $scope.book.user_ID = "";
 
-                apiService.createNewBook($scope.book)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                    });
+                if ($scope.book.author && $scope.book.category && $scope.book.language && $scope.book.year && $scope.book.year && $scope.book.title) {
+
+                    apiService.createNewBook($scope.book)
+                        .then(function (data) {
+                            Flash.create('success', 'Added Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                        });
+                }
+                else
+                {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
             };
 
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
 
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-        };
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
 
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        };
-    }
-    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    vm.showAdvanced = function(ev) {
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
 
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+        vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+        vm.showAdvanced = function (ev) {
 
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
+
+
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
             });
 
+        };
 
 
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
-
-    };
+        vm.showEditDialog = function (ev, bookForEdit) {
+            vm.bookForEdit = bookForEdit;
+            vm.example = angular.copy(vm.bookForEdit);
 
 
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
 
-    vm.showEditDialog = function(ev,bookForEdit) {
-        vm.bookForEdit=bookForEdit;
-        vm.example = angular.copy(vm.bookForEdit);
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog2.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
 
 
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog2.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
             });
 
+        };
 
 
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
+        vm.showDeleteDialog = function (ev, bookForDelete) {
+            vm.bookForDelete = bookForDelete;
 
-    };
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog3.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
 
 
-    vm.showDeleteDialog = function(ev,bookForDelete) {
-        vm.bookForDelete=bookForDelete;
-
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog3.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
             });
+        };
 
 
-
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
-    };
+        vm.Refresh();
 
 
-    vm.Refresh();
-
-
-
-
-
-
-
-
-}]);
+    }]);
 

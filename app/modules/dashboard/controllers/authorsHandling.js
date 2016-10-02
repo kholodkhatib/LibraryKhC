@@ -51,19 +51,24 @@ vm.newauthor={};
                     });
 
             }
-            $scope.EditAuthor=function(){
-
+            $scope.EditAuthor=function() {
 
 
                 console.log($scope.author);
+                if ($scope.authorForEdit.name) {
 
                 apiService.EditAuthor($scope.authorForEdit)
                     .then(function (data) {
+                        Flash.create('success', 'Edited Successfully', 'large-text');
                         vm.Refresh();
                         $mdDialog.cancel();
                     }, function (err) {
                         vm.Refresh();
                     });
+            }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
 
             }
 
@@ -71,13 +76,19 @@ vm.newauthor={};
 
 
                 console.log($scope.author);
+                if ($scope.author.name) {
+                    apiService.createNewAuthor($scope.author)
+                        .then(function (data) {
+                            Flash.create('success', 'Added Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                        });
+                }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
 
-                apiService.createNewAuthor($scope.author)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                    });
+                }
             };
 
         $scope.hide = function() {

@@ -56,14 +56,20 @@ vm.newcategory={};
 
 
                 console.log($scope.category);
+                if ($scope.categoryForEdit.name) {
+                    apiService.EditCategory($scope.categoryForEdit)
+                        .then(function (data) {
+                            Flash.create('success', 'Edited Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            vm.Refresh();
+                        });
+                }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
 
-                apiService.EditCategory($scope.categoryForEdit)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                        vm.Refresh();
-                    });
+                }
 
             }
 
@@ -71,13 +77,19 @@ vm.newcategory={};
 
 
                 console.log($scope.category);
+                if ($scope.category.name) {
+                    apiService.createNewCategory($scope.category)
+                        .then(function (data) {
+                            Flash.create('success', 'Added Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                        });
+                }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
 
-                apiService.createNewCategory($scope.category)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                    });
+                }
             };
 
         $scope.hide = function() {

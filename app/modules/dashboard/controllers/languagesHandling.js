@@ -56,14 +56,19 @@ vm.newlanguage={};
 
 
                 console.log($scope.language);
-
-                apiService.EditLanguage($scope.languageForEdit)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                        vm.Refresh();
-                    });
+                if ($scope.languageForEdit.name) {
+                    apiService.EditLanguage($scope.languageForEdit)
+                        .then(function (data) {
+                            Flash.create('success', 'Edited Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            vm.Refresh();
+                        });
+                }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
 
             }
 
@@ -71,13 +76,18 @@ vm.newlanguage={};
 
 
                 console.log($scope.language);
-
-                apiService.createNewLanguage($scope.language)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                    });
+                if ($scope.language .name) {
+                    apiService.createNewLanguage($scope.language)
+                        .then(function (data) {
+                            Flash.create('success', 'Added Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                        });
+                }
+                else{
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
             };
 
         $scope.hide = function() {

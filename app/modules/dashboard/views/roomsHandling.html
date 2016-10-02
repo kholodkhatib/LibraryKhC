@@ -184,7 +184,7 @@ Date: 15 Jan 2016
 <script type="text/ng-template" id="dialog1.tmpl.html">
     <md-dialog
             aria-label="New Room" ng-cloak>
-        <form name="vm.AddForm" data-ng-submit="CreateNewRoom();">
+        <form name="vm.AddForm">
 
             <md-toolbar>
                 <div class="md-toolbar-tools">
@@ -202,7 +202,7 @@ Date: 15 Jan 2016
                                 <label class="col-lg-3 control-label">Name:</label>
 
                                 <div class="col-lg-6">
-                                    <input class="form-control" ng-model="room.name" type="text" required>
+                                    <input class="form-control" ng-model="room.name" type="text" >
                                 </div>
                             </div>
                             <br>
@@ -211,7 +211,7 @@ Date: 15 Jan 2016
                                 <label class="col-lg-3 control-label">Description:</label>
 
                                 <div class="col-lg-6">
-                                    <input class="form-control" ng-model="room.description" type="text" required>
+                                    <input class="form-control" ng-model="room.description" type="text" >
                                 </div>
                             </div>
                             <br>
@@ -237,7 +237,7 @@ Date: 15 Jan 2016
 
             <md-dialog-actions layout="row">
 
-                <md-button type="submit">
+                <md-button ng-click="CreateNewRoom();">
                     Save
                 </md-button>
                 <md-button ng-click="answer('useful')">
@@ -253,7 +253,7 @@ Date: 15 Jan 2016
 <script type="text/ng-template" id="dialog2.tmpl.html">
     <md-dialog
             aria-label="Edit Room" ng-cloak>
-        <form data-ng-submit="EditRoom();">
+        <form>
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>Edit Room</h2>
@@ -270,7 +270,7 @@ Date: 15 Jan 2016
                                 <label class="col-lg-3 control-label">Name:</label>
 
                                 <div class="col-lg-6">
-                                    <input class="form-control" ng-model="roomForEdit.name" type="text" required>
+                                    <input class="form-control" ng-model="roomForEdit.name" type="text" >
                                 </div>
                             </div>
                             <br>
@@ -279,7 +279,7 @@ Date: 15 Jan 2016
                                 <label class="col-lg-3 control-label">Description:</label>
 
                                 <div class="col-lg-6">
-                                    <input class="form-control" ng-model="roomForEdit.description" type="text" required>
+                                    <input class="form-control" ng-model="roomForEdit.description" type="text" >
                                 </div>
                             </div>
                             <br>
@@ -304,7 +304,7 @@ Date: 15 Jan 2016
                 </div>
             </md-dialog-content>
             <md-dialog-actions layout="row">
-                <md-button type="submit">
+                <md-button ng-click="EditRoom();">
                     Save
                 </md-button>
                 <md-button ng-click="answer('useful')">
