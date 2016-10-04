@@ -126,13 +126,13 @@ Date: 15 Jan 2016
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="rooms in vm.roomsArray | filter: vm.searchFilter  ">
+        <tr ng-repeat="rooms in vm.roomsArray | filter: vm.searchFilter  "  ng-class="{'success': rooms.status == 'Available', 'danger':  rooms.status == 'Not Available'}">
 
 
             <!-- <td>  {{rooms.code}} </td>-->
             <td> {{rooms.name }}</td>
             <td> {{rooms.description }}</td>
-            <td ng-class="{'success': rooms.status == 'Available', 'danger':  rooms.status == 'Not Available'}">
+            <td>
                 {{rooms.status }}
             </td>
 

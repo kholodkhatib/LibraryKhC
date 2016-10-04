@@ -198,13 +198,17 @@ Date: 15 Jan 2016
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: vm.searchStatus">
+    <tr ng-repeat="bookOrdering in vm.booksOrderingArray | filter: vm.searchStatus" >
         <td> {{bookOrdering.bookTitle}}</td>
         <td> {{bookOrdering.userID }}</td>
         <td> {{bookOrdering.issueDate}}</td>
         <td> {{bookOrdering.dueDate }}</td>
         <td> {{bookOrdering.finishDate}}</td>
-        <td> {{bookOrdering.status}}</td>
+
+        <td ng-class="{'success':bookOrdering.status == 'InProgress' || bookOrdering.status == 'Pending' , 'danger':  bookOrdering.status == 'Cancelled',
+        'info':  bookOrdering.status == 'OnGoing', 'warning':  bookOrdering.status == 'Finished'}">
+
+            {{bookOrdering.status}}</td>
         <td class="action-column">
             <button type="button" class="btn btn-info btn-sm" ng-click="vm.showEditDialog($event,bookOrdering)"><span
                     class="glyphicon glyphicon-edit"></span>&nbsp; Edit

@@ -8,55 +8,16 @@
 
  ===========================================================*/
 
-dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$mdDialog', '$mdMedia', 'apiService', '$uibModal',
-    function ($rootScope, $scope, $state, $location, dashboardService, Flash, $mdDialog, $mdMedia, apiService, $uibModal) {
+dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$mdDialog', '$mdMedia', 'apiService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash, $mdDialog, $mdMedia, apiService) {
         var vm = this;
 
         vm.bookForEdit = {};
         vm.bookForDelete = {};
         vm.newbook = {};
 
-
-        /* vm.openCreateBookForm = function () {
-
-         var modalInstance = $uibModal.open({
-
-         templateUrl: 'views/categoriesHandling.html',
-         controller: 'CategoriesHandlingController'
-
-
-         });}*/
-
-
-        /*vm.openCreateBookForm=function(){
-         debugger
-
-         const modalInstance = $uibModal.open({
-         animation: true,
-         template: 'app/modules/dashboard/views/createbookmodal.html',
-         controller: 'BooksHandlingController',
-         resolve: {
-         loadPlugin: function ($ocLazyLoad) {
-         return $ocLazyLoad.load([
-         {
-         files: ['js/plugins/footable/footable.all.min.js', 'css/plugins/footable/footable.core.css']
-         },
-         {
-         name: 'ui.footable',
-         files: ['js/plugins/footable/angular-footable.js']
-         }
-         ]);
-         }
-
-         }
-
-         });
-         return modalInstance;
-         }*/
-
-
         vm.Refresh = function () {
-
+debugger
             apiService.search()
                 .then(function (books) {
                     vm.booksArray = books;
@@ -84,37 +45,6 @@ dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state
                 }, function (err) {
                 });
             $scope.yearsArray = apiService.getAllYears();
-
-            /*   debugger
-             $scope.yearsArray =   vm.years;
-             debugger
-             */
-
-            /*
-             $scope.$watch('selectAuthor', function() {
-             $scope.book.author=$scope.selectedAuthor.title;
-             $scope.bookForEdit.author=$scope.selectedAuthor.title;
-             });
-             $scope.$watch('selectCategory', function() {
-             $scope.book.category=$scope.selectedCategory.title;
-
-             $scope.bookForEdit.category=$scope.selectedCategory.title;
-
-             });
-             $scope.$watch('selectLanguage', function() {
-             $scope.book.language=$scope.selectedLanguage.title;
-
-             $scope.bookForEdit.language=$scope.selectedLanguage.title;
-
-             });
-             $scope.$watch('selectYear', function() {
-             $scope.book.year=$scope.selectedYear.title;
-
-             $scope.bookForEdit.year=$scope.selectedYear.title;
-
-             });*/
-
-
             $scope.selectedAuthor = {};
             $scope.selectedCategory = {};
             $scope.selectedLanguage = {};
@@ -139,8 +69,6 @@ dashboard.controller("BooksHandlingController", ['$rootScope', '$scope', '$state
 
             }
             $scope.EditBook = function () {
-
-
                 console.log($scope.book);
                 $scope.bookForEdit.author = $scope.selectedAuthor.title;
                 $scope.bookForEdit.category = $scope.selectedCategory.title;

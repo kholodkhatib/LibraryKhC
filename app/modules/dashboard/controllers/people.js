@@ -55,30 +55,41 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             $scope.EditPerson=function(){
 
 
+                if ($scope.personForEdit.isAdmin && $scope.personForEdit.gender &&  $scope.personForEdit.firstName && $scope.personForEdit.lastName && $scope.personForEdit.email && $scope.personForEdit.address && $scope.personForEdit.birthday && $scope.personForEdit.password ) {
 
-                console.log($scope.person);
-
-                apiService.EditPerson($scope.personForEdit)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                        vm.Refresh();
-                    });
+                    apiService.EditPerson($scope.personForEdit)
+                        .then(function (data) {
+                            Flash.create('success', 'Edited Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            vm.Refresh();
+                        });
+                }
+                else {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
 
             }
             $scope.CreateNewPeople= function(){
 
-                console.log($scope.person);
+                if ($scope.person.isAdmin&& $scope.person.gender &&$scope.person.id && $scope.person.firstName && $scope.person.lastName && $scope.person.email && $scope.person.address && $scope.person.birthday && $scope.person.password ) {
 
-                apiService.createNewPeople($scope.person)
-                    .then(function (data) {
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                        Flash.create('danger', ''+err.data, 'large-text');
-                        $mdDialog.cancel();
-                    });
+
+                    apiService.createNewPeople($scope.person)
+                        .then(function (data) {
+                            Flash.create('success', 'Added Successfully', 'large-text');
+                            vm.Refresh();
+                            $mdDialog.cancel();
+                        }, function (err) {
+                            Flash.create('danger', '' + err.data, 'large-text');
+                            $mdDialog.cancel();
+                        });
+                }
+                else {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
+
             };
 
 

@@ -133,11 +133,12 @@ Date: 15 Jan 2016
     <td>{{person.id}}</td>
 
     <td>{{person.firstName}}  &nbsp;{{person.lastName}} </td>
-    <td>  <span ng-show="person.gender=='Female'"> &#9792;</span>    <span ng-show="person.gender=='Male'"> &#x2642;</span>  </td>
+    <td>  <span ng-show="person.gender=='Female'" style="color: white; background: hotpink ; font-weight: bold"> &#9792;</span>    <span ng-show="person.gender=='Male'" style="background: lightskyblue; color: white; font-weight: bold"> &#x2642;</span>  </td>
     <td>{{person.email}}</td>
   <td>{{person.address }}</td>
   <td>{{person.birthday |date:"dd/mm/yyyy" }}</td>
-    <td>{{person.isAdmin }}</td>
+    <td ng-class="{'success': person.isAdmin == true, 'danger':person.isAdmin == false}">
+        {{person.isAdmin }}</td>
     <td class="action-column">
         <button type="button" class="btn btn-info btn-sm"  ng-click="vm.showEditDialog($event,person)"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit</button>
 

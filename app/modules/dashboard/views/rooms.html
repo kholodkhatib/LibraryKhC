@@ -4,7 +4,7 @@ Page Description: Rooms page
 : 13 Jan 2016
 -->
 <style>
-    .table tfoot .pagination{
+    .table tfoot .pagination {
         float: right;
         margin: 0;
         background: deepskyblue;
@@ -12,69 +12,120 @@ Page Description: Rooms page
 </style>
 <style type="text/css">
 
-    .button_example{
-        border:1px solid #8A66F4;-webkit-box-shadow: #CCCCCC 0px 1px 0px inset;-moz-box-shadow: #CCCCCC 0px 1px 0px inset; box-shadow: #CCCCCC 0px 1px 0px inset; -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;font-size:15px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
-        background-color: #B29AF8; background-image: -webkit-gradient(linear, left top, left bottom, from(#B29AF8), to(#9174ED));
+    .button_example {
+        border: 1px solid #8A66F4;
+        -webkit-box-shadow: #CCCCCC 0px 1px 0px inset;
+        -moz-box-shadow: #CCCCCC 0px 1px 0px inset;
+        box-shadow: #CCCCCC 0px 1px 0px inset;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: arial, helvetica, sans-serif;
+        padding: 10px 10px 10px 10px;
+        text-decoration: none;
+        display: inline-block;
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        color: #FFFFFF;
+        background-color: #B29AF8;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#B29AF8), to(#9174ED));
         background-image: -webkit-linear-gradient(top, #B29AF8, #9174ED);
         background-image: -moz-linear-gradient(top, #B29AF8, #9174ED);
         background-image: -ms-linear-gradient(top, #B29AF8, #9174ED);
         background-image: -o-linear-gradient(top, #B29AF8, #9174ED);
-        background-image: linear-gradient(to bottom, #B29AF8, #9174ED);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#B29AF8, endColorstr=#9174ED);
+        background-image: linear-gradient(to bottom, #B29AF8, #9174ED);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#B29AF8, endColorstr=#9174ED);
     }
 
-    .button_example:hover{
-        border:1px solid #9174ED;
-        background-color: #C9A9FF; background-image: -webkit-gradient(linear, left top, left bottom, from(#C9A9FF), to(#9174ED));
+    .button_example:hover {
+        border: 1px solid #9174ED;
+        background-color: #C9A9FF;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#C9A9FF), to(#9174ED));
         background-image: -webkit-linear-gradient(top, #C9A9FF, #9174ED);
         background-image: -moz-linear-gradient(top, #C9A9FF, #9174ED);
         background-image: -ms-linear-gradient(top, #C9A9FF, #9174ED);
         background-image: -o-linear-gradient(top, #C9A9FF, #9174ED);
-        background-image: linear-gradient(to bottom, #C9A9FF, #9174ED);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#C9A9FF, endColorstr=#9174ED);
+        background-image: linear-gradient(to bottom, #C9A9FF, #9174ED);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#C9A9FF, endColorstr=#9174ED);
     }
 
-
-
-
-    .button2_example{
+    .button2_example {
         disabled: true;
-        border:1px solid #CCCCBC;-webkit-box-shadow: #CCCCCC 0px 1px 0px inset;-moz-box-shadow: #CCCCCC 0px 1px 0px inset; box-shadow: #CCCCCC 0px 1px 0px inset; -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;font-size:15px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
-        background-color: #CCCCBC; background-image: -webkit-gradient(linear, left top, left bottom, from(#CCCCBC), to(#CCCCBC));
+        border: 1px solid #CCCCBC;
+        -webkit-box-shadow: #CCCCCC 0px 1px 0px inset;
+        -moz-box-shadow: #CCCCCC 0px 1px 0px inset;
+        box-shadow: #CCCCCC 0px 1px 0px inset;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: arial, helvetica, sans-serif;
+        padding: 10px 10px 10px 10px;
+        text-decoration: none;
+        display: inline-block;
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        color: #FFFFFF;
+        background-color: #CCCCBC;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#CCCCBC), to(#CCCCBC));
         background-image: -webkit-linear-gradient(top, #CCCCCC, #CCCCBC);
         background-image: -moz-linear-gradient(top, #CCCCCC, #CCCCBC);
         background-image: -ms-linear-gradient(top, #CCCCCC, #CCCCBC);
         background-image: -o-linear-gradient(top, #CCCCCC, #CCCCBC);
-        background-image: linear-gradient(to bottom, #CCCCCC, #CCCCBC);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#CCCCBC, endColorstr=#CCCCBC);
+        background-image: linear-gradient(to bottom, #CCCCCC, #CCCCBC);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#CCCCBC, endColorstr=#CCCCBC);
     }
 
-    .button2_example:hover{
+    .button2_example:hover {
         disabled: true;
-        border:1px solid #CCCCBC;
-        background-color: #CCCCBC; background-image: -webkit-gradient(linear, left top, left bottom, from(#CCCCBC), to(#CCCCBC));
+        border: 1px solid #CCCCBC;
+        background-color: #CCCCBC;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#CCCCBC), to(#CCCCBC));
         background-image: -webkit-linear-gradient(top, #CCCCBC, #CCCCBC);
         background-image: -moz-linear-gradient(top, #CCCCCC, #CCCCBC);
         background-image: -ms-linear-gradient(top, #CCCCCC, #CCCCBC);
         background-image: -o-linear-gradient(top, #CCCCCC, #CCCCBC);
-        background-image: linear-gradient(to bottom, #CCCCCC, #CCCCBC);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#CCCCBC, endColorstr=#CCCCBC);
+        background-image: linear-gradient(to bottom, #CCCCCC, #CCCCBC);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#CCCCBC, endColorstr=#CCCCBC);
     }
 
-    .button3_example{
-        border:1px solid #2e8a19;-webkit-box-shadow: #CCCCCC 0px 1px 0px inset;-moz-box-shadow: #CCCCCC 0px 1px 0px inset; box-shadow: #CCCCCC 0px 1px 0px inset; -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;font-size:15px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
-        background-color: #90EE90; background-image: -webkit-gradient(linear, left top, left bottom, from(#90EE90), to(#2e8a19));
+    .button3_example {
+        border: 1px solid #2e8a19;
+        -webkit-box-shadow: #CCCCCC 0px 1px 0px inset;
+        -moz-box-shadow: #CCCCCC 0px 1px 0px inset;
+        box-shadow: #CCCCCC 0px 1px 0px inset;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: arial, helvetica, sans-serif;
+        padding: 10px 10px 10px 10px;
+        text-decoration: none;
+        display: inline-block;
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        color: #FFFFFF;
+        background-color: #90EE90;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#90EE90), to(#2e8a19));
         background-image: -webkit-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -moz-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -ms-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -o-linear-gradient(top, #90EE90, #2e8a19);
-        background-image: linear-gradient(to bottom, #90EE90, #2e8a19);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#90EE90, endColorstr=#2e8a19);
+        background-image: linear-gradient(to bottom, #90EE90, #2e8a19);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#90EE90, endColorstr=#2e8a19);
     }
 
-    .button3_example:hover{
-        border:1px solid #2e8a19;
-        background-color: #90EE90; background-image: -webkit-gradient(linear, left top, left bottom, from(#90EE90), to(#2e8a19));
+    .button3_example:hover {
+        border: 1px solid #2e8a19;
+        background-color: #90EE90;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#90EE90), to(#2e8a19));
         background-image: -webkit-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -moz-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -ms-linear-gradient(top, #90EE90, #2e8a19);
         background-image: -o-linear-gradient(top, #90EE90, #2e8a19);
-        background-image: linear-gradient(to bottom, #90EE90, #2e8a19);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#90EE90, endColorstr=#2e8a19);
+        background-image: linear-gradient(to bottom, #90EE90, #2e8a19);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#90EE90, endColorstr=#2e8a19);
     }
 
 </style>
@@ -82,15 +133,19 @@ Page Description: Rooms page
 <style>
 
     .datepickerdemoBasicUsage {
-        /** Demo styles for mdCalendar. */ }
+        /** Demo styles for mdCalendar. */
+    }
+
     .datepickerdemoBasicUsage md-content {
-        padding-bottom: 200px; }
+        padding-bottom: 200px;
+    }
+
     .datepickerdemoBasicUsage .validation-messages {
         font-size: 12px;
         color: #dd2c00;
-        margin: 10px 0 0 25px; }
+        margin: 10px 0 0 25px;
+    }
 </style>
-
 
 
 <style>
@@ -103,35 +158,37 @@ Page Description: Rooms page
         box-sizing: border-box;
     }
 
-    form#form1{
+    form#form1 {
         width: 100%;
         height: 100%;
         font-family: Menlo, helvetica, arial, sans-serif;
         font-size: 10px;
         text-align: center;
-       /* background: #333 url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/low_contrast_linen.png');*/
+        /* background: #333 url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/low_contrast_linen.png');*/
     }
 
-    ul#g1{
+    ul#g1 {
         margin: 30px auto;
         text-align: center;
     }
 
-    #t1{
+    #t1 {
         list-style: none;
         position: relative;
         display: inline-block;
         width: 100px;
         height: 100px;
     }
-    #t2{
+
+    #t2 {
         list-style: none;
         position: relative;
         display: inline-block;
         width: 100px;
         height: 100px;
     }
-    #t3{
+
+    #t3 {
         list-style: none;
         position: relative;
         display: inline-block;
@@ -140,23 +197,39 @@ Page Description: Rooms page
     }
 
     @-moz-keyframes rotate {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(-360deg);}
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
     }
 
     @-webkit-keyframes rotate {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(-360deg);}
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
     }
 
     @-o-keyframes rotate {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(-360deg);}
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
     }
 
     @keyframes rotate {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(-360deg);}
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
     }
 
     .round {
@@ -170,14 +243,14 @@ Page Description: Rooms page
         text-decoration: none;
         text-align: center;
         font-size: 25px;
-        text-shadow: 0 1px 0 rgba(255,255,255,.7);
+        text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
         letter-spacing: -.065em;
         font-family: "Hammersmith One", sans-serif;
         -webkit-transition: all .25s ease-in-out;
         -o-transition: all .25s ease-in-out;
         -moz-transition: all .25s ease-in-out;
         transition: all .25s ease-in-out;
-        box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+        box-shadow: 2px 2px 7px rgba(0, 0, 0, .2);
         border-radius: 300px;
         z-index: 1;
         border-width: 4px;
@@ -191,10 +264,10 @@ Page Description: Rooms page
         top: -15%;
         font-size: 33px;
         padding-top: 38px;
-        -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-        -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-        -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-        box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+        -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+        -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
         z-index: 2;
         border-size: 10px;
         -webkit-transform: rotate(-360deg);
@@ -204,33 +277,33 @@ Page Description: Rooms page
     }
 
     a.red {
-        background-color: rgba(239,57,50,1);
-        color: rgba(133,32,28,1);
-        border-color: rgba(133,32,28,.2);
+        background-color: rgba(239, 57, 50, 1);
+        color: rgba(133, 32, 28, 1);
+        border-color: rgba(133, 32, 28, .2);
     }
 
     a.red:hover {
-        color: rgba(239,57,50,1);
+        color: rgba(239, 57, 50, 1);
     }
 
     a.green {
-        background-color: rgba(1,151,171,1);
-        color: rgba(0,63,71,1);
-        border-color: rgba(0,63,71,.2);
+        background-color: rgba(1, 151, 171, 1);
+        color: rgba(0, 63, 71, 1);
+        border-color: rgba(0, 63, 71, .2);
     }
 
     a.green:hover {
-        color: rgba(1,151,171,1);
+        color: rgba(1, 151, 171, 1);
     }
 
     a.yellow {
-        background-color: rgba(252,227,1,1);
-        color: rgba(153,38,0,1);
-        border-color: rgba(153,38,0,.2);
+        background-color: rgba(252, 227, 1, 1);
+        color: rgba(153, 38, 0, 1);
+        border-color: rgba(153, 38, 0, .2);
     }
 
     a.yellow:hover {
-        color: rgba(252,227,1,1);
+        color: rgba(252, 227, 1, 1);
     }
 
     .round span.round {
@@ -249,347 +322,312 @@ Page Description: Rooms page
     .round span:hover {
         opacity: .85;
         font-size: 16px;
-        -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
-        -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
-        -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
-        text-shadow: 0 1px 1px rgba(0,0,0,.5);
+        -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+        -moz-text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+        -o-text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+        text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
     }
 
     .green span {
-        background: rgba(0,63,71,.7);
+        background: rgba(0, 63, 71, .7);
     }
 
     .red span {
-        background: rgba(133,32,28,.7);
+        background: rgba(133, 32, 28, .7);
     }
 
     .yellow span {
-        background: rgba(161,145,0,.7);
+        background: rgba(161, 145, 0, .7);
 
     }
 
 </style>
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>Rooms To Order</h1>
-        <ol class="breadcrumb">
-            <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Rooms</li>
-        </ol>
-    </section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>Rooms To Order</h1>
+    <ol class="breadcrumb">
+        <li><a><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Rooms</li>
+    </ol>
+</section>
 
 <!--for After Tomorrow-->
-<script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
-<form>
+<script type="text/ng-template" id="dialog3.tmpl.html">
+    <md-dialog
+    aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Choose Hour</h2>
-            <span flex></span>
-            <!--  <md-button class="md-icon-button" ng-click="cancel()">
-                  <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
-              </md-button>-->
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-            <div  class="row">
-
-                <div class="col-md-1"  data-ng-repeat="x in choosenRoom.AfterTomorrow.hours" >
-                    <a ng-class= "{button_example: x.status==true,button3_example : x.user==user,button2_example : x.status==false}" href="#" ng-click="ChooseHour($event,x)"> {{x.hour}}:00 </a>
-                </div>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Choose Hour</h2>
+                <span flex></span>
+                <!--  <md-button class="md-icon-button" ng-click="cancel()">
+                      <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
+                  </md-button>-->
             </div>
-            <br>
-            <br>
-            <div >
-                <div class="row" >
-                    <div  ng-if="showOrderInfo" >
-                        <strong>
-                            You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room: &nbsp; {{choosenRoom.name}}
-                        at Date: {{choosenDate  | date:'MM/dd/yyyy' }}    </label></div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <div class="row">
+
+                    <div class="col-md-1" data-ng-repeat="x in choosenRoom.AfterTomorrow.hours">
+                        <a ng-class="{button_example: x.status==true,button3_example : x.user==user,button2_example : x.status==false}"
+                           href="#" ng-click="ChooseHour($event,x)"> {{x.hour}}:00 </a>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <div class="row">
+                        <div ng-if="showOrderInfo">
+                            <strong>
+                                You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room:
+                            &nbsp; {{choosenRoom.name}}
+                            at Date: {{choosenDate | date:'MM/dd/yyyy' }} </label></div>
+                    </div>
+
                 </div>
 
             </div>
+        </md-dialog-content>
 
-        </div>
-    </md-dialog-content>
+        <md-dialog-actions layout="row">
 
-    <md-dialog-actions layout="row">
-
-        <md-button ng-click="SaveRoomOrder()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-</form>
-</md-dialog>
+            <md-button ng-click="SaveRoomOrder()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
 
 <!--for Tomorrow-->
-<script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
-<form>
+<script type="text/ng-template" id="dialog2.tmpl.html">
+    <md-dialog
+    aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Choose Hour</h2>
-            <span flex></span>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Choose Hour</h2>
+                <span flex></span>
 
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content>
-        <div class="md-dialog-content">
-            <div  class="row">
-                <div class="col-md-1"  data-ng-repeat="x in choosenRoom.Tomorrow.hours" >
-                    <a ng-class= "{button_example: x.status==true,button3_example : x.user==user,button2_example : x.status==false}" href="#" ng-click="ChooseHour($event,x)"> {{x.hour}}:00 </a>
-                </div>
             </div>
-<br>
-            <br>
-                <div >
-                    <div class="row" >
-                        <div  ng-if="showOrderInfo" >
-                        <strong>
-                        You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room: &nbsp; {{choosenRoom.name}}
-                        at Date: {{choosenDate  | date:'MM/dd/yyyy' }}
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div class="row">
+                    <div class="col-md-1" data-ng-repeat="x in choosenRoom.Tomorrow.hours">
+                        <a ng-class="{button_example: x.status==true,button3_example : x.user==user,button2_example : x.status==false}"
+                           href="#" ng-click="ChooseHour($event,x)"> {{x.hour}}:00 </a>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <div class="row">
+                        <div ng-if="showOrderInfo">
+                            <strong>
+                                You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room:
+                            &nbsp; {{choosenRoom.name}}
+                            at Date: {{choosenDate | date:'MM/dd/yyyy' }}
                         </label></div>
                     </div>
 
                 </div>
 
 
-        </div>
-    </md-dialog-content>
+            </div>
+        </md-dialog-content>
 
-    <md-dialog-actions layout="row">
+        <md-dialog-actions layout="row">
 
-        <md-button ng-click="SaveRoomOrder()">
-           Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-           Close
-        </md-button>
-    </md-dialog-actions>
-</form>
-</md-dialog>
+            <md-button ng-click="SaveRoomOrder()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
-
 
 
 <!--for Today-->
-<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
-<form>
+<script type="text/ng-template" id="dialog1.tmpl.html">
+    <md-dialog
+    aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
+    <form>
 
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Choose Hour</h2>
-            <span flex></span>
-            <!--  <md-button class="md-icon-button" ng-click="cancel()">
-                  <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
-              </md-button>-->
-        </div>
-    </md-toolbar>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Choose Hour</h2>
+                <span flex></span>
 
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-
-            <!-- <div class="text-center"  >-->
-            <!--             <div  class="row">
-                             <div class="col-md-1"  data-ng-repeat="x in hours" >
-                                 <button class="" ng-click="SaveHour()"  > {{x.hour}} </button>
-                             </div>
-                         </div>
-         -->
-
-
-
-
-            <div  class="row">
-
-
-                <div class="col-md-1"  data-ng-repeat="x in choosenRoom.Today.hours" >
-
-                    <a ng-class= "{button_example: x.status==true,button2_example : x.status==false}" href="#" ng-click="ChooseHour(x)"> {{x.hour}}:00</a>
-
-
-
-                    <!--
-
-                    <button class="" ng-click="SaveHour()"  > {{x.hour}} </button>
--->
-                </div>
             </div>
-            <br>
-            <br>
-            <div >
-                <div class="row" >
-                    <div  >
-                        <strong>
-                            You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room: &nbsp; {{choosenRoom.name}}
-                        at Date: {{choosenDate  | date:'MM/dd/yyyy' }}
+        </md-toolbar>
 
-                    </label></div>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div class="row">
+                    <div class="col-md-1" data-ng-repeat="x in choosenRoom.Today.hours">
+                        <a ng-class="{button_example: x.status==true,button3_example : x.user==user,button2_example : x.status==false}"
+                           href="#" ng-click="ChooseHour($event,x)"> {{x.hour}}:00 </a>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <div class="row">
+                        <div>
+                            <strong>
+                                You Choose Hour:</strong><label> &nbsp;{{choosenHour.hour}}:00&nbsp; For thr Room:
+                            &nbsp; {{choosenRoom.name}}
+                            at Date: {{choosenDate | date:'MM/dd/yyyy' }}
 
-                    <!--
-                                            <input class="form-control" ng-model="choosenHour.hour" type="text">
-                    -->
+                        </label></div>
+
+                    </div>
 
                 </div>
-                <!-- <div class="col-md-6">
-                     <div class="well">.col-md-6</div>
-                 </div>-->
+                <!--
+                            </div>
+                -->
+
+
             </div>
-            <!--
-                        </div>
-            -->
+        </md-dialog-content>
 
-
-
-        </div>
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="SaveRoomOrder()">
-            Save
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Close
-        </md-button>
-    </md-dialog-actions>
-</form>
-</md-dialog>
+        <md-dialog-actions layout="row">
+            <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                      More on Wikipedia
+                  </md-button>
+                  <span flex></span>-->
+            <md-button ng-click="SaveRoomOrder()">
+                Save
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
-<!--
-<div ng-click="vm.showAdvanced($event)">aaaa</div>
--->
 
-<!--
-<div class="button"><div class="outer"><div class="height"><div class="inner">DOWNLOAD</div></div></div></div>-->
-
-
-<!--choose a date-->
 <section class="content">
 
     <form id="form1">
         <h4>Choose a Date</h4>
         <ul id="g1">
-            <li  id="t1" ><a ng-click="vm.ShowRoomsInSelectedDates('today')"  href="#" class="round green">Today<span class="round">{{vm.myDate  | date:'dd/MM/yyyy' }}</span></a></li>
-            <li  id="t2" ><a ng-click="vm.ShowRoomsInSelectedDates('tomorrow')"  href="#" class="round red">Tomorrow<span class="round"> {{vm.tomorowDate  | date:'dd/MM/yyyy' }} </span></a></li>
-            <li  id="t3" ><a ng-click="vm.ShowRoomsInSelectedDates('afterTomorrow')" href="#" class="round yellow">After Tomorrow<span class="round">{{vm.afterTomorowDate  | date:'dd/MM/yyyy' }}</span></a></li>
+            <li id="t1"><a ng-click="vm.ShowRoomsInSelectedDates('today')" href="#" class="round green">Today<span
+                    class="round">{{vm.myDate  | date:'dd/MM/yyyy' }}</span></a></li>
+            <li id="t2"><a ng-click="vm.ShowRoomsInSelectedDates('tomorrow')" href="#" class="round red">Tomorrow<span
+                    class="round"> {{vm.tomorowDate  | date:'dd/MM/yyyy' }} </span></a></li>
+            <li id="t3"><a ng-click="vm.ShowRoomsInSelectedDates('afterTomorrow')" href="#" class="round yellow">After
+                Tomorrow<span class="round">{{vm.afterTomorowDate  | date:'dd/MM/yyyy' }}</span></a></li>
         </ul>
     </form>
 
-   <!-- <div class="row">
-        <div style='padding: 40px;' ng-cloak>
-            <md-content>
-                <h4>Choose a Date</h4>
-                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>
-
-                <md-button class="md-raised md-primary" ng-click="vm.ShowRoomsInSelectedDates()" > GO <i class="fa fa-angle-double-right"></i></md-button>
-
-
-            </md-content>
-        </div>
-
-    </div>-->
 
 
     <!-- All Rooms content -->
     <section class="content" ng-show="vm.showRooms">
 
         <div class="row">
-            <h2>Rooms For Date: {{ vm.choosenDate  | date:'MM/dd/yyyy' }}</h2>
-<hr>
-            <div class="col-lg-3 col-xs-6" data-ng-repeat="room in vm.roomsArray">
+            <h2>Rooms For Date: {{ vm.choosenDate | date:'MM/dd/yyyy' }}</h2>
+            <hr>
+            <div class="col-lg-3 col-xs-6" data-ng-repeat="room in vm.roomsArray" ng-show="room.status=='Available'">
                 <!-- small box -->
 
 
                 <div class="small-box bg-yellow-gradient" ng-click="vm.showHoursForDate($event,room)">
 
                     <div class="inner">
-                        <h3>{{room.name}}<small class="text-black"></small></h3>
+                        <h3>{{room.name}}
+                            <small class="text-black"></small>
+                        </h3>
                         <p class="text-bold">{{room.description}}</p>
                     </div>
                     <div class="icon">
-                        <i class="fa"><img src="images/icons/roomimg.jpg" class="img-responsive" width="70" /></i><!-- // to change picture-->
+                        <i class="fa"><img src="images/icons/roomimg.jpg" class="img-responsive" width="70"/></i><!-- // to change picture-->
                     </div>
                     <div style="min-height: 10%">
 
                     </div>
                     <div class="progress progress-sm active">
-                        <div class="progress-bar progress-bar-yellow progress-bar-striped" role="progressbar" aria-valuenow="yellow" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <div class="progress-bar progress-bar-yellow progress-bar-striped" role="progressbar"
+                             aria-valuenow="yellow" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                         </div>
                     </div>
 
                 </div>
 
-                <div class="img-responsive"  style="min-height: 10%">
+                <div class="img-responsive" style="min-height: 10%">
+                </div>
             </div>
         </div>
-            </div>
     </section>
 
-  </section>
-
-
-
-
+</section>
 
 
 <!-remove Order-->
-<script type="text/ng-template" id="dialog4.tmpl.html"><md-dialog aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
-<form>
+<script type="text/ng-template" id="dialog4.tmpl.html">
+    <md-dialog
+    aria-label="Choose Hour"  ng-cloak style="max-width: 60%" >
+    <form>
 
-    <md-toolbar  style="background-color: #ff010f">
-        <div class="md-toolbar-tools">
-            <h2>Do you want to Remove this Order?</h2>
-            <span flex></span>
-            <!--  <md-button class="md-icon-button" ng-click="cancel()">
-                  <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
-              </md-button>-->
-        </div>
-    </md-toolbar>
+        <md-toolbar style="background-color: #ff010f">
+            <div class="md-toolbar-tools">
+                <h2>Do you want to Remove this Order?</h2>
+                <span flex></span>
+                <!--  <md-button class="md-icon-button" ng-click="cancel()">
+                      <md-icon md-svg-src="img/icons/roomimg.jpg" aria-label="Close dialog"></md-icon>
+                  </md-button>-->
+            </div>
+        </md-toolbar>
 
-    <md-dialog-content>
-        <div class="md-dialog-content">
+        <md-dialog-content>
+            <div class="md-dialog-content">
 
-            <br>
-            <div >
-                <div class="row" >
-                    <div  >
-                        <strong> Details:
+                <br>
+
+                <div>
+                    <div class="row">
+                        <div>
+                            <strong> Details:
                             </strong><label> &nbsp; For the Room: &nbsp; {{choosenRoom.name}}
-                        at Date: {{choosenDate  | date:'MM/dd/yyyy' }}
+                            at Date: {{choosenDate | date:'MM/dd/yyyy' }}
 
-                    </label></div>
+                        </label></div>
+                    </div>
+
                 </div>
 
             </div>
-
-        </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-              </md-button>
-              <span flex></span>-->
-        <md-button ng-click="RemoveOrder()">
-            Yes
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            No
-        </md-button>
-    </md-dialog-actions>
-</form>
-</md-dialog>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <!--      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                      More on Wikipedia
+                  </md-button>
+                  <span flex></span>-->
+            <md-button ng-click="RemoveOrder()">
+                Yes
+            </md-button>
+            <md-button ng-click="answer('useful')">
+                No
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    </md-dialog>
 </script>
 

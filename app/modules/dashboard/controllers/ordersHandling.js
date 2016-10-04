@@ -102,52 +102,62 @@ vm.msgtoEdit={};
 console.log($scope.selectedPerson.title);
 
         $scope.CreateNewMSG= function(){
+            debugger
+            if(!$scope.selectedPerson.originalObject){
+                Flash.create('danger', 'Choose Person Please', 'large-text');
+                return;
+            }
             $scope.message.receiverUser=$scope.selectedPerson.originalObject.id;
             $scope.message.receiverUser_ID=$scope.selectedPerson.originalObject._id;
             $scope.message.receiverName=$scope.selectedPerson.originalObject.firstName;
+debugger
 
-            console.log($scope.message);
-          /*  console.log($scope.selectedPerson.title);
-            console.log($scope.selectedPerson.originalObject.id);*/
-            apiService.createNewMessage($scope.message)
-                .then(function (data) {
-
-
-                    if(  $scope.message.receiverUser_ID==vm.user_ID){
-                        vm.userlocal.MessagesLength++;
-                        globalService.SetUserDetails(vm.userlocal);
-
-
-                        $rootScope.$emit("CallParentMethod", {});
-                    }
-
-
-                    vm.Refresh();
-                    $mdDialog.cancel();
-                }, function (err) {
-                });
+            if ($scope.message.content) {
+                apiService.createNewMessage($scope.message)
+                    .then(function (data) {
+                        if ($scope.message.receiverUser_ID == vm.user_ID) {
+                            vm.userlocal.MessagesLength++;
+                            globalService.SetUserDetails(vm.userlocal);
+                            $rootScope.$emit("CallParentMethod", {});
+                        }
+                        Flash.create('success', 'Message Sent Successfully', 'large-text');
+                        vm.Refresh();
+                        $mdDialog.cancel();
+                    }, function (err) {
+                    });
+            }
+            else{
+                Flash.create('danger', 'Choose Person & Fill  Message Content Please', 'large-text');
+            }
         };
 
-        $scope.CreateNewToAdminMSG= function(){
+        $scope.CreateNewToAdminMSG= function() {
+            debugger
+            $scope.message.receiverUser = "311538417";
+            $scope.message.receiverUser_ID = "578222e48b1293d035e0341c";
+            $scope.message.receiverName = "Secretary";
 
-            $scope.message.receiverUser="311538417";
-            $scope.message.receiverUser_ID="578222e48b1293d035e0341c";
-            $scope.message.receiverName="Secretary";
 
-            console.log($scope.message);
+            if ($scope.message.content) {
+
             apiService.createNewMessage($scope.message)
                 .then(function (data) {
-                    if(  $scope.message.receiverUser_ID==vm.user_ID){
+                    if ($scope.message.receiverUser_ID == vm.user_ID) {
                         vm.userlocal.MessagesLength++;
                         globalService.SetUserDetails(vm.userlocal);
 
 
                         $rootScope.$emit("CallParentMethod", {});
                     }
+                    Flash.create('success', 'Message Sent Successfully', 'large-text');
                     vm.Refresh();
                     $mdDialog.cancel();
                 }, function (err) {
                 });
+        }
+        else {
+                Flash.create('danger', 'Fill  Message Content Please', 'large-text');
+            }
         };
 
 

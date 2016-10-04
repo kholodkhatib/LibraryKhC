@@ -1,69 +1,64 @@
 ﻿/*==========================================================
-    Author      : Ranjithprabhu K
-    Date Created: 13 Jan 2016
-    Description : Controller to handle people page
-    Change Log
-    s.no      date    author     description     
+ Author      : Ranjithprabhu K
+ Date Created: 13 Jan 2016
+ Description : Controller to handle people page
+ Change Log
+ s.no      date    author     description
 
 
  ===========================================================*/
 
-dashboard.controller("BooksOrderingHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash','$mdDialog', '$mdMedia','apiService','globalService',
-function ($rootScope, $scope, $state, $location, dashboardService, Flash,$mdDialog, $mdMedia,apiService,globalService) {
-    var vm = this;
+dashboard.controller("BooksOrderingHandlingController", ['$rootScope', '$scope', '$state', '$location', 'dashboardService', 'Flash', '$mdDialog', '$mdMedia', 'apiService', 'globalService',
+    function ($rootScope, $scope, $state, $location, dashboardService, Flash, $mdDialog, $mdMedia, apiService, globalService) {
+        var vm = this;
 //author
-    vm.bookOrderingForEdit={};
-    vm.bookOrderingForDelete={};
-    vm.searchStatus={};
+        vm.bookOrderingForEdit = {};
+        vm.bookOrderingForDelete = {};
+        vm.searchStatus = {};
 
-vm.Refresh= function () {
+        vm.Refresh = function () {
+debugger
+            apiService.getAllBooksOrdering()
+                .then(function (booksOrdering) {
 
-    apiService.getAllBooksOrdering()
-        .then(function (booksOrdering) {
-
-            vm.booksOrderingArray = booksOrdering;
-        }, function (err) {
-        });
-};
-vm.newBookOrdering={};
-
-
-
-    vm.getStatusFilter=function(status)
-    {
-        vm.searchStatus.status=status;
-    };
+                    vm.booksOrderingArray = booksOrdering;
+                }, function (err) {
+                });
+        };
+        vm.newBookOrdering = {};
 
 
-
-    function DialogController($scope, $mdDialog,apiService) {
-
-        $scope.bookOrdering= {};
-        $scope.bookOrderingForEdit=vm.example;
-        $scope.bookOrderingForDelete=vm.bookOrderingForDelete;
-
-        $scope.bookOrdering.issueDate= globalService.GetTodayDate();
-        $scope.selectedPerson={};
-
-        apiService.getAllPeople()
-            .then(function (people) {
-                $scope.peopleArray = people;
-            }, function (err) {
-            });
-
-        $scope.selectedBook={};
-
-        apiService.search()
-            .then(function (books) {
-                $scope.booksArray = books;
-
-            }, function (err) {
-            });
+        vm.getStatusFilter = function (status) {
+            vm.searchStatus.status = status;
+        };
 
 
+        function DialogController($scope, $mdDialog, apiService) {
+
+            $scope.bookOrdering = {};
+            $scope.bookOrderingForEdit = vm.example;
+            $scope.bookOrderingForDelete = vm.bookOrderingForDelete;
+
+            $scope.bookOrdering.issueDate = globalService.GetTodayDate();
+            $scope.selectedPerson = {};
+
+            apiService.getAllPeople()
+                .then(function (people) {
+                    $scope.peopleArray = people;
+                }, function (err) {
+                });
+
+            $scope.selectedBook = {};
+
+            apiService.search()
+                .then(function (books) {
+                    $scope.booksArray = books;
+
+                }, function (err) {
+                });
 
 
-            $scope.DeleteBookOrdering=function(){
+            $scope.DeleteBookOrdering = function () {
 
                 console.log($scope.bookOrderingForDelete);
 
@@ -76,11 +71,11 @@ vm.newBookOrdering={};
                     });
 
             }
-            $scope.EditBookOrdering=function(){
+            $scope.EditBookOrdering = function () {
                 apiService.EditBookOrdering($scope.bookOrderingForEdit)
                     .then(function (data) {
 
-                        if($scope.bookOrderingForEdit.status=="Finished" || $scope.bookOrderingForEdit.status == "Cancelled"){
+                        if ($scope.bookOrderingForEdit.status == "Finished" || $scope.bookOrderingForEdit.status == "Cancelled") {
                             $rootScope.$emit("RefreshLocalUser", {});
                         }
 
@@ -91,181 +86,148 @@ vm.newBookOrdering={};
                     });
 
 
-
             }
 
 
+            $scope.CreateNewBookOrdering = function () {
+                debugger
+                vm.choosedBook = $scope.selectedPerson.originalObject;
+                if ($scope.selectedPerson.originalObject) {
+                    $scope.bookOrdering.userID = $scope.selectedPerson.originalObject.id;
+                    $scope.bookOrdering.user_ID = $scope.selectedPerson.originalObject._id;
+                    $scope.bookOrdering.status = 'Pending';
 
+                }
+                else {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                    return
+                }
+                if ($scope.selectedBook.originalObject) {
+                    $scope.bookOrdering.bookTitle = $scope.selectedBook.originalObject.title;
+                    $scope.bookOrdering.book_ID = $scope.selectedBook.originalObject._id;
+                    debugger
+                    if ($scope.selectedBook.originalObject.bookStatus == 'Not Available') {
+                        Flash.create('warning', 'this book is not available ', 'large-text');
+                    } else {
+                        debugger
+                        if ($scope.bookOrdering.userID && $scope.bookOrdering.book_ID) {
+                            apiService.createNewBookOrdering($scope.bookOrdering)
+                                .then(function (data) {
+                                    Flash.create('success', 'Order Done Succesfully for book : ' + $scope.bookOrdering.bookTitle, 'large-text');
+                                    vm.choosedBook.bookStatus = "Not Available";
+                                    vm.choosedBook.user = $scope.selectedPerson.originalObject._id;
+                                    apiService.EditBook(vm.choosedBook).then(function (data) {
+                                        vm.Refresh();
+                                        $mdDialog.cancel();
 
-            $scope.CreateNewBookOrdering= function(){
-                vm.choosedBook=$scope.selectedPerson.originalObject;
-
-                $scope.bookOrdering.bookTitle=$scope.selectedBook.originalObject.title;
-                $scope.bookOrdering.book_ID=$scope.selectedBook.originalObject._id;
-
-
-                $scope.bookOrdering.userID=$scope.selectedPerson.originalObject.id;
-                $scope.bookOrdering.user_ID=$scope.selectedPerson.originalObject._id;
-                $scope.bookOrdering.status='Pending';
-
-                console.log($scope.selectedBook);
-                console.log($scope.bookOrdering);
-
-                if($scope.selectedBook.originalObject.bookStatus=='Not Available'){
-                    Flash.create('warning', 'this book is not available ', 'large-text');
-                }else{
-                apiService.createNewBookOrdering($scope.bookOrdering)
-                    .then(function (data) {
-                        Flash.create('success', 'Order Done Succesfully for book : '+$scope.bookOrdering.bookTitle, 'large-text');
-                        vm.choosedBook.bookStatus="Not Available";
-                        vm.choosedBook.user=$scope.selectedPerson.originalObject._id;
-                        /* books.followersArray.push({userId:vm.bookForOrder.user_ID});*/
-
-                        apiService.EditBook(vm.choosedBook) .then(function (data) {
-
-                        }, function (err) {
-                            /* vm.Refresh();*/
-                        });
-
-
-                        vm.Refresh();
-                        $mdDialog.cancel();
-                    }, function (err) {
-                    });}
+                                    }, function (err) {
+                                        /* vm.Refresh();*/
+                                    });
+                                    vm.Refresh();
+                                    $mdDialog.cancel();
+                                }, function (err) {
+                                });
+                        }
+                        else {
+                            Flash.create('danger', 'Fill All Data Please', 'large-text');
+                        }
+                    }
+                }
+                else {
+                    Flash.create('danger', 'Fill All Data Please', 'large-text');
+                }
             };
 
 
-        $scope.getDateForOnGoing=function(statusValue) {
+            $scope.getDateForOnGoing = function (statusValue) {
 
 
-            if (statusValue == "OnGoing") {
+                if (statusValue == "OnGoing") {
 
-            $scope.bookOrderingForEdit.dueDate = globalService.GetTodayDate();
+                    $scope.bookOrderingForEdit.dueDate = globalService.GetTodayDate();
+                }
+                else if (statusValue == "Finished") {
+                    $scope.bookOrderingForEdit.finishDate = globalService.GetTodayDate();
+                }
+                else {
+                    $scope.bookOrderingForEdit.finishDate = "";
+                    $scope.bookOrderingForEdit.dueDate = "";
+                }
+                $scope.bookOrderingForEdit.status = statusValue;
             }
-            else if (statusValue == "Finished"){
-                $scope.bookOrderingForEdit.finishDate = globalService.GetTodayDate();
-            }
-            else{
-                $scope.bookOrderingForEdit.finishDate="";
-                $scope.bookOrderingForEdit.dueDate="";
-            }
-            $scope.bookOrderingForEdit.status=statusValue;
+
+
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
         }
 
+        vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+        vm.showAdvanced = function (ev) {
+
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
+
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
 
 
-
-
-
-
-
-
-
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
-
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-        };
-
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        };
-    }
-    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    vm.showAdvanced = function(ev) {
-
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
             });
 
+        };
 
 
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
-
-    };
+        vm.showEditDialog = function (ev, bookOrderingForEdit) {
+            vm.bookOrderingForEdit = bookOrderingForEdit;
+            vm.example = angular.copy(vm.bookOrderingForEdit);
 
 
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
 
-    vm.showEditDialog = function(ev,bookOrderingForEdit) {
-        vm.bookOrderingForEdit=bookOrderingForEdit;
-        vm.example = angular.copy(vm.bookOrderingForEdit);
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog2.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                //fullscreen: true
+            })
+                .then(function (answer) {
+                    vm.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    vm.status = 'You cancelled the dialog.';
+                });
 
 
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog2.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            //fullscreen: true
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
             });
 
-
-
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
-
-    };
-
-
-    vm.showDeleteDialog = function(ev,bookOrderingForDelete) {
-        vm.bookOrderingForDelete=bookOrderingForDelete;
-
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog3.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: useFullScreen
-        })
-            .then(function(answer) {
-                vm.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                vm.status = 'You cancelled the dialog.';
-            });
-
-
-
-        $scope.$watch(function() {
-            return $mdMedia('xs') || $mdMedia('sm');
-        }, function(wantsFullScreen) {
-            vm.customFullscreen = (wantsFullScreen === true);
-        });
-
-    };
-
-
-    vm.Refresh();
-}]);
+        };
+        vm.Refresh();
+    }]);
 
