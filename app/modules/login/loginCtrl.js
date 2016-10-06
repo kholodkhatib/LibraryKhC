@@ -58,9 +58,10 @@ login.controller("loginCtrl", ['$rootScope', '$scope', '$state', '$location', 'l
                     vm.setUser.birthday = vm.myDate;
                     vm.setUser.isAdmin = false;
 
-                    apiService.signUpreq(vm.setUser).then(function () {
+                    apiService.signUpreq(vm.setUser).then(function (obj) {
+                        debugger
                         Flash.create('success', 'Register Done Succesfully', 'large-text');
-                        globalService.SetUserDetails(vm.setUser);
+                        globalService.SetUserDetails(obj);
                         $state.go('app.simpleSearch');
 
                     }, function (err) {

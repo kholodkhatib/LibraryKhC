@@ -774,7 +774,7 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
 
         var deferred = $q.defer();
 
-        $http.post(apiBase + 'book/search',bookForSearch, { headers: { 'Content-Type': 'application/json' , "token": globalService.GetUserDetails().token } }).success(function (response) {
+        $http.post(apiBase + 'book/search',bookForSearch, { headers: { 'Content-Type': 'application/json' , 'token': globalService.GetUserDetails().token } }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
             deferred.reject(data.statusText);
