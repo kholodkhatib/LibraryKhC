@@ -143,7 +143,7 @@ Date: 15 Jan 2016
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="book in vm.booksArray | filter: vm.searchFilter">
+        <tr ng-repeat="book in vm.booksArray | filter: vm.searchFilter" ng-class="{'success': book.bookStatus == 'Available', 'danger':  book.bookStatus== 'Not Available'}">
 
             <td> {{book.title}}</td>
             <td> {{book.description }}</td>

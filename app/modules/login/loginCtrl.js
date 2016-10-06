@@ -50,25 +50,32 @@ login.controller("loginCtrl", ['$rootScope', '$scope', '$state', '$location', 'l
 
         //get registration details
         vm.register = function () {
-            if (vm.setUser.confirmPassword == vm.setUser.password) {
-
-                vm.setUser.birthday = vm.myDate;
-                vm.setUser.isAdmin = false;
-
-                apiService.createNewPeople(vm.setUser).then(function () {
-                    Flash.create('success', 'Register Done Succesfully', 'large-text');
-                    globalService.SetUserDetails(vm.setUser);
-                    $state.go('app.simpleSearch');
-
-                }, function (err) {
-                    Flash.create('danger', '' + err.data, 'large-text');
+            if(vm.setUser.gender) {
 
 
-                });
+                if (vm.setUser.confirmPassword == vm.setUser.password) {
+
+                    vm.setUser.birthday = vm.myDate;
+                    vm.setUser.isAdmin = false;
+
+                    apiService.signUpreq(vm.setUser).then(function () {
+                        Flash.create('success', 'Register Done Succesfully', 'large-text');
+                        globalService.SetUserDetails(vm.setUser);
+                        $state.go('app.simpleSearch');
+
+                    }, function (err) {
+                        Flash.create('danger', '' + err.data, 'large-text');
+
+
+                    });
+                }
+                else {
+
+                    Flash.create('danger', 'Password are not Compatible', 'large-text');
+                }
             }
-            else {
-
-                Flash.create('danger', 'Password are not Compatible', 'large-text');
+            else{
+                Flash.create('danger', 'Choose Gender Please', 'large-text');
             }
         };
 

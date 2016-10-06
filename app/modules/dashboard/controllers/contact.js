@@ -27,7 +27,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
         console.log(vm.message);
 
-
+        if (vm.message.content) {
         apiService.createNewMessage(vm.message)
             .then(function (data) {
 
@@ -38,11 +38,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash, $http,
 
                     $rootScope.$emit("CallParentMethod", {});
                 }
-                console.log("msg sent");
+                Flash.create('success', 'Message Sent Successfully', 'large-text');
                 $state.go('app.simpleSearch');
             }, function (err) {
                 console.log("msg error");
-            });
+            });}
+        else{
+            Flash.create('danger', ' Fill  Message Content Please', 'large-text');
+        }
 
     };
     console.log("coming to Contact controller");

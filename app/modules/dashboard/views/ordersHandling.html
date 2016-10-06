@@ -459,11 +459,11 @@ Date: 05 Jan 2016
 
         <tbody>
 
-        <tr  ng-repeat="msg in vm.messagesArray  | filter: vm.searchFilterInbox" ng-class={unread:msg.isRead}>
+        <tr  ng-repeat="msg in vm.messagesArray  | filter: vm.searchFilterInbox" ng-class={unread:!msg.isRead}>
 
             <td class="inbox-small-cells">
-                <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,msg.isRead)" ng-hide="msg.isRead" >  <span class="glyphicon glyphicon-ban-circle"></span> </a>
-                <a class="btn btn-warning btn-xs" ng-click="vm.changeStatus(msg,msg.isRead)" ng-show="msg.isRead" > <span class="glyphicon glyphicon-ok"></span> </a>
+                <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,msg.isRead)" ng-show="msg.isRead" >  <span class="glyphicon glyphicon-ban-circle"></span> </a>
+                <a class="btn btn-warning btn-xs" ng-click="vm.changeStatus(msg,msg.isRead)" ng-hide="msg.isRead" > <span class="glyphicon glyphicon-ok"></span> </a>
             </td>
             <td class="view-message  dont-show">From: &nbsp; {{msg.senderName}}</td>
             <td class="view-message "> {{msg.content}}</td>
@@ -487,7 +487,7 @@ Date: 05 Jan 2016
         </tr>
         </thead>
         <tbody>
-        <tr  ng-repeat="msg in vm.messagesArray  | filter: vm.searchFilterMSG" ng-class={unread:msg.isRead}>
+        <tr  ng-repeat="msg in vm.messagesArray  | filter: vm.searchFilterMSG" >
             <td class="view-message  dont-show">To: &nbsp; {{msg.receiverName}}</td>
             <td class="view-message "> {{msg.content}}</td>
             <td > {{msg.addedTime| date:'MM/dd/yyyy'}}</td>

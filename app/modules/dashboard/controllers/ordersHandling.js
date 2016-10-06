@@ -66,10 +66,10 @@ vm.msgtoEdit={};
 
 
                 if(vm.msgtoEdit.isRead){
-                    vm.userlocal.MessagesLength++;
+                    vm.userlocal.MessagesLength--;
                 }
                 else {
-                    vm.userlocal.MessagesLength--;
+                    vm.userlocal.MessagesLength++;
                 }
 
 

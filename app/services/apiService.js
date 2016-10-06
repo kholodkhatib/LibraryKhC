@@ -107,6 +107,23 @@ app.service('apiService', ['$http', '$q', 'appSettings','globalService', functio
         return deferred.promise;
     };
 
+    var signUpreq=function (person){
+
+        var deferred = $q.defer();
+
+        $http.post(apiBase + 'person',
+            person
+            , {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).catch(function (data, status, headers, config) { // <--- catch instead error
+                deferred.reject(data);
+            });
+        return deferred.promise;
+    };
 
     //===========================Edit People======== Kholod======================
     var EditPerson = function (person) {
@@ -1121,6 +1138,7 @@ debugger
     //---------------------people
     apiService.getAllPeople=getAllPeople;
     apiService.createNewPeople=createNewPeople;
+    apiService.signUpreq=signUpreq;
     apiService.EditPerson=EditPerson;
     apiService.DeletePerson=DeletePerson;
     apiService.GetPersonById=GetPersonById;
