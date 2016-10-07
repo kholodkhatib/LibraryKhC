@@ -13,8 +13,8 @@ var appConfig = {
     title: "Corporate Directory",
     lang: "en",
     dateFormat: "mm/dd/yy",
-    //apiBase: 'https://librarykholod.herokuapp.com/api/',
-     apiBase: 'http://localhost:5000/api/',
+    apiBase: 'https://librarykholod.herokuapp.com/api/',
+ /*    apiBase: 'http://localhost:5000/api/',*/
     theme: 'skin-purple',
     layout:""
 };
