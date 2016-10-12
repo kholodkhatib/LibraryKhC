@@ -94,7 +94,8 @@ Date: 15 Jan 2016
         <td>  {{bookOrdering.issueDate}} </td>
         <td> {{bookOrdering.dueDate }}</td>
         <td>  {{bookOrdering.finishDate}} </td>
-        <td>  {{bookOrdering.status}} </td>
+        <td ng-class="{'success':bookOrdering.status == 'InProgress' || bookOrdering.status == 'Pending' , 'danger':  bookOrdering.status == 'Cancelled',
+        'info':  bookOrdering.status == 'OnGoing', 'warning':  bookOrdering.status == 'Finished'}">  {{bookOrdering.status}} </td>
 
 
 

@@ -55,7 +55,7 @@ dashboard.controller("PeopleController", ['$rootScope', '$scope', '$state', '$lo
             $scope.EditPerson=function(){
 debugger
 
-                if ( $scope.personForEdit.gender &&  $scope.personForEdit.firstName && $scope.personForEdit.lastName && $scope.personForEdit.email && $scope.personForEdit.address && $scope.personForEdit.birthday && $scope.personForEdit.password ) {
+                if (  $scope.personForEdit.firstName && $scope.personForEdit.lastName && $scope.personForEdit.email&& $scope.personForEdit.birthday && $scope.personForEdit.password ) {
 
                     apiService.EditPerson($scope.personForEdit)
                         .then(function (data) {
@@ -73,7 +73,7 @@ debugger
             }
             $scope.CreateNewPeople= function(){
 
-                if ( $scope.person.gender &&$scope.person.id && $scope.person.firstName && $scope.person.lastName && $scope.person.email && $scope.person.address && $scope.person.birthday && $scope.person.password ) {
+                if ( $scope.person.gender &&$scope.person.id && $scope.person.firstName && $scope.person.lastName && $scope.person.email && $scope.person.birthday && $scope.person.password ) {
 
 
                     apiService.createNewPeople($scope.person)

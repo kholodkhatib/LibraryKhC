@@ -465,6 +465,7 @@ Date: 05 Jan 2016
                 <a class="btn btn-success btn-xs"  ng-click="vm.changeStatus(msg,msg.isRead)" ng-show="msg.isRead" >  <span class="glyphicon glyphicon-ban-circle"></span> </a>
                 <a class="btn btn-warning btn-xs" ng-click="vm.changeStatus(msg,msg.isRead)" ng-hide="msg.isRead" > <span class="glyphicon glyphicon-ok"></span> </a>
             </td>
+            <td class="view-message "> a {{msg._id}}</td>
             <td class="view-message  dont-show">From: &nbsp; {{msg.senderName}}</td>
             <td class="view-message "> {{msg.content}}</td>
             <td>{{msg.addedTime| date:'MM/dd/yyyy'}}</td>
