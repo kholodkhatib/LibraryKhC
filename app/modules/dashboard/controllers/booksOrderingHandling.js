@@ -17,7 +17,7 @@ dashboard.controller("BooksOrderingHandlingController", ['$rootScope', '$scope',
         vm.searchStatus = {};
 
         vm.Refresh = function () {
-debugger
+
             apiService.getAllBooksOrdering()
                 .then(function (booksOrdering) {
 
@@ -72,18 +72,23 @@ debugger
 
             }
             $scope.EditBookOrdering = function () {
+                $scope.showLoading = true;
                 apiService.EditBookOrdering($scope.bookOrderingForEdit)
                     .then(function (data) {
 
                         if ($scope.bookOrderingForEdit.status == "Finished" || $scope.bookOrderingForEdit.status == "Cancelled") {
                             $rootScope.$emit("RefreshLocalUser", {});
                         }
-
+                        $scope.showLoading = false;
+                        $mdDialog.cancel();
                         vm.Refresh();
                         $mdDialog.cancel();
                     }, function (err) {
+                        $scope.showLoading = false;
+                        $mdDialog.cancel();
                         vm.Refresh();
                     });
+
 
 
             }
